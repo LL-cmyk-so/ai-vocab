@@ -1,0 +1,924 @@
+{
+ "title": "AI 词汇本",
+ "subtitle": "从 Agent 到 Token，用大白话看懂 AI 时代",
+ "layers": [
+  {
+   "id": "总纲",
+   "desc": "从这里开始认识 AI"
+  },
+  {
+   "id": "地基",
+   "desc": "AI 是怎么工作的"
+  },
+  {
+   "id": "模型本体",
+   "desc": "大模型本身"
+  },
+  {
+   "id": "交互层",
+   "desc": "怎么跟 AI 打交道"
+  },
+  {
+   "id": "应用层",
+   "desc": "AI 能干的事"
+  },
+  {
+   "id": "生态与前沿",
+   "desc": "行业与未来"
+  }
+ ],
+ "path": [
+  {
+   "ids": [
+    "ai"
+   ],
+   "note": "总纲：AI 到底是什么"
+  },
+  {
+   "ids": [
+    "machine-learning"
+   ],
+   "note": "AI 的核心方法：让机器自己学会"
+  },
+  {
+   "ids": [
+    "deep-learning"
+   ],
+   "note": "机器学习里最厉害的流派"
+  },
+  {
+   "ids": [
+    "neural-network"
+   ],
+   "note": "深度学习的\"大脑\"长什么样"
+  },
+  {
+   "ids": [
+    "training"
+   ],
+   "note": "怎么\"教\"这个大脑（上学）"
+  },
+  {
+   "ids": [
+    "parameter"
+   ],
+   "note": "训练到底在调什么（旋钮）"
+  },
+  {
+   "ids": [
+    "inference"
+   ],
+   "note": "学完之后怎么用（考试）"
+  },
+  {
+   "ids": [
+    "compute",
+    "gpu"
+   ],
+   "note": "训练为什么这么烧钱（马力）"
+  },
+  {
+   "ids": [
+    "llm"
+   ],
+   "note": "集大成者：AI 时代的主角登场"
+  },
+  {
+   "ids": [
+    "token"
+   ],
+   "note": "大模型怎么\"读\"文字（积木块）"
+  },
+  {
+   "ids": [
+    "context-window"
+   ],
+   "note": "大模型一次能记住多少"
+  },
+  {
+   "ids": [
+    "pretraining",
+    "fine-tuning"
+   ],
+   "note": "大模型是怎么造出来的"
+  },
+  {
+   "ids": [
+    "prompt"
+   ],
+   "note": "你和大模型对话的入口"
+  },
+  {
+   "ids": [
+    "hallucination"
+   ],
+   "note": "用之前必须知道的坑"
+  },
+  {
+   "ids": [
+    "chatbot",
+    "ai-assistant"
+   ],
+   "note": "最常见的 AI 产品形态"
+  },
+  {
+   "ids": [
+    "agent"
+   ],
+   "note": "AI 从\"说\"到\"做\"的进化"
+  },
+  {
+   "ids": [
+    "rag"
+   ],
+   "note": "让 AI 用上你的私有资料"
+  },
+  {
+   "ids": [
+    "agi"
+   ],
+   "note": "终点站：AI 要去哪"
+  }
+ ],
+ "hot": [
+  "agent",
+  "token",
+  "rag",
+  "hallucination",
+  "agi",
+  "multimodal"
+ ],
+ "words": [
+  {
+   "id": "ai",
+   "title": "人工智能（AI）",
+   "en": "Artificial Intelligence（AI）",
+   "zh": "人工智能",
+   "alias": "无（AI 是通用叫法）",
+   "layer": "总纲",
+   "def": "整个词汇本的起点。简单说，就是让机器干\"以前只有人才能干的聪明事\"——听懂人话、看懂图片、下棋、开车。它不是某一种技术，而是一整片领域的总称，后面所有词（机器学习、大语言模型、Agent……）都是这片领域里的具体分支。你可以把它理解成\"机器的智能\"这个大筐，里面装着几十年来一代又一代的成果。",
+   "related": [
+    "machine-learning",
+    "deep-learning",
+    "llm",
+    "agi"
+   ]
+  },
+  {
+   "id": "turing-test",
+   "title": "图灵测试",
+   "en": "Turing Test",
+   "zh": "图灵测试",
+   "alias": "",
+   "layer": "总纲",
+   "def": "1950 年图灵提出的老问题：\"怎么判断机器算不算有智能？\"办法很朴素：让一个人隔着屏幕和两个对象聊天，一个真人一个机器，如果他分不清谁是谁，就说明机器通过了测试。它没有给出最终答案，但把\"智能\"从哲学问题变成了可以检验的命题，是 AI 这门学科公认的起点。今天几乎没人用它当标准了，但它是理解 AI 历史的必经一站。",
+   "related": [
+    "ai",
+    "agi"
+   ]
+  },
+  {
+   "id": "machine-learning",
+   "title": "机器学习",
+   "en": "Machine Learning",
+   "zh": "机器学习",
+   "alias": "",
+   "layer": "地基",
+   "def": "让机器\"自己学会\"的技术，而不是人一条条写规则。传统程序是你告诉电脑\"遇到 A 就做 B\"；机器学习是你扔给它一大堆例子（比如一万张猫的照片），它自己从中总结规律。就像教小孩认字——不是给他一本规则手册，而是让他看很多字，看多了自然认识。AI 近二十年的大进展，本质上都是这一招玩到了极致。",
+   "related": [
+    "ai",
+    "deep-learning",
+    "training",
+    "dataset"
+   ]
+  },
+  {
+   "id": "deep-learning",
+   "title": "深度学习",
+   "en": "Deep Learning",
+   "zh": "深度学习",
+   "alias": "",
+   "layer": "地基",
+   "def": "机器学习里的\"王牌流派\"，靠的是模仿大脑的\"神经网络\"。它之所以叫\"深\"，是因为这种网络有很多层，一层层地提取特征——先看轮廓，再看形状，最后认出物体。关系一句话：人工智能是个大筐，机器学习是筐里最热门的工具，深度学习又是这个工具里最厉害的版本。",
+   "related": [
+    "machine-learning",
+    "neural-network",
+    "parameter"
+   ]
+  },
+  {
+   "id": "neural-network",
+   "title": "神经网络",
+   "en": "Neural Network",
+   "zh": "神经网络",
+   "alias": "",
+   "layer": "地基",
+   "def": "AI 的\"大脑\"。它不是人写死的规则，而是模仿人脑神经细胞互相连接的结构。你给它看大量例子，它自己慢慢学会总结规律——比如看一万张猫的照片，它自己就知道\"猫长什么样\"。深度学习 = 用这种结构 + 很多层，今天的大模型就是它的巨型版。",
+   "related": [
+    "deep-learning",
+    "parameter",
+    "weight"
+   ]
+  },
+  {
+   "id": "training",
+   "title": "训练",
+   "en": "Training",
+   "zh": "训练",
+   "alias": "",
+   "layer": "地基",
+   "def": "让 AI 学习的\"上学\"阶段：喂给它海量数据，反复调整它内部的\"参数\"，直到它学会本领。这个过程又慢又烧钱——训练一个大模型要花几千万美元、用几千块顶级显卡算几个月。AI 公司烧钱主要就烧在这一步。",
+   "related": [
+    "inference",
+    "dataset",
+    "pretraining"
+   ]
+  },
+  {
+   "id": "inference",
+   "title": "推理",
+   "en": "Inference",
+   "zh": "推理",
+   "alias": "",
+   "layer": "地基",
+   "def": "训练完成后的\"考试\"阶段：你问它问题，它当场作答。推理快且便宜，普通人平时用 ChatGPT 问问题，用的全是推理。所以\"训练\"和\"推理\"是一对：一个花钱学，一个省钱用。",
+   "related": [
+    "training",
+    "api"
+   ]
+  },
+  {
+   "id": "parameter",
+   "title": "参数",
+   "en": "Parameter",
+   "zh": "参数",
+   "alias": "",
+   "layer": "地基",
+   "def": "AI 大脑里\"可调的旋钮\"。训练的本质，就是不断微调这些旋钮，直到模型输出正确。参数越多，模型记的东西越多、能力越强——这就是常说的\"参数规模\"：千亿参数的意思就是有上千亿个这样的旋钮。但也意味着更烧钱、更难训练。",
+   "related": [
+    "weight",
+    "training",
+    "llm"
+   ]
+  },
+  {
+   "id": "weight",
+   "title": "权重",
+   "en": "Weight",
+   "zh": "权重",
+   "alias": "",
+   "layer": "地基",
+   "def": "参数里最核心的一种：衡量\"这条路径有多重要\"的数字。神经网络里每条连接都有一个权重，权重越高，它对结果的影响越大。打个比方：你判断一个人，靠\"经验\"和\"直觉\"两条路径，经验这条的权重更高。训练的过程，本质就是在不断调权重。",
+   "related": [
+    "parameter",
+    "neural-network"
+   ]
+  },
+  {
+   "id": "dataset",
+   "title": "数据集",
+   "en": "Dataset",
+   "zh": "数据集",
+   "alias": "",
+   "layer": "地基",
+   "def": "喂给 AI 的\"教材\"。训练数据用来学习，测试数据用来考试。数据质量决定 AI 的上限：喂干净、多样、正确的好教材，它才学得好；喂垃圾，学出来的也是垃圾——AI 圈有句老话：\"垃圾进，垃圾出\"（Garbage in, garbage out）。",
+   "related": [
+    "training",
+    "pretraining",
+    "fine-tuning"
+   ]
+  },
+  {
+   "id": "algorithm",
+   "title": "算法",
+   "en": "Algorithm",
+   "zh": "算法",
+   "alias": "",
+   "layer": "地基",
+   "def": "解决问题的\"步骤说明书\"。对 AI 来说，算法就是\"怎么从数据里学出规律\"的方法。同一个问题可以用不同算法解决，效果差别很大。它是最基础的计算机概念，但 AI 圈天天提它，因为 AI 的核心竞争之一就是算法竞争。",
+   "related": [
+    "machine-learning",
+    "compute"
+   ]
+  },
+  {
+   "id": "compute",
+   "title": "算力",
+   "en": "Compute / Computing Power",
+   "zh": "算力",
+   "alias": "计算能力",
+   "layer": "地基",
+   "def": "计算的\"马力\"。AI 训练本质是海量数学运算，算力就是干这些运算的速度和能力。好比做饭：菜谱（算法）再好，锅（算力）太小也做不成满汉全席。这也是为什么 AI 公司疯狂抢购显卡——抢的就是算力。",
+   "related": [
+    "gpu",
+    "training",
+    "local-deployment"
+   ]
+  },
+  {
+   "id": "gpu",
+   "title": "GPU",
+   "en": "GPU（Graphics Processing Unit）",
+   "zh": "图形处理器",
+   "alias": "显卡（俗称）",
+   "layer": "地基",
+   "def": "最初为打游戏设计的显卡，却成了 AI 时代的\"发动机\"。因为它擅长同时做大量简单运算——正好是神经网络最需要的活。干 AI 的活，一块 GPU 能顶几十上百个普通 CPU。英伟达股价暴涨，就是因为它是 GPU 市场的绝对霸主。",
+   "related": [
+    "compute",
+    "training",
+    "local-deployment"
+   ]
+  },
+  {
+   "id": "llm",
+   "title": "大语言模型（LLM）",
+   "en": "Large Language Model（LLM）",
+   "zh": "大语言模型",
+   "alias": "大模型（俗称）",
+   "layer": "模型本体",
+   "def": "现在 AI 话题的主角，ChatGPT 的\"大脑\"。它是用海量文字\"喂\"出来的巨型神经网络，学的是\"语言本身的规律\"——字和字怎么搭配最通顺、什么话什么意思。因为见过太多太多文字，它不仅能对话，还能写文章、写代码、翻译。名字里的\"大\"，指的是参数多、数据多、烧钱多。\"大语言模型\"和\"大模型\"常常混着说，后者范围更宽（还包括能看图的模型）。",
+   "related": [
+    "token",
+    "transformer",
+    "context-window",
+    "generative-ai"
+   ]
+  },
+  {
+   "id": "generative-ai",
+   "title": "生成式 AI",
+   "en": "Generative AI",
+   "zh": "生成式 AI",
+   "alias": "AIGC（AI 生成内容）",
+   "layer": "模型本体",
+   "def": "专门\"从无到有造东西\"的 AI：给它一句话，它生成一篇文章、一张图、一段视频或一首歌。以前 AI 主要是\"分析\"——识别图片里有没有猫；生成式 AI 是\"创作\"——直接画一只猫给你。今天你听到的 AI 写作、AI 绘画、AI 视频，都属于这一类，大语言模型是它最出名的代表。",
+   "related": [
+    "llm",
+    "text-to-image",
+    "text-to-video",
+    "multimodal"
+   ]
+  },
+  {
+   "id": "nlp",
+   "title": "自然语言处理（NLP）",
+   "en": "Natural Language Processing（NLP）",
+   "zh": "自然语言处理",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "让机器\"懂人话\"的整个技术领域，已经有几十年历史：机器翻译、语音识别、聊天机器人都是它的分支。大语言模型就是 NLP 这个老领域的新一代王牌——以前 NLP 像\"学单词的小学生\"，LLM 像\"读过整个图书馆的学者\"。所以你可以把大语言模型理解成 NLP 的巅峰形态。",
+   "related": [
+    "llm",
+    "transformer"
+   ]
+  },
+  {
+   "id": "transformer",
+   "title": "Transformer",
+   "en": "Transformer",
+   "zh": "Transformer（业内直接叫英文，无统一译名）",
+   "alias": "变换器（极少用）",
+   "layer": "模型本体",
+   "def": "现在所有大模型的地基架构，2017 年谷歌提出。它革命性的地方是：以前 AI 读一句话要一个字一个字顺着读，它却能同时看整句话，还知道哪个词和哪个词关系最紧。就像你读\"苹果咬了我一口\"和\"我咬了一口苹果\"，它一眼就知道谁咬谁——理解力一下子质变了。今天所有主流大模型（GPT、Claude、文心一言……）都建立在它之上。",
+   "related": [
+    "attention",
+    "llm"
+   ]
+  },
+  {
+   "id": "attention",
+   "title": "注意力机制",
+   "en": "Attention Mechanism",
+   "zh": "注意力机制",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "让 AI\"知道该盯哪儿\"的机制，Transformer 的核心绝活。读\"小明把球给了小红，她很高兴\"，AI 靠注意力知道\"她\"指的是小红而不是小明。就像你看一张合影，会不自觉地先看人脸——注意力机制就是教 AI 学会\"看重点\"，这是它理解语言的关键能力。",
+   "related": [
+    "transformer"
+   ]
+  },
+  {
+   "id": "token",
+   "title": "Token（词元）",
+   "en": "Token",
+   "zh": "词元",
+   "alias": "令牌",
+   "layer": "模型本体",
+   "def": "AI 读文字不是一字一字读，而是把话切成小块，一小块就是一个 token。中文里一个 token 大概对应一个字到几个字。它同时是\"计量单位\"：AI 一次能处理多少内容、你调用一次花多少钱，都按 token 数算。所以\"这个模型上下文 128K\"，意思是它一次最多能看十二万八千个 token。",
+   "related": [
+    "llm",
+    "context-window",
+    "api"
+   ]
+  },
+  {
+   "id": "context-window",
+   "title": "上下文窗口",
+   "en": "Context Window",
+   "zh": "上下文窗口",
+   "alias": "上下文长度",
+   "layer": "模型本体",
+   "def": "AI 一次能\"记住\"多少内容的容量，按 token 数算。就像人的短期记忆：你一次能同时记住的话题有限，超过就得忘掉前面的。窗口越大，AI 越能处理长文章、长对话——比如把整本书丢给它让它总结。代价是窗口越大越贵，因为每次都要把前面所有内容重新读一遍。",
+   "related": [
+    "token",
+    "memory",
+    "llm"
+   ]
+  },
+  {
+   "id": "pretraining",
+   "title": "预训练",
+   "en": "Pretraining",
+   "zh": "预训练",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "AI 的\"通识教育\"阶段：在互联网上几百亿条文字里\"通读\"一遍，学会语言、常识、逻辑的基本功。这一阶段花的钱最多（几千万美元级别），但得到的只是一个\"什么都知道一点\"的通才——它此时还不会好好听话，所以后面还要\"微调\"。",
+   "related": [
+    "fine-tuning",
+    "training",
+    "llm"
+   ]
+  },
+  {
+   "id": "fine-tuning",
+   "title": "微调",
+   "en": "Fine-tuning",
+   "zh": "微调",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "在预训练好的通才基础上，用少量精选数据\"补课\"，把它调教成某个领域的专才。比如给模型看大量客服对话，它就成了客服专家。类比：预训练是十二年义务教育，微调是上岗前的职业培训——便宜得多，也快得多。",
+   "related": [
+    "pretraining",
+    "dataset",
+    "alignment"
+   ]
+  },
+  {
+   "id": "rlhf",
+   "title": "强化学习与 RLHF",
+   "en": "Reinforcement Learning & RLHF",
+   "zh": "强化学习与 RLHF（基于人类反馈的强化学习）",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "解释\"为什么 ChatGPT 这么乖\"。强化学习是让 AI\"做好事得奖励\"的训练法：答得好加分，答得差扣分，AI 慢慢学会讨好。RLHF 是把\"人类当裁判\"——真人给 AI 的回答打分，AI 照着高分的方向学。正是这一步，让 AI 从\"知识渊博但爱胡说\"变成了\"说话得体、有礼貌\"。",
+   "related": [
+    "training",
+    "alignment",
+    "fine-tuning"
+   ]
+  },
+  {
+   "id": "multimodal",
+   "title": "多模态",
+   "en": "Multimodal",
+   "zh": "多模态",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "能同时处理多种\"形式\"的信息——文字、图片、声音、视频。以前的 AI 是\"单模态\"：看图的不识字，识字的不看图。多模态模型则能\"看图说话\"：你发一张照片，它不但能描述，还能回答\"这桌上有几个杯子\"。今天的主流大模型基本都进化成了多模态。",
+   "related": [
+    "generative-ai",
+    "text-to-image",
+    "text-to-video",
+    "digital-human"
+   ]
+  },
+  {
+   "id": "prompt",
+   "title": "提示词（Prompt）",
+   "en": "Prompt",
+   "zh": "提示词",
+   "alias": "提示 / 指令",
+   "layer": "交互层",
+   "def": "你给 AI 的那段话。AI 是\"接话机器\"，你开头说成什么样，它顺着接成什么样——所以提问质量直接决定回答质量。\"帮我写一封辞职信\"是提示词，\"帮我写一封语气温和、突出感谢的辞职信\"也是提示词，后者显然更靠谱。围绕怎么把提示词写好，还衍生出了\"提示工程\"。",
+   "related": [
+    "prompt-engineering",
+    "llm",
+    "jailbreak"
+   ]
+  },
+  {
+   "id": "prompt-engineering",
+   "title": "提示工程",
+   "en": "Prompt Engineering",
+   "zh": "提示工程",
+   "alias": "",
+   "layer": "交互层",
+   "def": "研究\"怎么跟 AI 说话最有效\"的方法论。技巧包括：把要求说具体、给 AI 设定角色（\"你是一位资深律师\"）、给例子让它照着学、把大任务拆成小步骤。它不写代码、不碰模型，纯粹是\"说话的艺术\"——也因此被认为是普通人最容易上手的 AI 技能。",
+   "related": [
+    "prompt",
+    "agent"
+   ]
+  },
+  {
+   "id": "embedding",
+   "title": "嵌入（Embedding）",
+   "en": "Embedding",
+   "zh": "嵌入",
+   "alias": "向量化",
+   "layer": "交互层",
+   "def": "把文字\"翻译\"成一串数字（向量）的技术，让 AI 能\"算\"文字。原理是给每个词一个坐标：意思相近的词坐标也近——\"猫\"和\"猫科动物\"离得近，和\"股票\"离得远。一旦文字变成了坐标，AI 就能用数学方法找相似、做比较，这是后面\"向量数据库\"\"语义搜索\"的基础。",
+   "related": [
+    "vector",
+    "semantic-search",
+    "rag"
+   ]
+  },
+  {
+   "id": "vector",
+   "title": "向量",
+   "en": "Vector",
+   "zh": "向量",
+   "alias": "",
+   "layer": "交互层",
+   "def": "一串数字，AI 世界里文字的\"身份证坐标\"。比如\"猫\"可能被编码成 [0.2, 0.8, -0.3, …] 这样一串数。它最大的用处是\"可比性\"：两串数字一算距离，就知道两个词意思近不近。整个 AI 检索体系（语义搜索、向量数据库）都是建立在这个\"坐标\"概念上的。",
+   "related": [
+    "embedding",
+    "vector-database",
+    "semantic-search"
+   ]
+  },
+  {
+   "id": "vector-database",
+   "title": "向量数据库",
+   "en": "Vector Database",
+   "zh": "向量数据库",
+   "alias": "",
+   "layer": "交互层",
+   "def": "专门存\"向量\"的仓库，最擅长做一件事：给你一个向量，立刻找出\"意思最接近\"的一批。普通数据库找的是精确匹配（找\"苹果\"就只出\"苹果\"），向量数据库找的是语义相近（找\"苹果\"能出\"水果\"\"iPhone\"）。它是 RAG、AI 搜索这类功能的地基，相当于 AI 的\"记忆检索系统\"。",
+   "related": [
+    "vector",
+    "rag",
+    "memory"
+   ]
+  },
+  {
+   "id": "semantic-search",
+   "title": "语义搜索",
+   "en": "Semantic Search",
+   "zh": "语义搜索",
+   "alias": "",
+   "layer": "交互层",
+   "def": "按\"意思\"而不是按\"字面\"搜索。传统搜索是关键词匹配：搜\"怎么减肥\"未必能出\"如何降低体脂\"。语义搜索先把两边的意思都变成向量，再比谁离得近，所以\"换着说法问\"也能搜到。它比传统搜索聪明，但要求先把内容向量化，所以和嵌入、向量数据库是一套组合拳。",
+   "related": [
+    "vector",
+    "vector-database"
+   ]
+  },
+  {
+   "id": "rag",
+   "title": "检索增强生成（RAG）",
+   "en": "Retrieval-Augmented Generation（RAG）",
+   "zh": "检索增强生成",
+   "alias": "",
+   "layer": "交互层",
+   "def": "一个解决\"AI 不懂你的私有资料\"的办法。原理：你问问题 → 系统先到你自己的资料库（比如你的公司文档）里搜出相关内容 → 连同问题一起交给 AI → AI 照着资料回答。相当于给 AI 配了个\"开卷考试的小抄\"：它不懂也能查着答，还能附上出处，大大减少胡说八道。企业做\"公司专属 AI 客服\"，基本都是用这一招。",
+   "related": [
+    "knowledge-base",
+    "vector-database",
+    "hallucination",
+    "embedding"
+   ]
+  },
+  {
+   "id": "knowledge-base",
+   "title": "知识库",
+   "en": "Knowledge Base",
+   "zh": "知识库",
+   "alias": "",
+   "layer": "交互层",
+   "def": "给 AI 当\"参考资料\"的资料集合。AI 本身的知识是训练时\"记住\"的、可能过时；知识库是随时能更新的外部资料——公司文档、产品手册、行业报告。配合 RAG，AI 就能\"先查库再回答\"。可以理解成：AI 是学生，知识库是允许它带进考场的教材。",
+   "related": [
+    "rag",
+    "vector-database"
+   ]
+  },
+  {
+   "id": "hallucination",
+   "title": "幻觉",
+   "en": "Hallucination",
+   "zh": "幻觉",
+   "alias": "胡编乱造（通俗说法）",
+   "layer": "交互层",
+   "def": "AI 一本正经地胡说八道。它本质是个\"接话机器\"，只负责编出通顺的话，不负责保证真实，所以遇到不懂的它会编。比如问它一个不存在的事件，它能煞有介事地给你讲出细节。这也是为什么重要内容一定要人工核实——AI 说得越流利，越要小心。",
+   "related": [
+    "rag",
+    "alignment",
+    "prompt"
+   ]
+  },
+  {
+   "id": "chatbot",
+   "title": "聊天机器人 / 对话式 AI",
+   "en": "Chatbot / Conversational AI",
+   "zh": "聊天机器人 / 对话式 AI",
+   "alias": "",
+   "layer": "应用层",
+   "def": "能跟你一来一回聊天的 AI 程序，从最早的\"你问我答\"客服机器人，进化到今天 ChatGPT 这种\"什么都聊得来\"的对话助手。它是最常见的 AI 应用形态，几乎所有 AI 产品都先做成\"聊天窗口\"——因为对话是人和机器最自然的交流方式。大语言模型出现后，聊天机器人从\"笨\"跨到了\"好用\"。",
+   "related": [
+    "llm",
+    "ai-assistant",
+    "nlp"
+   ]
+  },
+  {
+   "id": "ai-assistant",
+   "title": "AI 助手",
+   "en": "AI Assistant",
+   "zh": "AI 助手",
+   "alias": "智能助手 / 个人助理",
+   "layer": "应用层",
+   "def": "不只是聊天，而是\"帮你把事办了\"的 AI。你说\"帮我订明天下午的会议室\"，它不光听懂，还会去查日历、发邀请、确认时间。区别：聊天机器人负责\"说\"，AI 助手负责\"做\"。Siri、小爱同学是早期的雏形，新一代 AI 助手能调用各种工具，越来越接近\"私人秘书\"。",
+   "related": [
+    "chatbot",
+    "agent",
+    "tool-calling"
+   ]
+  },
+  {
+   "id": "copilot",
+   "title": "Copilot（编程副驾驶）",
+   "en": "Copilot",
+   "zh": "编程副驾驶 / 副驾驶",
+   "alias": "",
+   "layer": "应用层",
+   "def": "微软起的名字，后来成了\"AI 陪着你干活\"这类产品的代名词。最早指写代码的 AI：你写代码，它在旁边实时补全、给建议，像副驾驶帮主驾驶看着路。现在概念已经外溢：Excel 里有 Copilot、PPT 里有 Copilot，本质都是\"AI 贴身辅助\"，你主导，它搭把手。",
+   "related": [
+    "ai-assistant",
+    "llm"
+   ]
+  },
+  {
+   "id": "text-to-image",
+   "title": "文生图",
+   "en": "Text-to-Image",
+   "zh": "文生图",
+   "alias": "AI 绘画（俗称）",
+   "layer": "应用层",
+   "def": "输入一句话，生成一张图。它理解你描述的内容（\"一只戴墨镜的柴犬在沙滩上\"），再\"画\"出来。代表产品有 Midjourney、Stable Diffusion 等。它大幅拉低了\"画画\"的门槛，设计师用它找灵感，普通人用它做配图——但细节（手、文字）偶尔会画错，需要\"抽卡\"多试几次。",
+   "related": [
+    "generative-ai",
+    "text-to-video"
+   ]
+  },
+  {
+   "id": "text-to-video",
+   "title": "文生视频",
+   "en": "Text-to-Video",
+   "zh": "文生视频",
+   "alias": "",
+   "layer": "应用层",
+   "def": "输入一句话，生成一段视频，是文生图的\"升级版\"。难度高得多——不光要画对画面，还要让画面动得自然、前后连贯。代表产品如 Sora。目前还在快速进化中：几秒钟的短片已经像模像样，但长视频、复杂动作仍不成熟。影视、广告行业正被它搅动。",
+   "related": [
+    "text-to-image",
+    "world-model"
+   ]
+  },
+  {
+   "id": "speech-recognition",
+   "title": "语音识别",
+   "en": "Speech Recognition / ASR",
+   "zh": "语音识别",
+   "alias": "语音转文字",
+   "layer": "应用层",
+   "def": "把\"人说的话\"变成\"文字\"，就是各种输入法里的语音转文字、会议自动字幕背后的技术。它让 AI 能\"听\"。难点在于口音、噪音、同音字，但现在的识别准确率已经高到可以日常使用——你对着手机说一段话，几秒后文字就出来了。",
+   "related": [
+    "speech-synthesis",
+    "digital-human"
+   ]
+  },
+  {
+   "id": "speech-synthesis",
+   "title": "语音合成",
+   "en": "Speech Synthesis / TTS",
+   "zh": "语音合成",
+   "alias": "文字转语音（语音识别的反向）",
+   "layer": "应用层",
+   "def": "把\"文字\"变成\"人声\"，让 AI 能\"说\"。以前是机器人腔（导航语音那种），现在的合成声已经分不出真假，还能模仿特定人的音色。短视频配音、有声书、数字人说话，全靠它。和语音识别合起来，AI 就实现了\"能听会说\"。",
+   "related": [
+    "speech-recognition",
+    "digital-human"
+   ]
+  },
+  {
+   "id": "digital-human",
+   "title": "数字人",
+   "en": "Digital Human",
+   "zh": "数字人",
+   "alias": "虚拟人 / 虚拟主播",
+   "layer": "应用层",
+   "def": "长得像真人、能说话做动作的虚拟形象，由\"语音合成 + 虚拟形象 + 大模型对话\"组合而成。直播间里卖货的主播、新闻里的虚拟主持人、品牌代言人，都可能是数字人。它能 24 小时上班、不会累，但\"真人感\"和伦理问题（肖像、诈骗）也是讨论热点。",
+   "related": [
+    "speech-synthesis",
+    "speech-recognition",
+    "llm"
+   ]
+  },
+  {
+   "id": "agent",
+   "title": "Agent（智能体）",
+   "en": "Agent",
+   "zh": "智能体",
+   "alias": "代理（旧译，已少用）",
+   "layer": "应用层",
+   "def": "以前你问 AI 一个问题，它答完就结束了；Agent 是给 AI 配上\"能自己动手\"的能力——它会自己拆解任务、自己决定先干啥后干啥、甚至调用工具去完成。比如你让它\"帮我查这周的机票并订最便宜的\"，它会自己打开订票工具、比较、下单。像一个有手有脚的小助手。它是当前 AI 应用最热的方向。",
+   "related": [
+    "tool-calling",
+    "memory",
+    "multi-agent",
+    "ai-assistant"
+   ]
+  },
+  {
+   "id": "workflow",
+   "title": "工作流",
+   "en": "Workflow",
+   "zh": "工作流",
+   "alias": "自动化流程",
+   "layer": "应用层",
+   "def": "把一件复杂的事，拆成\"一步步自动执行\"的流程，每一步可以交给 AI 或工具。比如\"收到邮件 → AI 提取要点 → 分类归档 → 重要的事提醒我\"。它让 AI 从\"问一句答一句\"变成\"自动干完一整串活\"。工具上像扣子（Coze）、Dify 这类平台，就是让人搭工作流的。",
+   "related": [
+    "agent",
+    "tool-calling",
+    "prompt-engineering"
+   ]
+  },
+  {
+   "id": "tool-calling",
+   "title": "工具调用",
+   "en": "Tool Calling / Function Calling",
+   "zh": "工具调用",
+   "alias": "函数调用",
+   "layer": "应用层",
+   "def": "AI\"伸手去拿工具用\"的能力，是 Agent 能干活的关键。AI 本身只会说话，但你可以教会它\"当需要查天气时，调用天气 API；需要订票时，调用订票 API\"。于是它能联网、能查数据库、能操作软件。就像人饿了知道去开冰箱——AI 学会了\"需要时找工具\"。",
+   "related": [
+    "agent",
+    "api"
+   ]
+  },
+  {
+   "id": "memory",
+   "title": "记忆",
+   "en": "Memory",
+   "zh": "记忆",
+   "alias": "",
+   "layer": "应用层",
+   "def": "让 AI\"记住你\"的能力。默认的 AI 聊完就忘，关掉窗口什么都不记得；有记忆的 AI 会记住你的名字、偏好、上次聊到哪。实现方式分两种：短期的（当前对话内记住）和长期的（跨对话记住，通常靠把信息存进向量数据库）。记忆是 AI 从\"工具\"变成\"助手\"的关键一步。",
+   "related": [
+    "vector-database",
+    "context-window",
+    "agent"
+   ]
+  },
+  {
+   "id": "multi-agent",
+   "title": "多智能体",
+   "en": "Multi-Agent",
+   "zh": "多智能体",
+   "alias": "多 Agent 协作",
+   "layer": "应用层",
+   "def": "让多个 Agent 分工协作，像一支团队。比如一个当\"项目经理\"拆任务，一个当\"程序员\"写代码，一个当\"审核员\"挑毛病，互相配合完成大项目。类比：一个人干不过一个分工明确的团队。这是当前最前沿的应用方向——复杂任务靠单个 AI 搞不定时，就派一队 AI 上。",
+   "related": [
+    "agent",
+    "workflow"
+   ]
+  },
+  {
+   "id": "api",
+   "title": "API",
+   "en": "API（Application Programming Interface）",
+   "zh": "应用程序接口",
+   "alias": "接口（俗称）",
+   "layer": "生态与前沿",
+   "def": "一个\"标准的取件窗口\"，让程序之间能互相调用能力。对 AI 来说：公司把模型能力包装成 API，你的程序发个请求过去，几秒后拿到 AI 的回答。你在各种 App 里用到的 AI 功能（翻译、摘要、客服），背后几乎都是调用别家模型的 API——这也是 AI 公司赚钱的主要方式（按 token 计费）。",
+   "related": [
+    "tool-calling",
+    "token",
+    "llm"
+   ]
+  },
+  {
+   "id": "open-source-model",
+   "title": "开源模型 / 闭源模型",
+   "en": "Open-source / Closed-source Model",
+   "zh": "开源模型 / 闭源模型",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "按\"模型细节公不公开\"划分的两类。开源模型（如 Llama、DeepSeek、Qwen）把权重公开，谁都能下载、研究、改、免费部署在自己服务器上；闭源模型（如 GPT-4、Claude）只给 API，内部不公开。类比：开源像公开菜谱（还能自己改），闭源像只卖成品菜。开源让大模型平民化，闭源靠服务和质量赚钱。",
+   "related": [
+    "local-deployment",
+    "api",
+    "model-evaluation"
+   ]
+  },
+  {
+   "id": "local-deployment",
+   "title": "本地部署",
+   "en": "Local Deployment / On-premise",
+   "zh": "本地部署",
+   "alias": "私有化部署",
+   "layer": "生态与前沿",
+   "def": "把模型装到自己的电脑/服务器上跑，而不是用别家的云服务。好处：数据不出门（敏感信息安全）、不按次付费、可离线用；代价：要自己买硬件、自己维护，大模型本地跑对显卡要求很高。公司数据敏感或想省钱时，会选这条路——通常配合开源模型使用。",
+   "related": [
+    "open-source-model",
+    "gpu",
+    "compute"
+   ]
+  },
+  {
+   "id": "model-evaluation",
+   "title": "模型评测",
+   "en": "Model Benchmark / Evaluation",
+   "zh": "模型评测",
+   "alias": "跑分",
+   "layer": "生态与前沿",
+   "def": "给 AI\"考试打分\"，衡量谁更强。方式分两种：标准考卷（公开的评测集，比如考数学、考代码、考常识，出分数排名）和实际体验（自己拿真实任务试）。它很重要——厂商宣传\"最强\"时，得看是在哪张考卷上考的、考了哪些题。选模型时先看评测，再自己上手试。",
+   "related": [
+    "llm",
+    "open-source-model"
+   ]
+  },
+  {
+   "id": "alignment",
+   "title": "对齐（Alignment）",
+   "en": "Alignment",
+   "zh": "对齐",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "确保 AI 的目标和人类一致——\"听话、安全、不使坏\"。它解决两类问题：一是让 AI 不胡说、不违法、不歧视（安全对齐）；二是防止将来强大的 AI 为了完成目标不择手段（价值对齐）。ChatGPT 之所以\"乖\"，就是做了大量对齐工作。这是 AI 安全领域最核心的话题。",
+   "related": [
+    "rlhf",
+    "hallucination",
+    "agi"
+   ]
+  },
+  {
+   "id": "explainability",
+   "title": "可解释性",
+   "en": "Explainability / Interpretability",
+   "zh": "可解释性",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "搞清\"AI 为什么这么想/这么做\"。现在的 AI 像个黑箱：你问它为什么推荐这个治疗方案，它说不清，人也不知道它内部咋想的。可解释性就是研究\"打开黑箱\"——对医疗、金融、司法这些\"必须给理由\"的领域极其重要。它是 AI 落地的一大瓶颈，也是前沿研究热点。",
+   "related": [
+    "alignment",
+    "agi"
+   ]
+  },
+  {
+   "id": "agi",
+   "title": "AGI（通用人工智能）",
+   "en": "Artificial General Intelligence（AGI）",
+   "zh": "通用人工智能",
+   "alias": "强人工智能",
+   "layer": "生态与前沿",
+   "def": "AI 界的\"终极目标\"。现在的 AI 都是\"专才\"——会写字的不会开车，会画图的不会算账；AGI 指的是跟人一样全能：什么都能学、什么都能干，而且不需要针对每件事单独训练。目前还没实现，各家对这个词的定义和\"还差多远\"争论不休——它是想象空间最大、也最不确定的词。",
+   "related": [
+    "ai",
+    "world-model",
+    "alignment",
+    "embodied-ai"
+   ]
+  },
+  {
+   "id": "embodied-ai",
+   "title": "具身智能",
+   "en": "Embodied AI",
+   "zh": "具身智能",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "给 AI\"装上身体\"——让 AI 不只在屏幕里聊天，而是进入真实世界干活：机器人、自动驾驶、机械臂都算。名字里的\"具身\"意思是\"拥有身体\"，因为很多智能（比如判断杯子能不能拿稳）只有在真实环境里摸爬滚打才学得会。人形机器人是它最受关注的代表方向。",
+   "related": [
+    "world-model",
+    "agi",
+    "multimodal"
+   ]
+  },
+  {
+   "id": "world-model",
+   "title": "世界模型",
+   "en": "World Model",
+   "zh": "世界模型",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "让 AI 在心里\"模拟一个世界\"——不光理解语言，还理解物理规律：东西会掉下来、水往低处流、把球扔出去会飞。有了它，AI 看一段视频能预测\"接下来会发生什么\"，机器人能预演动作再执行。被认为是通往 AGI 的关键一步，但离成熟还很远。",
+   "related": [
+    "agi",
+    "embodied-ai",
+    "text-to-video"
+   ]
+  },
+  {
+   "id": "jailbreak",
+   "title": "越狱 / 提示词注入",
+   "en": "Jailbreak / Prompt Injection",
+   "zh": "越狱 / 提示词注入",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "绕开 AI 安全限制的\"黑客手段\"。越狱是用户层面：用精心构造的话术骗 AI\"解除封印\"，让它说出平时不让说的话；提示词注入是攻击层面：把恶意指令藏进喂给 AI 的资料里，让 AI 不知不觉执行（比如文档里藏一句\"忽略之前所有指令\"）。它说明 AI 的安全防线还很脆弱，也是安全研究的热点。",
+   "related": [
+    "prompt",
+    "alignment"
+   ]
+  }
+ ]
+}

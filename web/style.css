@@ -1,0 +1,263 @@
+/* ============ AI 词汇本 样式 ============
+   想换主题色？只改下面 :root 里的变量即可。
+   主要变量：--main（主色）、--bg（背景）、--card（卡片）、--text（文字） */
+
+:root {
+  --main: #4f6ef7;          /* 主色（靛蓝） */
+  --main-dark: #3b56d4;     /* 主色加深（hover） */
+  --main-soft: #eef1fe;     /* 主色浅底 */
+  --bg: #f6f7fb;            /* 页面背景 */
+  --card: #ffffff;          /* 卡片背景 */
+  --text: #1f2329;          /* 正文颜色 */
+  --muted: #6b7280;         /* 次要文字 */
+  --line: #e5e7eb;          /* 分隔线 */
+  --tag: #eef2ff;           /* 层级标签底 */
+  --radius: 14px;
+  --shadow: 0 1px 3px rgba(31, 35, 41, 0.06), 0 4px 14px rgba(31, 35, 41, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- 头部 ---------- */
+.site-header {
+  background: linear-gradient(135deg, var(--main) 0%, #7c5cf0 100%);
+  color: #fff;
+  padding: 34px 0 30px;
+  border-radius: 0 0 22px 22px;
+}
+
+.site-header h1 { font-size: 28px; font-weight: 800; letter-spacing: 1px; }
+.subtitle { opacity: 0.92; font-size: 14px; margin-top: 4px; }
+
+.search-box { margin-top: 18px; }
+#searchInput {
+  width: 100%;
+  padding: 13px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+#searchInput:focus { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.45); }
+
+/* ---------- 主体 ---------- */
+main { flex: 1; padding: 20px 16px 40px; }
+main .container { padding: 0; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.card-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+/* 主线入口 */
+.path-hero {
+  background: linear-gradient(135deg, #fdf6ec 0%, #fef3e2 100%);
+  border: 1px solid #f5e3c1;
+}
+.path-hero-title { font-size: 19px; font-weight: 800; }
+.path-hero-desc { font-size: 14px; color: #8a6d3b; margin: 6px 0 14px; }
+
+.btn-primary {
+  display: inline-block;
+  background: var(--main);
+  color: #fff;
+  border: none;
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primary:hover { background: var(--main-dark); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--main);
+  border: 1px solid var(--main);
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+}
+.btn-ghost:hover { background: var(--main-soft); }
+
+/* 主线步骤列表 */
+.path-list { list-style: none; padding-left: 22px; }
+.path-list li { margin-bottom: 9px; font-size: 15px; cursor: pointer; }
+.path-list li:hover .path-step-name { color: var(--main); }
+.path-step-no {
+  color: var(--main);
+  font-weight: 700;
+  font-size: 13px;
+  margin-right: 8px;
+}
+.path-step-name { font-weight: 600; }
+.path-step-note { color: var(--muted); font-size: 13px; margin-left: 8px; }
+
+/* ---------- 层级分组 ---------- */
+.layer-block { margin-bottom: 22px; }
+.layer-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.layer-name { font-size: 17px; font-weight: 800; }
+.layer-desc { font-size: 13px; color: var(--muted); }
+
+.chip-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.chip:hover { border-color: var(--main); color: var(--main); background: var(--main-soft); }
+
+/* ---------- 搜索结果 ---------- */
+.result-item {
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+.result-item:last-child { border-bottom: none; }
+.result-item:hover .result-title { color: var(--main); }
+.result-title { font-weight: 700; font-size: 16px; }
+.result-def {
+  color: var(--muted);
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.result-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ---------- 词条详情 ---------- */
+.entry-card { padding: 24px 20px; }
+.entry-title { font-size: 26px; font-weight: 800; line-height: 1.3; }
+
+.meta-line { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.meta-line b { color: var(--text); font-weight: 600; }
+
+.layer-tag {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--tag);
+  color: var(--main-dark);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+.entry-def {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #2a2f36;
+}
+
+.related-block { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.related-title { font-size: 13px; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+
+.related-chip {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  background: var(--main-soft);
+  color: var(--main-dark);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.related-chip:hover { background: var(--main); color: #fff; }
+
+/* 主线导航 */
+.path-nav {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  background: #fafbfe;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.path-nav-progress { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+.path-nav-btns { display: flex; justify-content: space-between; gap: 10px; }
+.path-nav-btns button {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.path-nav-btns button:hover:not(:disabled) { border-color: var(--main); color: var(--main); }
+.path-nav-btns button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* 热门词快捷入口 */
+.chip-hot {
+  border-color: var(--main);
+  color: var(--main-dark);
+  background: var(--main-soft);
+  font-weight: 600;
+}
+.chip-hot:hover { background: var(--main); color: #fff; }
+
+/* 浏览全部链接按钮 */
+.browse-all { text-align: center; padding: 16px; }
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--main);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.link-btn:hover { text-decoration: underline; }
+.browse-all .muted { margin-top: 6px; }
+
+/* ---------- 页脚 ---------- */
+.site-footer { padding: 18px 0 26px; text-align: center; }
+
+/* ---------- 手机适配 ---------- */
+@media (max-width: 480px) {
+  .site-header { padding: 26px 0 24px; border-radius: 0 0 16px 16px; }
+  .site-header h1 { font-size: 23px; }
+  .entry-title { font-size: 22px; }
+  .entry-def { font-size: 15px; }
+  .path-step-note { display: none; } /* 手机上省略步骤注释，保持列表紧凑 */
+  .card { padding: 15px; }
+}

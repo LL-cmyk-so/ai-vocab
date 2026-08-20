@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 词汇本</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <h1 id="siteTitle">AI 词汇本</h1>
+    <p class="subtitle" id="siteSubtitle">从 Agent 到 Token，用大白话看懂 AI 时代</p>
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="搜索：token、智能体、RAG…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ========== 首页视图 ========== -->
+  <section id="homeView">
+
+    <!-- 搜索结果（搜索时置顶显示） -->
+    <div id="searchResults" class="card" hidden>
+      <div class="card-title">🔍 搜索结果</div>
+      <div id="searchResultList"></div>
+    </div>
+
+    <!-- 首页主体（无搜索词时显示） -->
+    <div id="homeMain">
+
+      <!-- 主线入口：第一大按钮 -->
+      <div class="card path-hero">
+        <div class="path-hero-title">🚀 零基础看懂 AI</div>
+        <p class="path-hero-desc">18 步走完全流程：AI 是什么、怎么来的、能干什么、要去哪。</p>
+        <button id="startPathBtn" class="btn-primary">开始学习之旅 →</button>
+      </div>
+
+      <!-- 热门词快捷入口 -->
+      <div class="card">
+        <div class="card-title">🔥 大家都在看</div>
+        <div class="chip-wrap" id="hotChips"></div>
+      </div>
+
+      <!-- 浏览全部 -->
+      <div class="card browse-all">
+        <button id="galleryBtn" class="link-btn">📖 浏览全部 56 词 →</button>
+        <div class="muted small">词条详情里，解释中的高亮词可以点击跳转</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 主线页 ========== -->
+  <section id="pathView" hidden>
+    <button class="btn-ghost" data-back>← 返回</button>
+    <div class="card">
+      <div class="card-title">🚀 零基础看懂 AI（18 步）</div>
+      <div class="muted small" style="margin-bottom:10px">按顺序点下去，每一步看完点"下一步"继续。</div>
+      <ul id="pathList" class="path-list"></ul>
+    </div>
+  </section>
+
+  <!-- ========== 词库页 ========== -->
+  <section id="galleryView" hidden>
+    <button class="btn-ghost" data-back>← 返回</button>
+    <div class="card">
+      <div class="card-title">🗂 全部词汇（56 个 · 按层级）</div>
+      <div class="muted small">点击任意词汇查看白话解释；解释里的 <b>高亮词</b> 可以点击跳转。</div>
+    </div>
+    <div id="groups"></div>
+  </section>
+
+  <!-- ========== 词条详情视图 ========== -->
+  <section id="entryView" hidden>
+    <button id="backBtn" class="btn-ghost">← 返回</button>
+    <div id="entryContent"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container muted small">
+    AI 词汇本 · 内容为通俗科普，仅供学习参考<br>
+    献给我最喜欢的小鹦鹉sophie 🦜
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
