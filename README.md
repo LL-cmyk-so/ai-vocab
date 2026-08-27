@@ -46,7 +46,7 @@ tools/          ← build_words.py：词条文档 → words.json 生成脚本
 
 ## 📢 想参与？
 
-- 发现词条有误 / 想补词？欢迎到 **Issues** 提建议（贡献指南整理中）
+- 发现词条有误 / 想补词？欢迎到 **Issues** 提建议，或直接看 **[贡献指南（CONTRIBUTING）](CONTRIBUTING.md)**
 - 本项目内容为通俗科普，仅供学习参考，不构成法律 / 学术结论
 
 ---
