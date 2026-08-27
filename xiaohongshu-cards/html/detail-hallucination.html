@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #f6f7fb 0%, #eef1fe 60%, #fdf6ec 100%);
+    width: 1080px; height: 1440px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card {
+    width: 960px; height: 1320px;
+    background: #ffffff;
+    border-radius: 48px;
+    box-shadow: 0 24px 60px rgba(31,35,41,.12);
+    padding: 42px 52px 34px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 14px;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+  }
+  .badge {
+    display: inline-block; align-self: flex-start;
+    background: #eef1fe; color: #3b56d4;
+    font-size: 24px; font-weight: 600;
+    padding: 6px 20px; border-radius: 999px;
+  }
+  .title {
+    margin-top: 16px;
+    font-size: 64px; font-weight: 800; line-height: 1.15;
+    color: #1f2329;
+  }
+  .title-en {
+    margin-top: 4px;
+    font-size: 27px; font-weight: 500;
+    color: #9aa0a8; letter-spacing: 1px;
+  }
+  .divider {
+    margin: 16px 0 14px;
+    height: 4px; width: 100px;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+    border-radius: 2px;
+  }
+  .block { margin-bottom: 19px; }
+  .block-label {
+    font-size: 24px; font-weight: 700; color: #6b7280;
+    margin-bottom: 4px;
+  }
+  .block-body {
+    font-size: 28px; line-height: 1.48; color: #2a2f36;
+    font-weight: 500;
+  }
+  .block.analogy {
+    background: #fdf6ec;
+    border-radius: 16px;
+    padding: 14px 20px;
+  }
+  .block.analogy .block-body {
+    font-size: 26px; color: #8a6d3b;
+  }
+  .block.mistake .block-body {
+    font-size: 26px; color: #2a2f36;
+  }
+  .block.confuse .block-body,
+  .block.scene .block-body {
+    font-size: 25px; color: #2a2f36;
+  }
+
+  .related {
+    margin-top: 16px;
+    margin-bottom: 19px;
+    padding-top: 16px;
+    border-top: 2px dashed #e5e7eb;
+  }
+  .related-label {
+    font-size: 22px; font-weight: 700; color: #6b7280;
+    margin-bottom: 6px;
+  }
+  .chip {
+    display: inline-block;
+    background: #eef1fe; color: #3b56d4;
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 23px; font-weight: 600;
+    margin: 0 8px 8px 0;
+  }
+  .spacer { flex: 1; }
+  .footer-line {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 2px dashed #e5e7eb;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+  .brand {
+    font-size: 29px; font-weight: 800;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta { font-size: 23px; color: #6b7280; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="badge">📖 单词详解 · 和网站词条内容一致</span>
+  <div class="title">幻觉</div>
+  <div class="title-en">Hallucination</div>
+  <div class="divider"></div>
+
+  <div class="block">
+    <div class="block-label">📖 是什么</div>
+    <div class="block-body">AI 一本正经地胡说八道。它本质是个"接话机器"，只负责编出通顺的话，不负责保证真实，所以遇到不懂的它会编。比如问它一个不存在的事件，它能煞有介事地给你讲出细节。这也是为什么重要内容一定要人工核实——AI 说得越流利，越要小心。</div>
+  </div>
+
+  <div class="block analogy">
+    <div class="block-label">💡 通俗类比</div>
+    <div class="block-body">像死要面子的学生——遇到不会的题不愿说"不知道"，硬是编一份看起来完整的答案。</div>
+  </div>
+
+  <div class="related">
+    <div class="related-label">讲到这个词，你可能还想看</div>
+    <span class="chip">检索增强生成（RAG）</span><span class="chip">对齐（Alignment）</span><span class="chip">提示词（Prompt）</span>
+  </div>
+
+  <div class="block scene">
+    <div class="block-label">📍 现实哪里会见到</div>
+    <div class="block-body">AI 编造不存在的参考文献、虚构数据、胡编历史事件。</div>
+  </div>
+
+  <div class="block mistake">
+    <div class="block-label">⚠️ 容易搞错的误区</div>
+    <div class="block-body">不是"AI 故意骗人"，它天生只会"编通顺的话"，自己都不知道在编。</div>
+  </div>
+
+  <div class="block confuse">
+    <div class="block-label">🔀 容易混淆</div>
+    <div class="block-body">和"普通错误"——普通错误有迹可循，幻觉是理直气壮地编。</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="footer-line">
+    <span class="brand">AI 词汇本</span>
+    <span class="cta">关注看更多 · 86 词持续更新</span>
+  </div>
+</div>
+</body>
+</html>

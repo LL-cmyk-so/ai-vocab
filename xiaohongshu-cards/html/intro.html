@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #f6f7fb 0%, #eef1fe 60%, #fdf6ec 100%);
+    width: 1080px; height: 1440px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card {
+    width: 960px; height: 1320px;
+    background: #ffffff;
+    border-radius: 48px;
+    box-shadow: 0 24px 60px rgba(31,35,41,.12);
+    padding: 56px 60px 44px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 14px;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+  }
+  .badge {
+    display: inline-block; align-self: flex-start;
+    background: #eef1fe; color: #3b56d4;
+    font-size: 28px; font-weight: 600;
+    padding: 8px 24px; border-radius: 999px;
+  }
+  .title {
+    margin-top: 26px;
+    font-size: 78px; font-weight: 800; line-height: 1.2;
+    color: #1f2329;
+  }
+  .subtitle {
+    margin-top: 12px;
+    font-size: 34px; font-weight: 500;
+    color: #6b7280;
+  }
+  .shot-wrap {
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 3px solid #e5e7eb;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(31,35,41,.10);
+    line-height: 0;
+  }
+  .shot-wrap img { width: 100%; display: block; }
+  .features {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .feat {
+    background: #f5f6fa;
+    border-radius: 18px;
+    padding: 18px 20px;
+    font-size: 29px; line-height: 1.45;
+    color: #2a2f36; font-weight: 600;
+  }
+  .feat em { font-style: normal; margin-right: 8px; }
+  .spacer { flex: 1; }
+  .footer-line {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 2px dashed #e5e7eb;
+    padding-top: 26px;
+    margin-top: 30px;
+  }
+  .brand {
+    font-size: 34px; font-weight: 800;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta { font-size: 27px; color: #6b7280; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="badge">📖 产品介绍</span>
+  <div class="title">我做了个<br>零基础 AI 词汇本</div>
+  <div class="subtitle">86 个 AI 名词 · 大白话讲给你听</div>
+
+  <div class="shot-wrap"><img src="../assets/home-top2.png"></div>
+
+  <div class="features">
+    <div class="feat"><em>🗂</em>86 词全收录，六大主题分层</div>
+    <div class="feat"><em>💡</em>每词配类比 + 常见误区</div>
+    <div class="feat"><em>🧭</em>18 步零基础学习路线</div>
+    <div class="feat"><em>📱</em>可添加到桌面，像 App 一样</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="footer-line">
+    <span class="brand">AI 词汇本</span>
+    <span class="cta">关注我 · 每天认识一个 AI 词</span>
+  </div>
+</div>
+</body>
+</html>

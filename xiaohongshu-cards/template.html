@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #f6f7fb 0%, #eef1fe 60%, #fdf6ec 100%);
+    width: 1080px; height: 1440px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card {
+    width: 960px; height: 1320px;
+    background: #ffffff;
+    border-radius: 48px;
+    box-shadow: 0 24px 60px rgba(31,35,41,.12);
+    padding: 64px 60px 48px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 14px;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+  }
+  .badge {
+    display: inline-block; align-self: flex-start;
+    background: #eef1fe; color: #3b56d4;
+    font-size: 30px; font-weight: 600;
+    padding: 10px 26px; border-radius: 999px;
+  }
+  .title {
+    margin-top: 36px;
+    font-size: 96px; font-weight: 800; line-height: 1.15;
+    color: #1f2329;
+  }
+  .title-en {
+    margin-top: 10px;
+    font-size: 38px; font-weight: 500;
+    color: #9aa0a8; letter-spacing: 1px;
+  }
+  .divider {
+    margin: 36px 0 32px;
+    height: 4px; width: 120px;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+    border-radius: 2px;
+  }
+  .block { margin-bottom: 22px; }
+  .block-label {
+    font-size: 30px; font-weight: 700; color: #6b7280;
+    margin-bottom: 8px;
+  }
+  .block-label em { font-style: normal; margin-right: 8px; }
+  .block-body {
+    font-size: 40px; line-height: 1.5; color: #2a2f36;
+    font-weight: 500;
+  }
+  /* 通俗类比：暖色卡（和词汇本一致） */
+  .block.analogy {
+    background: #fdf6ec;
+    border-radius: 24px;
+    padding: 22px 28px;
+  }
+  .block.analogy .block-body {
+    font-size: 36px; color: #8a6d3b;
+  }
+  /* 场景 / 误区：纯文字行（和词汇本一致，不加重背景） */
+  .block.scene .block-body,
+  .block.mistake .block-body {
+    font-size: 34px; color: #2a2f36;
+  }
+  .spacer { flex: 1; }
+  .footer-line {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 2px dashed #e5e7eb;
+    padding-top: 30px;
+    margin-top: 40px;
+  }
+  .brand {
+    font-size: 34px; font-weight: 800;
+    background: linear-gradient(90deg, #4f6ef7, #7c5cf0);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta {
+    font-size: 28px; color: #6b7280; font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="badge">AI 名词卡片 {NUM}/9</span>
+  <div class="title">{TITLE}</div>
+  <div class="title-en">{EN}</div>
+  <div class="divider"></div>
+
+  <div class="block">
+    <div class="block-label"><em>📖</em>是什么</div>
+    <div class="block-body">{WHAT}</div>
+  </div>
+
+  <div class="block analogy">
+    <div class="block-label">💡 通俗类比</div>
+    <div class="block-body">{ANALOGY}</div>
+  </div>
+
+  <div class="block scene">
+    <div class="block-label">📍 现实哪里会见到</div>
+    <div class="block-body">{SCENE}</div>
+  </div>
+
+  <div class="block mistake">
+    <div class="block-label">⚠️ 容易搞错的误区</div>
+    <div class="block-body">{MISTAKE}</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="footer-line">
+    <span class="brand">AI 词汇本</span>
+    <span class="cta">收藏慢慢看 · 关注不迷路</span>
+  </div>
+</div>
+</body>
+</html>

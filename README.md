@@ -49,6 +49,11 @@ tools/          ← build_words.py：词条文档 → words.json 生成脚本
 - 发现词条有误 / 想补词？欢迎到 **Issues** 提建议，或直接看 **[贡献指南（CONTRIBUTING）](CONTRIBUTING.md)**
 - 本项目内容为通俗科普，仅供学习参考，不构成法律 / 学术结论
 
+## 📄 许可
+
+本作品采用 **[CC BY 4.0](LICENSE)**（知识共享署名 4.0 国际许可协议）：可自由分享、修改（含商用），**需保留署名**。
+© 2026 LL-cmyk-so
+
 ---
 
 📚 内部项目管理信息（词单 / 决策 / 进度 / 更新方法）见 **[INTERNAL.md](INTERNAL.md)**
