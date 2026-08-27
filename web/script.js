@@ -1,6 +1,6 @@
 /* ============ AI 词汇本：逻辑 ============
    纯前端静态页面：读取 words.json，本地渲染、搜索、跳转。
-   视图路由（hash）：# 首页 · #path 主线页 · #gallery 词库页 · #词条id 详情 */
+   视图路由（hash）：# 首页(折叠树) · #path 18步列表 · #learn/N 学习模式 · #词条id 详情 */
 
 'use strict';
 
@@ -10,6 +10,7 @@ const state = {
   data: null,   // words.json 全部数据
   query: '',
   entryId: null,
+  learnIdx: 0,
 };
 
 /* ---------- 数据加载 ---------- */
@@ -25,28 +26,82 @@ function byId(id) {
   return state.data ? state.data.words.find((w) => w.id === id) : null;
 }
 
-/* 一个词在主线中的位置（可能出现在多步，取第一步） */
-function pathIndexOf(id) {
-  if (!state.data) return -1;
-  return state.data.path.findIndex((s) => s.ids.includes(id));
-}
-
 /* ---------- 静态内容渲染（数据加载后渲染一次） ---------- */
 function renderStatic() {
-  // 热门词快捷入口
-  const hot = $('#hotChips');
-  hot.innerHTML = '';
-  state.data.hot.forEach((id) => {
-    const w = byId(id);
-    if (!w) return;
-    const chip = document.createElement('span');
-    chip.className = 'chip chip-hot';
-    chip.textContent = w.title;
-    chip.addEventListener('click', () => openEntry(w.id));
-    hot.appendChild(chip);
-  });
+  renderTree();
+  renderPathList();
+  renderHotLine();
+}
 
-  // 主线 18 步列表
+/* 折叠目录树 */
+function renderTree() {
+  const tree = $('#tree');
+  tree.innerHTML = '';
+  const LAYER_COLOR = {
+    '总纲': '#7c5cf0', '地基': '#4f6ef7', '模型本体': '#3b82f6',
+    '交互层': '#14b8a6', '应用层': '#f59e0b', '生态与前沿': '#ef4444',
+  };
+
+  state.data.layers.forEach((layer) => {
+    const words = state.data.words.filter((w) => w.layer === layer.id);
+    if (!words.length) return;
+
+    const el = document.createElement('div');
+    el.className = 'tree-layer';
+
+    // 层级头
+    const head = document.createElement('div');
+    head.className = 'tree-head';
+    head.innerHTML =
+      '<span class="tree-color" style="background:' + LAYER_COLOR[layer.id] + '"></span>' +
+      '<span class="tree-name">' + escapeHtml(layer.id) + '</span>' +
+      '<span class="tree-count">' + words.length + ' 词</span>' +
+      '<span class="tree-arrow">▼</span>';
+    el.appendChild(head);
+
+    // 层内小节
+    const body = document.createElement('div');
+    body.className = 'tree-body';
+    const secs = state.data.sections[layer.id] || [];
+    if (secs.length) {
+      secs.forEach((sec) => {
+        const sub = document.createElement('div');
+        sub.className = 'tree-sub';
+        sub.innerHTML = '<div class="tree-sub-title">' + escapeHtml(sec[0]) + '</div><div class="chips"></div>';
+        const chips = sub.querySelector('.chips');
+        sec[1].forEach((id) => {
+          const w = byId(id);
+          if (w) chips.appendChild(makeChip(w));
+        });
+        body.appendChild(sub);
+      });
+    } else {
+      // 总纲等无小节的层
+      const sub = document.createElement('div');
+      sub.className = 'tree-sub';
+      sub.innerHTML = '<div class="chips"></div>';
+      const chips = sub.querySelector('.chips');
+      words.forEach((w) => chips.appendChild(makeChip(w)));
+      body.appendChild(sub);
+    }
+    el.appendChild(body);
+
+    // 折叠交互
+    head.addEventListener('click', () => el.classList.toggle('closed'));
+    tree.appendChild(el);
+  });
+}
+
+function makeChip(w) {
+  const chip = document.createElement('span');
+  chip.className = 'chip' + (w.adv ? ' adv' : '');
+  chip.textContent = w.title;
+  chip.addEventListener('click', () => openEntry(w.id));
+  return chip;
+}
+
+/* 18 步列表（辅助页） */
+function renderPathList() {
   const ol = $('#pathList');
   ol.innerHTML = '';
   state.data.path.forEach((step, i) => {
@@ -58,35 +113,26 @@ function renderStatic() {
     li.addEventListener('click', () => openEntry(step.ids[0]));
     ol.appendChild(li);
   });
+}
 
-  // 层级分组（词库页）
-  const wrap = $('#groups');
-  wrap.innerHTML = '';
-  state.data.layers.forEach((layer) => {
-    const words = state.data.words.filter((w) => w.layer === layer.id);
-    if (!words.length) return;
-    const block = document.createElement('div');
-    block.className = 'layer-block';
-    block.innerHTML =
-      '<div class="layer-head">' +
-      '<span class="layer-name">' + escapeHtml(layer.id) + '</span>' +
-      '<span class="layer-desc">' + escapeHtml(layer.desc) + ' · ' + words.length + ' 词</span>' +
-      '</div>' +
-      '<div class="chip-wrap"></div>';
-    const chipWrap = block.querySelector('.chip-wrap');
-    words.forEach((w) => {
-      const chip = document.createElement('span');
-      chip.className = 'chip';
-      chip.textContent = w.title;
-      chip.addEventListener('click', () => openEntry(w.id));
-      chipWrap.appendChild(chip);
-    });
-    wrap.appendChild(block);
+/* 热门一行 */
+function renderHotLine() {
+  const line = $('#hotLine');
+  line.innerHTML = '🔥 热门：';
+  state.data.hot.forEach((id, i) => {
+    const w = byId(id);
+    if (!w) return;
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = w.title;
+    a.addEventListener('click', (e) => { e.preventDefault(); openEntry(w.id); });
+    line.appendChild(a);
+    if (i < state.data.hot.length - 1) line.appendChild(document.createTextNode(' · '));
   });
 }
 
 /* ---------- 视图路由 ---------- */
-const VIEWS = ['homeView', 'pathView', 'galleryView', 'entryView'];
+const VIEWS = ['homeView', 'learnView', 'pathView', 'entryView'];
 
 function showView(name) {
   VIEWS.forEach((v) => {
@@ -94,51 +140,69 @@ function showView(name) {
   });
   window.scrollTo({ top: 0 });
 }
-const showHome = () => showView('homeView');
-const showPath = () => showView('pathView');
-const showGallery = () => showView('galleryView');
-const showEntry = () => showView('entryView');
 
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
-  if (h === 'path') showPath();
-  else if (h === 'gallery') showGallery();
-  else if (h && byId(h)) {
+  if (h === 'path') {
+    showView('pathView');
+  } else if (h.startsWith('learn/')) {
+    const n = parseInt(h.slice(6), 10);
+    if (!isNaN(n) && n >= 0 && n < state.data.path.length) {
+      showLearn(n);
+    } else {
+      location.hash = '';
+    }
+  } else if (h && byId(h)) {
     state.entryId = h;
+    showView('entryView');
     renderEntry();
   } else {
-    showHome();
+    showView('homeView');
   }
 }
 
 window.addEventListener('hashchange', route);
 
-/* ---------- 首页按钮 ---------- */
-$('#startPathBtn').addEventListener('click', () => { location.hash = 'path'; });
-$('#galleryBtn').addEventListener('click', () => { location.hash = 'gallery'; });
+/* ---------- 回首页（header 常驻 🏠） ---------- */
+function goHome() {
+  location.hash = '';
+  showView('homeView');
+}
+$('#homeBtn').addEventListener('click', goHome);
 
-/* ---------- 搜索 ---------- */
+/* ---------- 搜索面板（点 🔍 在当前页展开，不跳转、不改变当前页面） ---------- */
+function openSearch() {
+  $('#searchDrop').hidden = false;
+  $('#searchInput').value = state.query;
+  $('#searchInput').focus();
+  runSearch();
+}
+
+function closeSearch() {
+  $('#searchDrop').hidden = true;
+  state.query = '';
+  $('#searchInput').value = '';
+}
+
+$('#searchToggle').addEventListener('click', () => {
+  if ($('#searchDrop').hidden) openSearch();
+  else closeSearch();
+});
+$('#searchClose').addEventListener('click', closeSearch);
+
 $('#searchInput').addEventListener('input', (e) => {
   state.query = e.target.value.trim().toLowerCase();
-  applySearch();
+  runSearch();
 });
 
-function applySearch() {
-  const results = $('#searchResults');
-  const list = $('#searchResultList');
-  const homeMain = $('#homeMain');
-
+function runSearch() {
+  const results = $('#searchDropResults');
   if (!state.query) {
     results.hidden = true;
-    homeMain.hidden = false;
+    results.innerHTML = '';
     return;
   }
-
-  // 搜索时：回到首页，结果置顶显示，隐藏首页主体
-  if (location.hash !== '') history.replaceState(null, '', '#');
-  showHome();
   results.hidden = false;
-  homeMain.hidden = true;
 
   const hits = state.data.words.filter((w) =>
     [w.title, w.en, w.zh, w.alias, w.def]
@@ -147,116 +211,201 @@ function applySearch() {
   );
 
   if (!hits.length) {
-    list.innerHTML = '<div class="muted small" style="padding:8px 4px">没有找到匹配的词，换个关键词试试～</div>';
+    results.innerHTML = '<div class="muted small" style="padding:10px 4px">没有找到匹配的词，换个关键词试试～</div>';
     return;
   }
 
-  list.innerHTML = '';
+  results.innerHTML = '';
   hits.forEach((w) => {
     const item = document.createElement('div');
     item.className = 'result-item';
     const meta = [w.en, w.zh, w.alias].filter(Boolean).join(' · ');
     item.innerHTML =
-      '<div class="result-title">' + escapeHtml(w.title) + '</div>' +
+      '<div class="result-title">' + escapeHtml(w.title) + (w.adv ? ' <span style="font-size:11px;color:#4f6ef7">进阶</span>' : '') + '</div>' +
       '<div class="result-def">' + escapeHtml(w.def) + '</div>' +
       (meta ? '<div class="result-meta">' + escapeHtml(meta) + '</div>' : '');
-    item.addEventListener('click', () => openEntry(w.id));
-    list.appendChild(item);
+    item.addEventListener('click', () => {
+      closeSearch();
+      openEntry(w.id);
+    });
+    results.appendChild(item);
   });
 }
 
-/* ---------- 词条详情 ---------- */
-function openEntry(id) {
-  const w = byId(id);
-  if (!w) return;
-  state.entryId = id;
-  if (location.hash !== '#' + id) location.hash = id; // 触发 hashchange → route
-  else renderEntry();
-}
-
-function renderEntry() {
-  const w = byId(state.entryId);
-  if (!w) return;
-
-  showEntry();
-
-  const box = $('#entryContent');
+/* ---------- 词条内容（词条页 / 学习模式共用） ---------- */
+function wordContentHtml(w) {
   const meta = [];
   if (w.en) meta.push('<b>英文</b>：' + escapeHtml(w.en));
   if (w.zh) meta.push('<b>中文</b>：' + escapeHtml(w.zh));
   if (w.alias) meta.push('<b>别名</b>：' + escapeHtml(w.alias));
 
-  // 相关词 chips
+  // 通俗类比
+  let analogyHtml = '';
+  if (w.analogy) {
+    analogyHtml =
+      '<div class="entry-block analogy">' +
+      '<div class="block-title">💡 通俗类比</div>' +
+      '<div class="block-body">' + escapeHtml(w.analogy) + '</div>' +
+      '</div>';
+  }
+
+  // 相关词（折叠区外，随时可点）
   let relatedHtml = '';
   if (w.related && w.related.length) {
-    relatedHtml =
-      '<div class="related-block">' +
-      '<div class="related-title">讲到这个词，你可能还想看：</div>';
+    relatedHtml = '<div class="related-block"><div class="related-title">讲到这个词，你可能还想看：</div>';
     w.related.forEach((rid) => {
       const rw = byId(rid);
       if (rw) {
-        relatedHtml +=
-          '<span class="related-chip" data-id="' + rw.id + '">' + escapeHtml(rw.title) + '</span>';
+        relatedHtml += '<span class="related-chip" data-id="' + rw.id + '">' + escapeHtml(rw.title) + '</span>';
       }
     });
     relatedHtml += '</div>';
   }
 
-  // 主线导航
-  const pi = pathIndexOf(w.id);
-  let pathHtml = '';
-  if (pi >= 0) {
-    const total = state.data.path.length;
-    const prevBtn = pi > 0
-      ? '<button data-nav="' + (pi - 1) + '">← 上一步</button>'
-      : '<button disabled>← 上一步</button>';
-    const nextBtn = pi < total - 1
-      ? '<button data-nav="' + (pi + 1) + '">下一步 →</button>'
-      : '<button disabled>下一步 →</button>';
-    pathHtml =
-      '<div class="path-nav">' +
-      '<div class="path-nav-progress">🚀 主线路径 · 第 ' + (pi + 1) + ' / ' + total + ' 步 · ' +
-      escapeHtml(state.data.path[pi].note) + '</div>' +
-      '<div class="path-nav-btns">' + prevBtn + nextBtn + '</div>' +
-      '</div>';
-  }
+  // 折叠区：场景 / 误区 / 混淆
+  let tips = '';
+  if (w.scene) tips += '<div class="tip-item"><span class="tip-label">📍 现实哪里会见到：</span>' + escapeHtml(w.scene) + '</div>';
+  if (w.mistake) tips += '<div class="tip-item"><span class="tip-label">⚠️ 容易搞错的误区：</span>' + escapeHtml(w.mistake) + '</div>';
+  if (w.confuse) tips += '<div class="tip-item"><span class="tip-label">🔀 容易混淆：</span>' + escapeHtml(w.confuse) + '</div>';
+  const tipsHtml = tips
+    ? '<details class="entry-tips"><summary>💡 更多小提示</summary><div class="tips-body">' + tips + '</div></details>'
+    : '';
 
-  box.innerHTML =
+  return (
     '<div class="card entry-card">' +
     '<div class="entry-title">' + escapeHtml(w.title) + '</div>' +
     (meta.length ? '<div class="meta-line">' + meta.join('　') + '</div>' : '') +
-    '<span class="layer-tag">' + escapeHtml(w.layer) + '</span>' +
-    '<div class="entry-def">' + escapeHtml(w.def) + '</div>' +
+    '<span class="layer-tag' + (w.adv ? ' adv' : '') + '">' + escapeHtml(w.layer) + '</span>' +
+    (w.updated ? '<span class="entry-updated">更新于 ' + escapeHtml(w.updated) + '</span>' : '') +
+    '<div class="entry-def"><span class="block-title">📖 是什么</span><div class="block-body">' + escapeHtml(w.def) + '</div></div>' +
+    analogyHtml +
     relatedHtml +
-    pathHtml +
-    '</div>';
+    tipsHtml +
+    '</div>'
+  );
+}
 
-  // 绑定相关词跳转
-  box.querySelectorAll('.related-chip').forEach((el) => {
+function bindEntryClicks(container) {
+  container.querySelectorAll('.related-chip').forEach((el) => {
     el.addEventListener('click', () => openEntry(el.dataset.id));
   });
-  // 绑定主线导航
-  box.querySelectorAll('[data-nav]').forEach((el) => {
-    el.addEventListener('click', () => {
-      const step = state.data.path[Number(el.dataset.nav)];
-      if (step) openEntry(step.ids[0]);
-    });
-  });
 }
 
-/* ---------- 返回按钮 ---------- */
-function goBack() {
-  if (history.length > 1) {
-    history.back();
-  } else {
-    location.hash = '';
-    showHome();
+/* ---------- 词条详情（纯词条页） ---------- */
+function openEntry(id) {
+  const w = byId(id);
+  if (!w) return;
+  state.entryId = id;
+  if (location.hash !== '#' + id) location.hash = id; // 触发 hashchange → route
+  else {
+    showView('entryView');
+    renderEntry();
   }
 }
-document.querySelectorAll('[data-back]').forEach((btn) => {
-  btn.addEventListener('click', goBack);
+
+function renderEntry() {
+  const w = byId(state.entryId);
+  if (!w) return;
+  const box = $('#entryContent');
+  box.innerHTML = wordContentHtml(w);
+  bindEntryClicks(box);
+}
+
+/* ---------- 学习模式（18 步，独立流程） ---------- */
+function startLearn() {
+  location.hash = 'learn/0';
+}
+
+function showLearn(idx) {
+  state.learnIdx = idx;
+  showView('learnView');
+
+  const step = state.data.path[idx];
+  const total = state.data.path.length;
+  $('#learnProgress').textContent = '🚀 第 ' + (idx + 1) + ' / ' + total + ' 步 · ' + step.note;
+
+  const body = $('#learnBody');
+  body.innerHTML = wordContentHtml(byId(step.ids[0]));
+  bindEntryClicks(body);
+
+  $('#learnPrev').disabled = (idx === 0);
+  $('#learnNext').disabled = (idx === total - 1);
+  $('#learnNext').textContent = (idx === total - 1) ? '完成 🎉' : '下一步 →';
+}
+
+$('#startLearnBtn').addEventListener('click', (e) => { e.preventDefault(); startLearn(); });
+$('#learnExit').addEventListener('click', goHome);
+$('#learnAllLink').addEventListener('click', (e) => { e.preventDefault(); location.hash = 'path'; });
+$('#learnPrev').addEventListener('click', () => {
+  if (state.learnIdx > 0) location.hash = 'learn/' + (state.learnIdx - 1);
 });
-$('#backBtn').addEventListener('click', goBack);
+$('#learnNext').addEventListener('click', () => {
+  if (state.learnIdx < state.data.path.length - 1) location.hash = 'learn/' + (state.learnIdx + 1);
+});
+
+/* ---------- 添加到桌面（统一入口，平台自适应，不自动弹） ---------- */
+let deferredPrompt = null;
+// Chrome / Edge 等支持原生安装提示的浏览器会触发此事件
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+window.addEventListener('appinstalled', () => { deferredPrompt = null; });
+
+function detectPlatform() {
+  const ua = navigator.userAgent;
+  if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+  if (/Android/i.test(ua)) return 'android';
+  return 'desktop';
+}
+
+function installStepsHtml(platform) {
+  // 支持原生安装的浏览器：提供一键安装按钮
+  let btnHtml = '';
+  if (deferredPrompt) {
+    btnHtml = '<button id="pwaInstallBtn" class="btn-primary modal-btn">📲 立即安装</button>';
+  }
+
+  let steps = '';
+  if (platform === 'ios') {
+    steps =
+      '<div class="step"><span class="step-title">① 点浏览器底部的「分享」按钮</span><div class="step-desc">方框加向上箭头的图标</div></div>' +
+      '<div class="step"><span class="step-title">② 选「添加到主屏幕」</span><div class="step-desc">列表往下滑能找到</div></div>' +
+      '<div class="step"><span class="step-title">③ 点「添加」</span><div class="step-desc">桌面就有「词」字图标啦，点开全屏使用</div></div>';
+  } else if (platform === 'android') {
+    steps =
+      '<div class="step"><span class="step-title">① 打开浏览器的「菜单」</span><div class="step-desc">一般在右上角或底部，不同手机浏览器位置不一样</div></div>' +
+      '<div class="step"><span class="step-title">② 找「添加到主屏幕 / 安装应用」</span><div class="step-desc">找不到就在「分享」里找「添加到主屏幕」</div></div>' +
+      '<div class="step"><span class="step-title">③ 确认添加</span><div class="step-desc">桌面就有「词」字图标啦</div></div>';
+  } else {
+    steps =
+      '<div class="step"><span class="step-title">① 点浏览器右上角的「菜单」</span><div class="step-desc">或看地址栏右侧有没有「安装」图标</div></div>' +
+      '<div class="step"><span class="step-title">② 选「安装 / 应用」</span></div>' +
+      '<div class="step"><span class="step-title">③ 确认安装</span><div class="step-desc">桌面或开始菜单就有图标</div></div>';
+  }
+  return btnHtml + steps;
+}
+
+$('#installLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  $('#installSteps').innerHTML = installStepsHtml(detectPlatform());
+  $('#installModal').classList.add('open');
+
+  const btn = $('#pwaInstallBtn');
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      $('#installModal').classList.remove('open');
+    });
+  }
+});
+$('#installClose').addEventListener('click', () => { $('#installModal').classList.remove('open'); });
+$('#installModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) $('#installModal').classList.remove('open');
+});
 
 /* ---------- 工具 ---------- */
 function escapeHtml(s) {
@@ -283,4 +432,11 @@ if (inlineData) {
         '<div class="card">加载失败：' + escapeHtml(String(err)) +
         '<br>请确认 words.json 与页面在同一目录。</div>';
     });
+}
+
+/* ---------- PWA：注册 Service Worker（支持添加到桌面 / 离线） ---------- */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
 }

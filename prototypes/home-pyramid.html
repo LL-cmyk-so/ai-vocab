@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页原型 · 层级金字塔</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f6f7fb; color: #1f2329; line-height: 1.6;
+  }
+  .container { max-width: 700px; margin: 0 auto; padding: 0 16px 40px; }
+
+  /* 头部 */
+  .site-header {
+    background: linear-gradient(135deg, #4f6ef7 0%, #7c5cf0 100%);
+    color: #fff; padding: 24px 0 22px; border-radius: 0 0 18px 18px;
+  }
+  .site-header h1 { font-size: 24px; font-weight: 800; text-align: center; }
+  .subtitle { text-align: center; font-size: 13px; opacity: .92; margin-top: 4px; }
+  .search-box { margin: 14px auto 0; max-width: 560px; padding: 0 16px; }
+  #searchInput {
+    width: 100%; padding: 11px 18px; font-size: 15px; border: none;
+    border-radius: 999px; background: rgba(255,255,255,.96); outline: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12); color: #1f2329;
+  }
+
+  /* 新手入口（弱化：一行小字） */
+  .begin-line { text-align: center; margin: 18px 0 6px; font-size: 14px; color: #4f6ef7; }
+  .begin-line a { color: #4f6ef7; font-weight: 600; text-decoration: none; }
+  .begin-line a:hover { text-decoration: underline; }
+
+  /* 金字塔提示 */
+  .pyramid-hint { text-align: center; font-size: 12px; color: #9aa0a8; margin-bottom: 12px; }
+
+  /* 金字塔层级 */
+  .pyramid { display: flex; flex-direction: column; align-items: center; }
+  .layer {
+    width: 100%; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(31,35,41,.06);
+    transition: transform .15s; cursor: pointer;
+  }
+  .layer:hover { transform: scale(1.015); }
+  .layer-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .layer-name { font-size: 15px; font-weight: 700; }
+  .layer-count { font-size: 11px; opacity: .8; }
+  .layer-chips { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    background: rgba(255,255,255,.85); border-radius: 999px;
+    padding: 3px 10px; font-size: 12px; font-weight: 500;
+  }
+
+  /* 六层宽度递减（金字塔感）：地基最宽 → 前沿最窄 */
+  .l0 { width: 100%; background: #f1f3fd; color: #3b4a8a; }
+  .l1 { width: 92%; background: #e6ecfc; color: #3b4a8a; }
+  .l2 { width: 84%; background: #dbe3fa; color: #33407a; }
+  .l3 { width: 76%; background: #d3d9f7; color: #3a3a7d; }
+  .l4 { width: 68%; background: #cfd0f2; color: #43327a; }
+  .l5 { width: 60%; background: #ccc4ee; color: #4c2a78; }
+  .l5 .chip { color: #4c2a78; }
+
+  /* 箭头（向上递进） */
+  .up-arrow { text-align: center; color: #b8bdc9; font-size: 12px; margin: -2px 0 2px; }
+
+  /* 热门（弱化：底部一行小字） */
+  .hot-line { text-align: center; margin-top: 16px; font-size: 12px; color: #9aa0a8; }
+  .hot-line a { color: #6b7280; text-decoration: none; margin: 0 5px; }
+  .hot-line a:hover { color: #4f6ef7; }
+
+  .footer { text-align: center; margin-top: 24px; font-size: 11px; color: #b8bdc9; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container" style="padding:0">
+    <h1>AI 词汇本</h1>
+    <p class="subtitle">从 Agent 到 Token，用大白话看懂 AI 时代</p>
+  </div>
+  <div class="search-box"><input id="searchInput" placeholder="搜索：token、智能体、RAG…"></div>
+</header>
+
+<div class="container">
+
+  <!-- 弱化：新手入口一行小字 -->
+  <div class="begin-line">✨ 新手？点这里 <a href="#">18 步走完看懂 AI →</a></div>
+  <div class="pyramid-hint">▼ 从下往上看：越往上越前沿</div>
+
+  <!-- 金字塔：从底（总纲/地基）到顶（前沿） -->
+  <div class="pyramid">
+
+    <div class="layer l5">
+      <div class="layer-head"><span class="layer-name">🚀 生态与前沿</span><span class="layer-count">共 10 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">AGI</span><span class="chip">具身智能</span><span class="chip">世界模型</span>
+        <span class="chip">对齐</span><span class="chip">可解释性</span><span class="chip">开源/闭源</span>
+      </div>
+    </div>
+
+    <div class="up-arrow">▲</div>
+    <div class="layer l4">
+      <div class="layer-head"><span class="layer-name">🛠 应用层</span><span class="layer-count">共 13 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">Agent</span><span class="chip">多智能体</span><span class="chip">工作流</span>
+        <span class="chip">工具调用</span><span class="chip">数字人</span><span class="chip">文生视频</span>
+      </div>
+    </div>
+
+    <div class="up-arrow">▲</div>
+    <div class="layer l3">
+      <div class="layer-head"><span class="layer-name">💬 交互层</span><span class="layer-count">共 9 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">提示词</span><span class="chip">RAG</span><span class="chip">幻觉</span>
+        <span class="chip">向量数据库</span><span class="chip">嵌入</span><span class="chip">语义搜索</span>
+      </div>
+    </div>
+
+    <div class="up-arrow">▲</div>
+    <div class="layer l2">
+      <div class="layer-head"><span class="layer-name">🧠 模型本体</span><span class="layer-count">共 11 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">大语言模型</span><span class="chip">Token</span><span class="chip">Transformer</span>
+        <span class="chip">上下文窗口</span><span class="chip">预训练</span><span class="chip">微调</span>
+      </div>
+    </div>
+
+    <div class="up-arrow">▲</div>
+    <div class="layer l1">
+      <div class="layer-head"><span class="layer-name">🧱 地基</span><span class="layer-count">共 11 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">机器学习</span><span class="chip">深度学习</span><span class="chip">神经网络</span>
+        <span class="chip">训练</span><span class="chip">推理</span><span class="chip">算力</span>
+      </div>
+    </div>
+
+    <div class="up-arrow">▲</div>
+    <div class="layer l0">
+      <div class="layer-head"><span class="layer-name">🌱 总纲 · 一切从这里开始</span><span class="layer-count">共 2 词 · 查看全部 →</span></div>
+      <div class="layer-chips">
+        <span class="chip">人工智能（AI）</span><span class="chip">图灵测试</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 弱化：热门一行小字 -->
+  <div class="hot-line">🔥 热门：<a href="#">Agent</a> · <a href="#">Token</a> · <a href="#">RAG</a> · <a href="#">幻觉</a> · <a href="#">AGI</a> · <a href="#">多模态</a></div>
+
+  <div class="footer">原型 V3 · 仅供看效果 · 非正式页面</div>
+</div>
+
+</body>
+</html>
