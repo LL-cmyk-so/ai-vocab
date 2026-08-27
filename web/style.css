@@ -228,6 +228,7 @@ main { flex: 1; padding: 16px 16px 30px; }
 .site-footer { padding: 14px 0 22px; text-align: center; }
 .install-link { color: var(--main); text-decoration: none; font-size: 12px; }
 .install-link:hover { text-decoration: underline; }
+.footer-sep { color: var(--line); margin: 0 6px; }
 .footer-dedication { opacity: 0.5; }
 
 /* ---------- 添加到桌面弹窗 ---------- */
@@ -251,6 +252,29 @@ main { flex: 1; padding: 16px 16px 30px; }
 .modal-body .step-title { font-weight: 700; color: var(--text); }
 .modal-body .step-desc { color: var(--muted); font-size: 12.5px; }
 .modal-btn { width: 100%; margin-top: 14px; }
+.modal-note { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.feedback-btns { margin-top: 16px; }
+.feedback-btns .modal-btn { text-align: center; display: block; text-decoration: none; }
+.btn-secondary {
+  display: block;
+  background: var(--card);
+  color: var(--main);
+  border: 1px solid var(--main);
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-secondary:hover { background: var(--main-soft); }
+.modal-btn-ghost {
+  width: 100%; margin-top: 10px;
+  background: none; border: 1px solid var(--line);
+  color: var(--muted); border-radius: 999px;
+  padding: 9px 16px; font-size: 14px; cursor: pointer;
+}
+.modal-btn-ghost:hover { border-color: var(--main); color: var(--main); }
 
 /* ---------- 手机适配 ---------- */
 @media (max-width: 480px) {

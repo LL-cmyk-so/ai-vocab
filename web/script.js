@@ -407,6 +407,16 @@ $('#installModal').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) $('#installModal').classList.remove('open');
 });
 
+/* ---------- 反馈 & 纠错（弹窗） ---------- */
+$('#feedbackLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  $('#feedbackModal').classList.add('open');
+});
+$('#feedbackClose').addEventListener('click', () => { $('#feedbackModal').classList.remove('open'); });
+$('#feedbackModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) $('#feedbackModal').classList.remove('open');
+});
+
 /* ---------- 工具 ---------- */
 function escapeHtml(s) {
   return String(s)

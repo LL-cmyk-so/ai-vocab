@@ -90,7 +90,9 @@
 
 <footer class="site-footer">
   <div class="container muted small">
-    <a href="#" id="installLink" class="install-link">📱 添加到桌面，像 App 一样用</a><br>
+    <a href="#" id="installLink" class="install-link">📱 添加到桌面，像 App 一样用</a>
+    <span class="footer-sep">·</span>
+    <a href="#" id="feedbackLink" class="install-link">💬 反馈 & 纠错</a><br>
     AI 词汇本 · 内容为通俗科普，仅供学习参考<br>
     <span class="footer-dedication">献给我最喜欢的小鹦鹉sophie 🦜</span>
   </div>
@@ -102,6 +104,22 @@
     <div class="modal-title">📱 添加到桌面</div>
     <div class="modal-body" id="installSteps"></div>
     <button id="installClose" class="btn-primary modal-btn">知道了</button>
+  </div>
+</div>
+
+<!-- 反馈与纠错（弹窗） -->
+<div id="feedbackModal" class="modal-overlay" hidden>
+  <div class="modal-box">
+    <div class="modal-title">💬 反馈 & 纠错</div>
+    <div class="modal-body">
+      <p>发现词条错误？想加新词？欢迎告诉我们 👇</p>
+      <p class="modal-note">请注明「哪个词 + 什么问题」，方便快速处理。</p>
+      <div class="feedback-btns">
+        <a class="btn-primary modal-btn" href="https://github.com/LL-cmyk-so/ai-vocab/issues/new" target="_blank" rel="noopener">🟢 到 GitHub Issues 提交</a>
+        <a class="btn-secondary modal-btn" href="mailto:moximao@163.com?subject=AI%E8%AF%8D%E6%B1%87%E6%9C%AC%E5%8F%8D%E9%A6%88&body=%E8%AF%8D%E6%9D%A1%EF%BC%9A%0A%E9%97%AE%E9%A2%98%EF%BC%9A">✉️ 直接发邮件</a>
+      </div>
+    </div>
+    <button id="feedbackClose" class="btn-ghost modal-btn-ghost">关闭</button>
   </div>
 </div>
 

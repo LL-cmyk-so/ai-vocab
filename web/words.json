@@ -334,7 +334,7 @@
     "llm",
     "agi"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "turing-test",
@@ -353,7 +353,7 @@
     "ai",
     "agi"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "machine-learning",
@@ -374,7 +374,7 @@
     "training",
     "dataset"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "deep-learning",
@@ -394,7 +394,7 @@
     "neural-network",
     "parameter"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "neural-network",
@@ -414,7 +414,7 @@
     "parameter",
     "weight"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "training",
@@ -434,7 +434,7 @@
     "dataset",
     "pretraining"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "inference",
@@ -453,7 +453,7 @@
     "training",
     "api"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "parameter",
@@ -473,7 +473,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "weight",
@@ -492,7 +492,7 @@
     "parameter",
     "neural-network"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "dataset",
@@ -512,7 +512,7 @@
     "pretraining",
     "fine-tuning"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "algorithm",
@@ -531,7 +531,7 @@
     "machine-learning",
     "compute"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "compute",
@@ -551,7 +551,7 @@
     "training",
     "local-deployment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "gpu",
@@ -571,7 +571,7 @@
     "training",
     "local-deployment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "llm",
@@ -592,7 +592,7 @@
     "context-window",
     "generative-ai"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "generative-ai",
@@ -602,10 +602,10 @@
    "alias": "AIGC（AI 生成内容）",
    "layer": "模型本体",
    "def": "专门\"从无到有造东西\"的 AI：给它一句话，它生成一篇文章、一张图、一段视频或一首歌。以前 AI 主要是\"分析\"——识别图片里有没有猫；生成式 AI 是\"创作\"——直接画一只猫给你。今天你听到的 AI 写作、AI 绘画、AI 视频，都属于这一类，大语言模型是它最出名的代表。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像一座\"内容工厂\"——给它一句话，产出文章、图片、视频，从无到有地\"造\"。",
+   "scene": "各种 AI 写作、AI 绘画、AI 视频工具，新闻里说的\"AIGC 作品\"。",
+   "mistake": "生成式 AI 不是\"特别聪明的搜索\"——它是创作不是查资料，照样可能编造。",
+   "confuse": "和\"大语言模型\"——大语言模型是生成式 AI 里最出名的一种（专门生成文字），生成式还包括画图、视频、音乐。",
    "adv": false,
    "related": [
     "llm",
@@ -613,7 +613,7 @@
     "text-to-video",
     "multimodal"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "nlp",
@@ -632,7 +632,7 @@
     "llm",
     "transformer"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "transformer",
@@ -651,7 +651,7 @@
     "attention",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "attention",
@@ -669,7 +669,7 @@
    "related": [
     "transformer"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "token",
@@ -689,7 +689,7 @@
     "context-window",
     "api"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "context-window",
@@ -709,7 +709,7 @@
     "memory",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "pretraining",
@@ -729,7 +729,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "fine-tuning",
@@ -749,7 +749,7 @@
     "dataset",
     "alignment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "rlhf",
@@ -769,7 +769,7 @@
     "alignment",
     "fine-tuning"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "multimodal",
@@ -790,7 +790,7 @@
     "text-to-video",
     "digital-human"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "prompt",
@@ -810,7 +810,7 @@
     "llm",
     "jailbreak"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "prompt-engineering",
@@ -829,7 +829,7 @@
     "prompt",
     "agent"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "embedding",
@@ -849,7 +849,7 @@
     "semantic-search",
     "rag"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "vector",
@@ -869,7 +869,7 @@
     "vector-database",
     "semantic-search"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "vector-database",
@@ -889,7 +889,7 @@
     "rag",
     "memory"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "semantic-search",
@@ -908,7 +908,7 @@
     "vector",
     "vector-database"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "rag",
@@ -929,7 +929,7 @@
     "hallucination",
     "embedding"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "knowledge-base",
@@ -948,7 +948,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "hallucination",
@@ -968,7 +968,7 @@
     "alignment",
     "prompt"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "chatbot",
@@ -988,7 +988,7 @@
     "ai-assistant",
     "nlp"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "ai-assistant",
@@ -1008,7 +1008,7 @@
     "agent",
     "tool-calling"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "copilot",
@@ -1027,7 +1027,7 @@
     "ai-assistant",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "text-to-image",
@@ -1037,16 +1037,16 @@
    "alias": "AI 绘画（俗称）",
    "layer": "应用层",
    "def": "输入一句话，生成一张图。它理解你描述的内容（\"一只戴墨镜的柴犬在沙滩上\"），再\"画\"出来。代表产品有 Midjourney、Stable Diffusion 等。它大幅拉低了\"画画\"的门槛，设计师用它找灵感，普通人用它做配图——但细节（手、文字）偶尔会画错，需要\"抽卡\"多试几次。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像\"一句话点单的画师\"——你说要什么，它当场画出来。",
+   "scene": "AI 头像、表情包、配图、海报，Midjourney、即梦等工具。",
+   "mistake": "文生图不是\"搜索图片\"——是凭空生成新图，所以不存在\"原图版权\"。",
+   "confuse": "和\"文生视频\"——文生图出一张静态图，文生视频让画面动起来，难度高得多。",
    "adv": false,
    "related": [
     "generative-ai",
     "text-to-video"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "text-to-video",
@@ -1056,16 +1056,16 @@
    "alias": "",
    "layer": "应用层",
    "def": "输入一句话，生成一段视频，是文生图的\"升级版\"。难度高得多——不光要画对画面，还要让画面动得自然、前后连贯。代表产品如 Sora。目前还在快速进化中：几秒钟的短片已经像模像样，但长视频、复杂动作仍不成熟。影视、广告行业正被它搅动。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像\"一句话导演\"——你描述一个场景，它生成一段会动的视频。",
+   "scene": "Sora 的新闻、AI 短片、广告素材。",
+   "mistake": "文生视频还不能\"想要什么给什么\"——几秒短片还行，长视频、复杂动作还经常翻车。",
+   "confuse": "和\"文生图\"——文生图是静态一张，文生视频要画面连贯地动，难得多。",
    "adv": false,
    "related": [
     "text-to-image",
     "world-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "speech-recognition",
@@ -1084,7 +1084,7 @@
     "speech-synthesis",
     "digital-human"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "speech-synthesis",
@@ -1103,7 +1103,7 @@
     "speech-recognition",
     "digital-human"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "digital-human",
@@ -1123,7 +1123,7 @@
     "speech-recognition",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "agent",
@@ -1144,7 +1144,7 @@
     "multi-agent",
     "ai-assistant"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "workflow",
@@ -1164,7 +1164,7 @@
     "tool-calling",
     "prompt-engineering"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "tool-calling",
@@ -1183,7 +1183,7 @@
     "agent",
     "api"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "memory",
@@ -1203,7 +1203,7 @@
     "context-window",
     "agent"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "multi-agent",
@@ -1222,7 +1222,7 @@
     "agent",
     "workflow"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "api",
@@ -1242,7 +1242,7 @@
     "token",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "open-source-model",
@@ -1262,7 +1262,7 @@
     "api",
     "model-evaluation"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "local-deployment",
@@ -1282,7 +1282,7 @@
     "gpu",
     "compute"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "model-evaluation",
@@ -1301,7 +1301,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "alignment",
@@ -1321,7 +1321,7 @@
     "hallucination",
     "agi"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "explainability",
@@ -1340,7 +1340,7 @@
     "alignment",
     "agi"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "agi",
@@ -1361,7 +1361,7 @@
     "alignment",
     "embodied-ai"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "embodied-ai",
@@ -1381,7 +1381,7 @@
     "agi",
     "multimodal"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "world-model",
@@ -1401,7 +1401,7 @@
     "embodied-ai",
     "text-to-video"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "jailbreak",
@@ -1420,7 +1420,7 @@
     "prompt",
     "alignment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "reasoning-model",
@@ -1430,17 +1430,17 @@
    "alias": "深度思考模式",
    "layer": "模型本体",
    "def": "现在大模型的新形态，特点是\"想好了再回答\"——遇到问题先在内部默默推理几步，把思路展开捋一遍，再给出最终答案。就像学生做题先打草稿、再工整抄上答案。代价是更慢、更贵，但复杂问题明显更靠谱。代表有 o1、DeepSeek-R1 这类模型，日常产品里的\"深度思考\"按钮就是它。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像先打草稿再交卷的学生——问题先在脑子里推演几步，再给出最终答案。",
+   "scene": "聊天 App 里的\"深度思考\"按钮、需要复杂推理的问答。",
+   "mistake": "深度思考不等于\"更聪明更准\"——它只是多想几步，复杂问题更好，但更慢更贵，也可能想偏。",
+   "confuse": "和\"普通大模型\"——普通模型直接答，推理模型先内部推理再答。",
    "adv": false,
    "related": [
     "llm",
     "chain-of-thought",
     "rlhf"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "web-search",
@@ -1450,17 +1450,17 @@
    "alias": "",
    "layer": "交互层",
    "def": "让 AI\"上网查资料\"的能力。默认的大模型知识停留在训练时的时点，联网后它才能查到最新消息、实时价格、今天的天气。就像学霸平时靠课本，考试前专门去翻今天的报纸。注意：联网不等于全对，AI 可能引用到错误网页，重要信息仍要核对。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像考前翻最新报纸——让 AI 的知识从\"课本时代\"更新到\"今天\"。",
+   "scene": "AI 产品里的\"联网搜索\"按钮、问 AI\"今天/最新\"的消息。",
+   "mistake": "联网不等于全对——AI 可能引用错误网页，重要信息要核对来源。",
+   "confuse": "和\"AI 搜索\"——联网搜索是\"给 AI 加个上网能力\"；AI 搜索是\"以搜索为核心的产品\"，两个层级不同。",
    "adv": false,
    "related": [
     "llm",
     "rag",
     "ai-search"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "ai-search",
@@ -1480,7 +1480,7 @@
     "web-search",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "rate-limit",
@@ -1500,7 +1500,7 @@
     "token",
     "prompt-caching"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "computer-use",
@@ -1520,7 +1520,7 @@
     "tool-calling",
     "multimodal"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "ai-content-label",
@@ -1539,7 +1539,7 @@
     "alignment",
     "model-evaluation"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "mcp",
@@ -1559,7 +1559,7 @@
     "tool-calling",
     "api"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "chain-of-thought",
@@ -1579,7 +1579,7 @@
     "prompt",
     "transformer"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "react",
@@ -1599,7 +1599,7 @@
     "tool-calling",
     "planning"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "planning",
@@ -1619,7 +1619,7 @@
     "react",
     "multi-agent"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "reflection",
@@ -1639,7 +1639,7 @@
     "react",
     "alignment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "skill",
@@ -1659,7 +1659,7 @@
     "tool-calling",
     "mcp"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "structured-output",
@@ -1679,7 +1679,7 @@
     "api",
     "prompt"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "streaming",
@@ -1699,7 +1699,7 @@
     "api",
     "token"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "temperature",
@@ -1709,17 +1709,17 @@
    "alias": "",
    "layer": "模型本体",
    "def": "控制 AI 回答\"随机性\"的旋钮（0~2）：调低=保守稳定、每次回答都差不多；调高=更有创意、但可能乱说。注意：温度低≠正确，只是更稳定——\"一本正经胡说\"（幻觉）和温度无关，调最低也防不了编造。",
-   "analogy": "",
-   "scene": "",
-   "mistake": "",
-   "confuse": "",
+   "analogy": "像 AI 的\"创意旋钮\"——拧低更保守稳定，拧高更有想象力、但也更爱乱说。",
+   "scene": "主要是开发者调 API 时的参数；普通用户日常基本不用管它。",
+   "mistake": "温度调最低防不了胡说八道——稳定不等于正确，幻觉和温度没有关系。",
+   "confuse": "和\"推理模型\"——温度控制\"随不随机\"，推理模型控制\"想多久\"，是两个不同维度。",
    "adv": true,
    "related": [
     "hallucination",
     "inference",
     "reasoning-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "system-prompt",
@@ -1739,7 +1739,7 @@
     "prompt-engineering",
     "alignment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "chunking",
@@ -1759,7 +1759,7 @@
     "vector-database",
     "full-text-search"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "full-text-search",
@@ -1779,7 +1779,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "prompt-caching",
@@ -1799,7 +1799,7 @@
     "api",
     "context-window"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "quantization",
@@ -1819,7 +1819,7 @@
     "gpu",
     "open-source-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "mmlu",
@@ -1839,7 +1839,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "aigc",
@@ -1860,7 +1860,7 @@
     "multimodal",
     "ai-content-label"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "deepfake",
@@ -1881,7 +1881,7 @@
     "speech-synthesis",
     "ai-content-label"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "ai-copyright",
@@ -1901,7 +1901,7 @@
     "generative-ai",
     "alignment"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "cv",
@@ -1921,7 +1921,7 @@
     "multimodal",
     "text-to-image"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "slm",
@@ -1941,7 +1941,7 @@
     "local-deployment",
     "quantization"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "asi",
@@ -1961,7 +1961,7 @@
     "alignment",
     "world-model"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "ai-slop",
@@ -1981,7 +1981,7 @@
     "ai-content-label",
     "hallucination"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "distillation",
@@ -2002,7 +2002,7 @@
     "quantization",
     "llm"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   },
   {
    "id": "synthetic-data",
@@ -2022,7 +2022,7 @@
     "dataset",
     "fine-tuning"
    ],
-   "updated": "2026-08-26"
+   "updated": "2026-08-27"
   }
  ]
 }
