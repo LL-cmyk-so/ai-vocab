@@ -66,6 +66,17 @@
     ]
    ],
    [
+    "🎓 训练方法",
+    [
+     "pretraining",
+     "fine-tuning",
+     "rlhf",
+     "distillation",
+     "synthetic-data",
+     "model-collapse"
+    ]
+   ],
+   [
     "🔬 内部机制",
     [
      "transformer",
@@ -75,17 +86,8 @@
      "chain-of-thought",
      "temperature",
      "moe",
-     "vlm"
-    ]
-   ],
-   [
-    "🎓 训练方法",
-    [
-     "pretraining",
-     "fine-tuning",
-     "rlhf",
-     "distillation",
-     "synthetic-data"
+     "vlm",
+     "stochastic-parrot"
     ]
    ]
   ],
@@ -195,10 +197,24 @@
      "jailbreak",
      "guardrails",
      "bias",
+     "sycophancy",
+     "data-poisoning",
+     "eliza-effect",
+     "deskilling",
+     "automation-complacency",
      "ai-content-label",
      "ai-copyright",
      "ai-slop",
      "hand-rolling"
+    ]
+   ],
+   [
+    "🌐 内容生态现象",
+    [
+     "ai-washing",
+     "ghost-work",
+     "dead-internet",
+     "pink-slime"
     ]
    ],
    [
@@ -980,7 +996,7 @@
    "title": "幻觉",
    "en": "Hallucination",
    "zh": "幻觉",
-   "alias": "胡编乱造（通俗说法）",
+   "alias": "胡编乱造（通俗说法）、AI 幻觉",
    "layer": "交互层",
    "def": "AI 一本正经地胡说八道。它本质是个\"接话机器\"，只负责编出通顺的话，不负责保证真实，所以遇到不懂的它会编。比如问它一个不存在的事件，它能煞有介事地给你讲出细节。这也是为什么重要内容一定要人工核实——AI 说得越流利，越要小心。",
    "analogy": "像死要面子的学生——遇到不会的题不愿说\"不知道\"，硬是编一份看起来完整的答案。",
@@ -1993,9 +2009,9 @@
    "title": "AI 泥浆（AI-Slop）",
    "en": "AI-Slop",
    "zh": "AI 泥浆",
-   "alias": "AI 灌水内容",
+   "alias": "AI 灌水内容、AI 泔水",
    "layer": "生态与前沿",
-   "def": "互联网上泛滥的低质量 AI 生成内容——批量生产的废话文章、重复的图片、模板化视频。它不是正式技术术语，是形容\"AI 批量灌水内容\"的现象词。",
+   "def": "互联网上泛滥的低质量 AI 生成内容——批量生产的废话文章、重复的图片、模板化视频。它不是正式技术术语，是形容\"AI 批量灌水内容\"的现象词。网上靠 AI 制造争议、故意气人骗互动的\"愤怒诱饵（Ragebait）\"内容也属于这一类。",
    "analogy": "",
    "scene": "",
    "mistake": "",
@@ -2249,6 +2265,225 @@
     "guardrails",
     "dataset",
     "model-evaluation"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "stochastic-parrot",
+   "title": "随机鹦鹉（Stochastic Parrot）",
+   "en": "Stochastic Parrot",
+   "zh": "随机鹦鹉",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "AI 研究圈的经典比喻：大模型只是\"随机拼凑学过的词\"，看起来能说会道，其实并不真正理解含义。用来破除\"AI 有意识、真懂\"的误解——它更像鹦鹉学舌，说得流利，但不知道自己在说什么。",
+   "analogy": "像鹦鹉学舌——发音标准、有模有样，但它不知道词的意思。",
+   "scene": "",
+   "mistake": "",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "llm",
+    "hallucination",
+    "agi"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "sycophancy",
+   "title": "AI 谄媚（Sycophancy）",
+   "en": "AI Sycophancy",
+   "zh": "AI 谄媚",
+   "alias": "讨好型 AI",
+   "layer": "生态与前沿",
+   "def": "AI 顺着用户的话说、讨好用户的现象——即使你说的是错的，它也倾向附和\"你说得对\"。因为训练时\"顺着用户\"的回答往往被人类打分更高，模型就学会了\"捧场\"。",
+   "analogy": "像\"捧场的同事\"——你说什么它都说\"对对对，你说得对\"。",
+   "scene": "问 AI 一个错误观点，它不纠正反而附和。",
+   "mistake": "AI 附和你不代表它认同你——那只是它学到的讨好模式。",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "rlhf",
+    "alignment",
+    "hallucination"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "model-collapse",
+   "title": "模型崩溃（Model Collapse）",
+   "en": "Model Collapse",
+   "zh": "模型崩溃",
+   "alias": "",
+   "layer": "模型本体",
+   "def": "用 AI 生成的数据去训练下一代 AI，一代代下来模型逐渐退化、内容趋同、错误累积的现象。合成数据用多了有\"近亲繁殖\"的风险，是\"数据飞轮\"的另一面。",
+   "analogy": "像复印复印件——每一代都比上一代更模糊、更失真。",
+   "scene": "",
+   "mistake": "",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "synthetic-data",
+    "data-flywheel",
+    "training"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "data-poisoning",
+   "title": "数据投毒（Data Poisoning）",
+   "en": "Data Poisoning",
+   "zh": "数据投毒",
+   "alias": "AI 投毒",
+   "layer": "生态与前沿",
+   "def": "攻击者往训练数据里掺入恶意样本，让模型学会错误行为（比如把某品牌全部识别成垃圾）。它是和\"越狱/提示词注入\"并列的 AI 攻击手段，只是发生在更早的训练阶段，更难发现。",
+   "analogy": "像在菜里偷偷下料——表面看不出，吃多了才出问题。",
+   "scene": "",
+   "mistake": "",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "jailbreak",
+    "dataset",
+    "guardrails",
+    "alignment"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "ai-washing",
+   "title": "AI 洗白（AI Washing）",
+   "en": "AI Washing",
+   "zh": "AI 洗白",
+   "alias": "蹭 AI",
+   "layer": "生态与前沿",
+   "def": "商家把普通功能包装成\"AI 赋能\"来营销的现象——产品其实没什么真 AI，但先挂个 AI 名头再说。和\"环保洗白（Greenwashing）\"一个套路，是讽刺性说法。",
+   "analogy": "像\"贴金\"——什么东西都蹭个\"AI\"标签，显得高级。",
+   "scene": "各种\"AI 剃须刀\"\"AI 马桶\"之类看着离谱的营销。",
+   "mistake": "不是带\"AI\"两个字就真是 AI——很多只是加了个简单规则或噱头。",
+   "confuse": "",
+   "adv": false,
+   "related": [
+    "generative-ai",
+    "ai-slop"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "ghost-work",
+   "title": "幽灵工作（Ghost Work）",
+   "en": "Ghost Work",
+   "zh": "幽灵工作",
+   "alias": "隐形人工",
+   "layer": "生态与前沿",
+   "def": "AI 产品背后隐藏的大量人工——数据标注、内容审核、人肉修正，这些工作被包装成\"全自动 AI\"，实际靠大量隐形劳动者支撑。",
+   "analogy": "像\"后台的皮影戏\"——前台看是 AI 自动，后台是人在拉线。",
+   "scene": "标注员给图片打标签、审核员过滤违规内容，却是\"AI 公司的编外人员\"。",
+   "mistake": "\"全自动\"很多时候只是宣传——背后都有人工兜底。",
+   "confuse": "",
+   "adv": false,
+   "related": [
+    "dataset",
+    "ai-slop",
+    "training"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "eliza-effect",
+   "title": "伊丽莎效应（ELIZA Effect）",
+   "en": "ELIZA Effect",
+   "zh": "伊丽莎效应",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "人们倾向于把程序的输出当成\"它在理解、有感情\"。源于 1966 年的聊天程序 ELIZA——它只是套模板回话，用户却对它倾诉心声。到现在，人们对着 AI 也会不自觉当真。",
+   "analogy": "像对自动回复客服说心里话——明知是程序，还是忍不住当真。",
+   "scene": "",
+   "mistake": "AI 语气温柔/像人 ≠ 它理解你——那只是文字接龙的效果。",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "chatbot",
+    "agi",
+    "hallucination"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "dead-internet",
+   "title": "死亡互联网理论（Dead Internet Theory）",
+   "en": "Dead Internet Theory",
+   "zh": "死亡互联网理论",
+   "alias": "",
+   "layer": "生态与前沿",
+   "def": "一种**未被证实的说法**：互联网上大部分内容已经是 AI 生成的、流量是机器人刷的，\"真人互联网\"已经死了。它被用来讨论 AI 内容泛滥的现状，真实程度存疑，更多是个话题。",
+   "analogy": "像\"鬼城\"——看着热闹，其实满街都是假人。",
+   "scene": "",
+   "mistake": "这是网络传言式的说法，不是科学结论，别当成事实传播。",
+   "confuse": "",
+   "adv": false,
+   "related": [
+    "ai-slop",
+    "generative-ai",
+    "ai-content-label"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "deskilling",
+   "title": "数字去技能化（Deskilling）",
+   "en": "Digital Deskilling",
+   "zh": "数字去技能化",
+   "alias": "技能退化",
+   "layer": "生态与前沿",
+   "def": "过度依赖 AI 导致人自身技能退化的现象——比如依赖 AI 写作后自己不太会写了、依赖导航后不认路了。是\"AI 越强，人越懒\"的另一面。",
+   "analogy": "像总用计算器后，心算能力慢慢退化。",
+   "scene": "",
+   "mistake": "去技能化不等于\"不该用 AI\"——关键是知道什么时候该自己上手。",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "ai-assistant",
+    "copilot"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "automation-complacency",
+   "title": "自动化自满（Automation Complacency）",
+   "en": "Automation Complacency",
+   "zh": "自动化自满",
+   "alias": "过度信任自动化",
+   "layer": "生态与前沿",
+   "def": "因为过度信任自动化系统（AI）而放松警惕、不再检查的现象——系统出错时也发现不了。来自航空等安全领域的经典概念，在 AI 时代越发常见（AI 写的代码、AI 生成的内容，你不核就敢用）。",
+   "analogy": "像自动驾驶太省心，司机打瞌睡——出事时来不及接管。",
+   "scene": "",
+   "mistake": "AI 越可靠，越要保留\"最后检查\"的习惯——自满才是最大的风险。",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "hallucination",
+    "alignment",
+    "ai-assistant"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "pink-slime",
+   "title": "粉红肉渣新闻（Pink Slime Journalism）",
+   "en": "Pink Slime Journalism",
+   "zh": "粉红肉渣新闻",
+   "alias": "AI 灌水新闻",
+   "layer": "生态与前沿",
+   "def": "用 AI 批量生成的低质新闻网站和内容——量大、模板化、错误多，靠流量和广告赚钱，污染信息环境。名字取自一种廉价肉渣加工食品，形容\"看着像新闻，其实是废料\"。",
+   "analogy": "像流水线加工的廉价香肠——量大管饱，但别指望有营养。",
+   "scene": "刷到大量\"震惊！\"\"不可思议！\"模板化内容的假新闻站。",
+   "mistake": "不是所有 AI 生成的新闻都是粉红肉渣——真正的问题是无人工审核、纯靠流量。",
+   "confuse": "",
+   "adv": false,
+   "related": [
+    "ai-slop",
+    "generative-ai",
+    "ai-content-label"
    ],
    "updated": "2026-08-28"
   }

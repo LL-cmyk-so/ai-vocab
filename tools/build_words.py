@@ -83,6 +83,18 @@ ID_MAP = {
     '小样本 / 零样本（Few-shot / Zero-shot）': 'few-shot',
     'VLM（视觉语言模型）': 'vlm',
     'AI 偏见（Bias）': 'bias',
+    # ---- 第十四批新增（11 词）----
+    '随机鹦鹉（Stochastic Parrot）': 'stochastic-parrot',
+    'AI 谄媚（Sycophancy）': 'sycophancy',
+    '模型崩溃（Model Collapse）': 'model-collapse',
+    '数据投毒（Data Poisoning）': 'data-poisoning',
+    'AI 洗白（AI Washing）': 'ai-washing',
+    '幽灵工作（Ghost Work）': 'ghost-work',
+    '伊丽莎效应（ELIZA Effect）': 'eliza-effect',
+    '死亡互联网理论（Dead Internet Theory）': 'dead-internet',
+    '数字去技能化（Deskilling）': 'deskilling',
+    '自动化自满（Automation Complacency）': 'automation-complacency',
+    '粉红肉渣新闻（Pink Slime Journalism）': 'pink-slime',
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
@@ -208,6 +220,18 @@ RELATED = {
     'few-shot': ['prompt-engineering', 'llm', 'fine-tuning'],
     'vlm': ['multimodal', 'cv', 'llm'],
     'bias': ['alignment', 'guardrails', 'dataset', 'model-evaluation'],
+    # ---- 第十四批新增（11 词）----
+    'stochastic-parrot': ['llm', 'hallucination', 'agi'],
+    'sycophancy': ['rlhf', 'alignment', 'hallucination'],
+    'model-collapse': ['synthetic-data', 'data-flywheel', 'training'],
+    'data-poisoning': ['jailbreak', 'dataset', 'guardrails', 'alignment'],
+    'ai-washing': ['generative-ai', 'ai-slop'],
+    'ghost-work': ['dataset', 'ai-slop', 'training'],
+    'eliza-effect': ['chatbot', 'agi', 'hallucination'],
+    'dead-internet': ['ai-slop', 'generative-ai', 'ai-content-label'],
+    'deskilling': ['ai-assistant', 'copilot'],
+    'automation-complacency': ['hallucination', 'alignment', 'ai-assistant'],
+    'pink-slime': ['ai-slop', 'generative-ai', 'ai-content-label'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
@@ -220,6 +244,8 @@ ADV = {
     'chunking', 'full-text-search', 'prompt-caching', 'quantization', 'mmlu',
     'slm', 'distillation', 'synthetic-data',
     'guardrails', 'moe', 'spec-coding', 'recall', 'rerank', 'few-shot', 'vlm', 'bias',
+    'stochastic-parrot', 'sycophancy', 'model-collapse', 'data-poisoning',
+    'eliza-effect', 'deskilling', 'automation-complacency',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
@@ -230,8 +256,9 @@ SECTIONS = {
     ],
     '模型本体': [
         ('🦾 大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
-        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm']),
-        ('🎓 训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data']),
+
+        ('🎓 训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data', 'model-collapse']),
+        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot']),
     ],
     '交互层': [
         ('🗣 提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
@@ -247,7 +274,8 @@ SECTIONS = {
     ],
     '生态与前沿': [
         ('🔌 API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
-        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
+        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
+        ('🌐 内容生态现象', ['ai-washing', 'ghost-work', 'dead-internet', 'pink-slime']),
         ('🔮 未来方向', ['agi', 'asi', 'embodied-ai', 'world-model']),
         ('♻️ 数据与飞轮', ['data-flywheel']),
     ],
