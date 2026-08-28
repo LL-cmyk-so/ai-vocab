@@ -77,6 +77,12 @@ ID_MAP = {
     'MoE（混合专家）': 'moe',
     '数据飞轮': 'data-flywheel',
     'Spec Coding': 'spec-coding',
+    # ---- 第十三批新增（5 词）----
+    '召回（Recall）': 'recall',
+    '重排序（Rerank）': 'rerank',
+    '小样本 / 零样本（Few-shot / Zero-shot）': 'few-shot',
+    'VLM（视觉语言模型）': 'vlm',
+    'AI 偏见（Bias）': 'bias',
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
@@ -196,6 +202,12 @@ RELATED = {
     'moe': ['llm', 'parameter', 'distillation'],
     'data-flywheel': ['llm', 'synthetic-data', 'dataset'],
     'spec-coding': ['prompt-engineering', 'structured-output', 'tool-calling'],
+    # ---- 第十三批新增（5 词）----
+    'recall': ['rag', 'rerank', 'semantic-search', 'model-evaluation'],
+    'rerank': ['rag', 'recall', 'vector-database', 'semantic-search'],
+    'few-shot': ['prompt-engineering', 'llm', 'fine-tuning'],
+    'vlm': ['multimodal', 'cv', 'llm'],
+    'bias': ['alignment', 'guardrails', 'dataset', 'model-evaluation'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
@@ -207,7 +219,7 @@ ADV = {
     'structured-output', 'streaming', 'temperature', 'system-prompt',
     'chunking', 'full-text-search', 'prompt-caching', 'quantization', 'mmlu',
     'slm', 'distillation', 'synthetic-data',
-    'guardrails', 'moe', 'spec-coding',
+    'guardrails', 'moe', 'spec-coding', 'recall', 'rerank', 'few-shot', 'vlm', 'bias',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
@@ -218,12 +230,13 @@ SECTIONS = {
     ],
     '模型本体': [
         ('🦾 大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
-        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe']),
+        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm']),
         ('🎓 训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data']),
     ],
     '交互层': [
         ('🗣 提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
-        ('🔎 检索与知识', ['embedding', 'vector', 'vector-database', 'semantic-search', 'full-text-search', 'chunking', 'rag', 'knowledge-base', 'web-search', 'ai-search']),
+        ('🔎 检索与知识', ['embedding', 'vector', 'vector-database', 'semantic-search', 'full-text-search', 'chunking', 'rag', 'knowledge-base', 'recall', 'rerank', 'web-search', 'ai-search']),
+        ('🎯 提示技巧', ['few-shot']),
     ],
     '应用层': [
         ('🤖 Agent 智能体', ['agent', 'tool-calling', 'memory', 'multi-agent', 'workflow', 'react', 'planning', 'reflection', 'skill', 'computer-use']),
@@ -234,7 +247,7 @@ SECTIONS = {
     ],
     '生态与前沿': [
         ('🔌 API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
-        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
+        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
         ('🔮 未来方向', ['agi', 'asi', 'embodied-ai', 'world-model']),
         ('♻️ 数据与飞轮', ['data-flywheel']),
     ],
