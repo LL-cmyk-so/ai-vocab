@@ -73,7 +73,8 @@
      "token",
      "context-window",
      "chain-of-thought",
-     "temperature"
+     "temperature",
+     "moe"
     ]
    ],
    [
@@ -154,6 +155,12 @@
      "ai-assistant",
      "copilot"
     ]
+   ],
+   [
+    "🛠 AI 应用开发",
+    [
+     "spec-coding"
+    ]
    ]
   ],
   "生态与前沿": [
@@ -191,6 +198,12 @@
      "asi",
      "embodied-ai",
      "world-model"
+    ]
+   ],
+   [
+    "♻️ 数据与飞轮",
+    [
+     "data-flywheel"
     ]
    ]
   ]
@@ -1511,7 +1524,7 @@
    "zh": "电脑操控",
    "alias": "",
    "layer": "应用层",
-   "def": "AI 直接操作你的电脑——看屏幕、移动鼠标、点按钮、敲键盘，替你完成订票、整理文件这类事。就像请了个远程协助，只是另一头是 AI。目前动作偏慢、偶尔出错，但\"AI 自己用电脑\"被认为是下一个大方向。",
+   "def": "AI 直接操作你的电脑——看屏幕、移动鼠标、点按钮、敲键盘，替你完成订票、整理文件这类事。就像请了个远程协助，只是另一头是 AI。目前动作偏慢、偶尔出错，但\"AI 自己用电脑\"被认为是下一个大方向。办公场景里它也常被称为 Workspace Agent（工作区智能体），专门帮你操作文件、应用、代码库。",
    "analogy": "",
    "scene": "",
    "mistake": "",
@@ -2063,6 +2076,66 @@
     "jailbreak",
     "alignment",
     "ai-content-label"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "moe",
+   "title": "MoE（混合专家）",
+   "en": "Mixture of Experts（MoE）",
+   "zh": "混合专家",
+   "alias": "专家混合",
+   "layer": "模型本体",
+   "def": "一种模型架构：把一个大模型拆成很多个\"专家\"模块，每次干活只激活其中少数几个，既省算力又能把模型做得很大。DeepSeek、Mixtral 等不少知名模型都用它，是\"又大又省\"的关键技术。",
+   "analogy": "",
+   "scene": "",
+   "mistake": "",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "llm",
+    "parameter",
+    "distillation"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "data-flywheel",
+   "title": "数据飞轮",
+   "en": "Data Flywheel",
+   "zh": "数据飞轮",
+   "alias": "数据回流",
+   "layer": "生态与前沿",
+   "def": "越多人用产品 → 产生越多使用数据 → 模型学得越好 → 体验更好吸引更多人 → 产生更多数据的正循环。它解释了 AI 公司为什么愿意免费/低价给大家用——用的人多，数据就多，模型就越强。",
+   "analogy": "像滚雪球——雪球越大滚得越快，最后自己停不下来。",
+   "scene": "AI 产品\"免费给所有人用\"、新闻里说的\"数据飞轮效应\"。",
+   "mistake": "数据飞轮不是\"数据越多就一定越好\"——还得数据质量好、处理得当，垃圾数据滚起来是灾难。",
+   "confuse": "和\"合成数据\"——飞轮靠真实用户使用产生数据，合成数据是 AI 自己生成数据，两条路。",
+   "adv": false,
+   "related": [
+    "llm",
+    "synthetic-data",
+    "dataset"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "spec-coding",
+   "title": "Spec Coding",
+   "en": "Spec Coding",
+   "zh": "规格化编程",
+   "alias": "规格编程",
+   "layer": "应用层",
+   "def": "Vibe Coding 的进阶玩法：先用自然语言写一份详细的\"规格说明\"（Spec，写清楚要做什么、怎么交互、边界在哪），再让 AI 严格按规格生成代码。比纯\"随感觉写\"（Vibe Coding）更可控、更不容易翻车，适合稍微正式一点的小项目。",
+   "analogy": "",
+   "scene": "",
+   "mistake": "",
+   "confuse": "",
+   "adv": true,
+   "related": [
+    "prompt-engineering",
+    "structured-output",
+    "tool-calling"
    ],
    "updated": "2026-08-28"
   }

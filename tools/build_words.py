@@ -73,6 +73,10 @@ ID_MAP = {
     # ---- 第十一批新增（2 词）----
     '手搓感': 'hand-rolling',
     'Guardrails（护栏）': 'guardrails',
+    # ---- 第十二批新增（3 词）----
+    'MoE（混合专家）': 'moe',
+    '数据飞轮': 'data-flywheel',
+    'Spec Coding': 'spec-coding',
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
@@ -188,6 +192,10 @@ RELATED = {
     # ---- 第十一批新增（2 词）----
     'hand-rolling': ['generative-ai', 'ai-slop', 'prompt'],
     'guardrails': ['jailbreak', 'alignment', 'ai-content-label'],
+    # ---- 第十二批新增（3 词）----
+    'moe': ['llm', 'parameter', 'distillation'],
+    'data-flywheel': ['llm', 'synthetic-data', 'dataset'],
+    'spec-coding': ['prompt-engineering', 'structured-output', 'tool-calling'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
@@ -199,7 +207,7 @@ ADV = {
     'structured-output', 'streaming', 'temperature', 'system-prompt',
     'chunking', 'full-text-search', 'prompt-caching', 'quantization', 'mmlu',
     'slm', 'distillation', 'synthetic-data',
-    'guardrails',
+    'guardrails', 'moe', 'spec-coding',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
@@ -210,7 +218,7 @@ SECTIONS = {
     ],
     '模型本体': [
         ('🦾 大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
-        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature']),
+        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe']),
         ('🎓 训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data']),
     ],
     '交互层': [
@@ -222,11 +230,13 @@ SECTIONS = {
         ('🎨 内容生成', ['text-to-image', 'text-to-video', 'deepfake']),
         ('🎤 语音与形象', ['speech-recognition', 'speech-synthesis', 'digital-human']),
         ('💬 助手形态', ['chatbot', 'ai-assistant', 'copilot']),
+        ('🛠 AI 应用开发', ['spec-coding']),
     ],
     '生态与前沿': [
         ('🔌 API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
         ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
         ('🔮 未来方向', ['agi', 'asi', 'embodied-ai', 'world-model']),
+        ('♻️ 数据与飞轮', ['data-flywheel']),
     ],
 }
 
