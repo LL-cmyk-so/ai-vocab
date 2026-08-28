@@ -70,6 +70,9 @@ ID_MAP = {
     '计算机视觉（CV）': 'cv',
     'ASI（超级人工智能）': 'asi',
     'AI 泥浆（AI-Slop）': 'ai-slop',
+    # ---- 第十一批新增（2 词）----
+    '手搓感': 'hand-rolling',
+    'Guardrails（护栏）': 'guardrails',
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
@@ -182,6 +185,9 @@ RELATED = {
     'cv': ['nlp', 'multimodal', 'text-to-image'],
     'asi': ['agi', 'alignment', 'world-model'],
     'ai-slop': ['generative-ai', 'ai-content-label', 'hallucination'],
+    # ---- 第十一批新增（2 词）----
+    'hand-rolling': ['generative-ai', 'ai-slop', 'prompt'],
+    'guardrails': ['jailbreak', 'alignment', 'ai-content-label'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
@@ -193,6 +199,7 @@ ADV = {
     'structured-output', 'streaming', 'temperature', 'system-prompt',
     'chunking', 'full-text-search', 'prompt-caching', 'quantization', 'mmlu',
     'slm', 'distillation', 'synthetic-data',
+    'guardrails',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
@@ -218,7 +225,7 @@ SECTIONS = {
     ],
     '生态与前沿': [
         ('🔌 API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
-        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'ai-content-label', 'ai-copyright', 'ai-slop']),
+        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
         ('🔮 未来方向', ['agi', 'asi', 'embodied-ai', 'world-model']),
     ],
 }

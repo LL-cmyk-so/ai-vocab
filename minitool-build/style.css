@@ -37,19 +37,28 @@ body {
 /* ---------- 头部（吸顶，🏠/🔍 常驻） ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
   background: linear-gradient(135deg, var(--main) 0%, #7c5cf0 100%);
   color: #fff;
-  padding: 16px 0 14px;
+  /* 固定预留容器导航栏高度（约48px）+ 刘海安全区；整行一起下移 */
+  padding: calc(48px + var(--safe-area-inset-top, env(safe-area-inset-top, 0px))) 14px 8px;
   box-shadow: 0 2px 8px rgba(31,35,41,.10);
 }
-.site-header h1 { font-size: 20px; font-weight: 800; letter-spacing: 1px; text-align: center; }
-.subtitle { text-align: center; font-size: 11.5px; opacity: .92; margin-top: 2px; }
+.header-title {
+  flex: 1; text-align: center;
+  font-size: 17px; font-weight: 700; color: #fff;
+  line-height: 30px;
+}
+.subtitle {
+  text-align: center; font-size: 11.5px; color: var(--muted);
+  margin: 12px 0 0;
+}
 
 /* header 左右图标按钮（扁平） */
 .header-btn {
-  position: absolute; top: 50%; transform: translateY(-50%);
   background: none; border: none; padding: 6px; cursor: pointer;
-  color: rgba(255,255,255,.85); border-radius: 6px; transition: background .15s;
+  color: rgba(255,255,255,.9); border-radius: 6px; transition: background .15s;
+  flex-shrink: 0;
 }
 .header-btn:hover { background: rgba(255,255,255,.16); }
 .header-btn svg { display: block; width: 17px; height: 17px; }
@@ -233,7 +242,7 @@ main { flex: 1; padding: 16px 16px 30px; }
 
 /* ---------- 手机适配 ---------- */
 @media (max-width: 480px) {
-  .site-header { padding: 14px 0 12px; }
+  .site-header { padding: calc(48px + var(--safe-area-inset-top, env(safe-area-inset-top, 0px))) 0 8px; }
   .site-header h1 { font-size: 18px; }
   .entry-title { font-size: 21px; }
   .entry-def { font-size: 14.5px; }

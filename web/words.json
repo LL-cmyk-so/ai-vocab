@@ -177,9 +177,11 @@
      "alignment",
      "explainability",
      "jailbreak",
+     "guardrails",
      "ai-content-label",
      "ai-copyright",
-     "ai-slop"
+     "ai-slop",
+     "hand-rolling"
     ]
    ],
    [
@@ -334,7 +336,7 @@
     "llm",
     "agi"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "turing-test",
@@ -353,7 +355,7 @@
     "ai",
     "agi"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "machine-learning",
@@ -374,7 +376,7 @@
     "training",
     "dataset"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "deep-learning",
@@ -394,7 +396,7 @@
     "neural-network",
     "parameter"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "neural-network",
@@ -414,7 +416,7 @@
     "parameter",
     "weight"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "training",
@@ -434,7 +436,7 @@
     "dataset",
     "pretraining"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "inference",
@@ -453,7 +455,7 @@
     "training",
     "api"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "parameter",
@@ -473,7 +475,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "weight",
@@ -492,7 +494,7 @@
     "parameter",
     "neural-network"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "dataset",
@@ -512,7 +514,7 @@
     "pretraining",
     "fine-tuning"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "algorithm",
@@ -531,7 +533,7 @@
     "machine-learning",
     "compute"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "compute",
@@ -551,7 +553,7 @@
     "training",
     "local-deployment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "gpu",
@@ -571,7 +573,7 @@
     "training",
     "local-deployment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "llm",
@@ -592,7 +594,7 @@
     "context-window",
     "generative-ai"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "generative-ai",
@@ -613,7 +615,7 @@
     "text-to-video",
     "multimodal"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "nlp",
@@ -632,7 +634,7 @@
     "llm",
     "transformer"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "transformer",
@@ -651,7 +653,7 @@
     "attention",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "attention",
@@ -669,7 +671,7 @@
    "related": [
     "transformer"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "token",
@@ -689,7 +691,7 @@
     "context-window",
     "api"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "context-window",
@@ -709,7 +711,7 @@
     "memory",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "pretraining",
@@ -729,7 +731,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "fine-tuning",
@@ -749,7 +751,7 @@
     "dataset",
     "alignment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "rlhf",
@@ -769,7 +771,7 @@
     "alignment",
     "fine-tuning"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "multimodal",
@@ -790,7 +792,7 @@
     "text-to-video",
     "digital-human"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "prompt",
@@ -810,7 +812,7 @@
     "llm",
     "jailbreak"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "prompt-engineering",
@@ -829,7 +831,7 @@
     "prompt",
     "agent"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "embedding",
@@ -849,7 +851,7 @@
     "semantic-search",
     "rag"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "vector",
@@ -869,7 +871,7 @@
     "vector-database",
     "semantic-search"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "vector-database",
@@ -889,7 +891,7 @@
     "rag",
     "memory"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "semantic-search",
@@ -908,7 +910,7 @@
     "vector",
     "vector-database"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "rag",
@@ -929,7 +931,7 @@
     "hallucination",
     "embedding"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "knowledge-base",
@@ -948,7 +950,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "hallucination",
@@ -968,7 +970,7 @@
     "alignment",
     "prompt"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "chatbot",
@@ -988,7 +990,7 @@
     "ai-assistant",
     "nlp"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "ai-assistant",
@@ -1008,7 +1010,7 @@
     "agent",
     "tool-calling"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "copilot",
@@ -1027,7 +1029,7 @@
     "ai-assistant",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "text-to-image",
@@ -1046,7 +1048,7 @@
     "generative-ai",
     "text-to-video"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "text-to-video",
@@ -1065,7 +1067,7 @@
     "text-to-image",
     "world-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "speech-recognition",
@@ -1084,7 +1086,7 @@
     "speech-synthesis",
     "digital-human"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "speech-synthesis",
@@ -1103,7 +1105,7 @@
     "speech-recognition",
     "digital-human"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "digital-human",
@@ -1123,7 +1125,7 @@
     "speech-recognition",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "agent",
@@ -1132,7 +1134,7 @@
    "zh": "智能体",
    "alias": "代理（旧译，已少用）",
    "layer": "应用层",
-   "def": "具备自主规划、循环思考、调用工具能力的 AI 应用：告诉它最终目标，它会自己拆解任务、动手完成，不局限于一问一答。现在也有人叫它 Agentic AI（智能体 AI）。",
+   "def": "具备自主规划、循环思考、调用工具能力的 AI 应用：告诉它最终目标，它会自己拆解任务、动手完成，不局限于一问一答。现在也有人叫它 Agentic AI（智能体 AI）；开发圈里还常叫它 Harness（智能体框架）。",
    "analogy": "像交给助理一个完整任务，它自己拆步骤、查资料、动手做，而不是每件小事都要你下达指令。",
    "scene": "AI 产品里的\"自动帮你订票、比价、整理文件\"功能。",
    "mistake": "它没有自我思想，只是按规则循环执行，照样会犯错、会跑偏。",
@@ -1144,7 +1146,7 @@
     "multi-agent",
     "ai-assistant"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "workflow",
@@ -1164,7 +1166,7 @@
     "tool-calling",
     "prompt-engineering"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "tool-calling",
@@ -1183,7 +1185,7 @@
     "agent",
     "api"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "memory",
@@ -1203,7 +1205,7 @@
     "context-window",
     "agent"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "multi-agent",
@@ -1222,7 +1224,7 @@
     "agent",
     "workflow"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "api",
@@ -1242,7 +1244,7 @@
     "token",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "open-source-model",
@@ -1262,7 +1264,7 @@
     "api",
     "model-evaluation"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "local-deployment",
@@ -1282,7 +1284,7 @@
     "gpu",
     "compute"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "model-evaluation",
@@ -1301,7 +1303,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "alignment",
@@ -1321,7 +1323,7 @@
     "hallucination",
     "agi"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "explainability",
@@ -1340,7 +1342,7 @@
     "alignment",
     "agi"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "agi",
@@ -1361,7 +1363,7 @@
     "alignment",
     "embodied-ai"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "embodied-ai",
@@ -1381,7 +1383,7 @@
     "agi",
     "multimodal"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "world-model",
@@ -1401,7 +1403,7 @@
     "embodied-ai",
     "text-to-video"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "jailbreak",
@@ -1420,7 +1422,7 @@
     "prompt",
     "alignment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "reasoning-model",
@@ -1440,7 +1442,7 @@
     "chain-of-thought",
     "rlhf"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "web-search",
@@ -1460,7 +1462,7 @@
     "rag",
     "ai-search"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "ai-search",
@@ -1480,7 +1482,7 @@
     "web-search",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "rate-limit",
@@ -1500,7 +1502,7 @@
     "token",
     "prompt-caching"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "computer-use",
@@ -1520,7 +1522,7 @@
     "tool-calling",
     "multimodal"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "ai-content-label",
@@ -1539,7 +1541,7 @@
     "alignment",
     "model-evaluation"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "mcp",
@@ -1559,7 +1561,7 @@
     "tool-calling",
     "api"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "chain-of-thought",
@@ -1579,7 +1581,7 @@
     "prompt",
     "transformer"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "react",
@@ -1599,7 +1601,7 @@
     "tool-calling",
     "planning"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "planning",
@@ -1619,7 +1621,7 @@
     "react",
     "multi-agent"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "reflection",
@@ -1639,7 +1641,7 @@
     "react",
     "alignment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "skill",
@@ -1659,7 +1661,7 @@
     "tool-calling",
     "mcp"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "structured-output",
@@ -1679,7 +1681,7 @@
     "api",
     "prompt"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "streaming",
@@ -1699,7 +1701,7 @@
     "api",
     "token"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "temperature",
@@ -1719,7 +1721,7 @@
     "inference",
     "reasoning-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "system-prompt",
@@ -1739,7 +1741,7 @@
     "prompt-engineering",
     "alignment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "chunking",
@@ -1759,7 +1761,7 @@
     "vector-database",
     "full-text-search"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "full-text-search",
@@ -1779,7 +1781,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "prompt-caching",
@@ -1799,7 +1801,7 @@
     "api",
     "context-window"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "quantization",
@@ -1819,7 +1821,7 @@
     "gpu",
     "open-source-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "mmlu",
@@ -1839,7 +1841,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "aigc",
@@ -1860,7 +1862,7 @@
     "multimodal",
     "ai-content-label"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "deepfake",
@@ -1881,7 +1883,7 @@
     "speech-synthesis",
     "ai-content-label"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "ai-copyright",
@@ -1901,7 +1903,7 @@
     "generative-ai",
     "alignment"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "cv",
@@ -1921,7 +1923,7 @@
     "multimodal",
     "text-to-image"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "slm",
@@ -1941,7 +1943,7 @@
     "local-deployment",
     "quantization"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "asi",
@@ -1961,7 +1963,7 @@
     "alignment",
     "world-model"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "ai-slop",
@@ -1981,7 +1983,7 @@
     "ai-content-label",
     "hallucination"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "distillation",
@@ -2002,7 +2004,7 @@
     "quantization",
     "llm"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
   },
   {
    "id": "synthetic-data",
@@ -2022,7 +2024,47 @@
     "dataset",
     "fine-tuning"
    ],
-   "updated": "2026-08-27"
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "hand-rolling",
+   "title": "手搓感",
+   "en": "DIY / Hand-made（无固定英文，中文网络热词）",
+   "zh": "手搓感",
+   "alias": "手搓",
+   "layer": "生态与前沿",
+   "def": "形容\"自己动手做出来\"的感觉——用 AI 工具（比如 Vibe Coding）快速做出一个小工具、小应用、小游戏，像手工打磨一样，成就感十足。是\"AI 编程平民化\"背景下流行起来的说法，社交平台上常见\"手搓了一个 xxx\"。",
+   "analogy": "像以前\"自己拼装一台电脑\"的感觉——现在换成用 AI 几句话搓出一个小软件。",
+   "scene": "小红书/抖音上\"手搓了一个 AI 小工具\"的标题、AI 应用开发的新手晒作品。",
+   "mistake": "手搓不是\"完全不用脑子\"——AI 写代码也得你会描述需求、会修修补补。",
+   "confuse": "和\"AI-Slop\"——手搓感是\"自己动手做的成就感\"，AI-Slop 是\"批量灌水的低质内容\"，两个相反方向。",
+   "adv": false,
+   "related": [
+    "generative-ai",
+    "ai-slop",
+    "prompt"
+   ],
+   "updated": "2026-08-28"
+  },
+  {
+   "id": "guardrails",
+   "title": "Guardrails（护栏）",
+   "en": "Guardrails",
+   "zh": "护栏",
+   "alias": "AI 护栏、安全护栏",
+   "layer": "生态与前沿",
+   "def": "给 AI 设置的\"安全围栏\"——一系列规则和机制，防止它输出违规、危险、歧视性的内容，或干不该干的事。它是 AI 安全的防御手段，正好和\"越狱 / 提示词注入\"（攻击手段）相对。",
+   "analogy": "像马路上装护栏——不是不让车走，而是防止车冲出边界出事。",
+   "scene": "AI 安全讨论、企业把 AI 部署上线前的合规要求。",
+   "mistake": "护栏不是\"装了就一劳永逸\"——攻击手段（越狱）也在不断升级，需要持续加固。",
+   "confuse": "和\"对齐（Alignment）\"——护栏是具体的安全规则和机制，对齐是更宏观的\"让 AI 目标和人类一致\"。",
+   "adv": true,
+   "related": [
+    "jailbreak",
+    "alignment",
+    "ai-content-label"
+   ],
+   "updated": "2026-08-28"
   }
  ]
 }

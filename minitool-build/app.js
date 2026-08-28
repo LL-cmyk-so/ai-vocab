@@ -16,7 +16,6 @@ const state = {
 /* ---------- 数据加载 ---------- */
 function boot(data) {
   state.data = data;
-  $('#siteTitle').textContent = data.title;
   $('#siteSubtitle').textContent = data.subtitle;
   renderStatic();
   route();
