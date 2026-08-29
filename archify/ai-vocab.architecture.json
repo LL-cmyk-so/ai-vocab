@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AI 词汇本 · 零后端静态架构",
+    "locale": "zh-CN",
+    "output": "ai-vocab.architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/LL-cmyk-so/ai-vocab",
+      "revision": "d756982ff40245a2ddfe7f2aad44ca0658c0f593"
+    },
+    "views": [
+      { "id": "main-path", "label": "主链路", "focus": ["drafts", "build", "words", "webapp", "gh-pages", "users"], "note": "从词条草稿到读者访问的完整主路径。" },
+      { "id": "pwa-offline", "label": "PWA 与备用托管", "focus": ["webapp", "pwa", "cf-pages", "users"], "note": "离线能力与备用托管不干扰主链路。" }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "cols": 6
+  },
+  "components": [
+    { "id": "drafts", "type": "external", "label": "词条草稿 drafts/", "sublabel": "Markdown 内容源 · 9 批", "row": 0, "col": 0, "sources": [{ "path": "drafts/batch-01.md", "label": "第 0 词 + 地基层" }, { "path": "drafts/batch-14-v11.md", "label": "最新批次" }] },
+    { "id": "build", "type": "backend", "label": "build_words.py", "sublabel": "tools/ · Python 构建", "row": 0, "col": 1, "sources": [{ "path": "tools/build_words.py" }] },
+    { "id": "words", "type": "database", "label": "words.json", "sublabel": "107 词 · 6 大主题", "row": 0, "col": 2, "sources": [{ "path": "web/words.json" }] },
+    { "id": "webapp", "type": "frontend", "label": "静态前端 web/", "sublabel": "index.html · script.js", "row": 0, "col": 3, "sources": [{ "path": "web/index.html" }, { "path": "web/script.js" }] },
+    { "id": "gh-pages", "type": "cloud", "label": "GitHub Pages", "sublabel": "git push 自动部署", "row": 0, "col": 4, "sources": [{ "path": ".github/workflows/pages.yml" }] },
+    { "id": "users", "type": "external", "label": "读者用户", "sublabel": "浏览器 · 手机 · 桌面", "row": 0, "col": 5 },
+    { "id": "pwa", "type": "frontend", "label": "PWA 壳", "sublabel": "sw.js · manifest.json", "row": 1, "col": 3, "sources": [{ "path": "web/sw.js" }, { "path": "web/manifest.json" }] },
+    { "id": "cf-pages", "type": "cloud", "label": "Cloudflare Pages", "sublabel": "备用托管", "row": 1, "col": 4 }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "内容管线 · 本地仓库", "wraps": ["drafts", "build", "words"] },
+    { "kind": "region", "label": "发布物 · web/", "wraps": ["webapp", "pwa"] }
+  ],
+  "connections": [
+    { "id": "drafts-to-build", "from": "drafts", "to": "build", "label": "解析批次 Markdown", "labelAt": [180, 154] },
+    { "id": "build-to-words", "from": "build", "to": "words", "label": "生成词条数据", "labelAt": [340, 154] },
+    { "id": "words-to-webapp", "from": "words", "to": "webapp", "label": "script.js 加载渲染", "labelAt": [500, 154] },
+    { "id": "webapp-to-pwa", "from": "webapp", "to": "pwa", "label": "注册 SW · 离线可查", "labelAt": [580, 154] },
+    { "id": "webapp-to-gh", "from": "webapp", "to": "gh-pages", "label": "git push 自动部署", "variant": "emphasis", "labelAt": [720, 154] },
+    { "id": "webapp-to-cf", "from": "webapp", "to": "cf-pages", "label": "手动上传", "variant": "dashed", "labelAt": [664, 178] },
+    { "id": "gh-to-users", "from": "gh-pages", "to": "users", "label": "HTTPS 主访问", "variant": "emphasis", "labelAt": [880, 154] },
+    { "id": "cf-to-users", "from": "cf-pages", "to": "users", "label": "HTTPS 备用", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "violet", "title": "内容创作", "items": ["drafts/ 按批次维护 Markdown 词条草稿", "每词统一四要素：白话解释 · 类比 · 场景 · 误区", "relations.md 标注精选跳转与 18 步主线"] },
+    { "dot": "cyan", "title": "构建管线", "items": ["build_words.py 解析草稿生成 words.json", "107 词 · 6 大主题 · 零依赖纯 Python", "updated 字段由脚本自动写入"] },
+    { "dot": "emerald", "title": "运行时", "items": ["纯静态零后端：无数据库、无服务器", "hash 路由：折叠树 / 学习路线 / 词条详情", "PWA 网络优先 + 缓存兜底，支持离线查阅"] }
+  ]
+}

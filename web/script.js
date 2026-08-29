@@ -144,31 +144,65 @@ function showView(name) {
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
   if (h === 'path') {
+    clearSplit();
     showView('pathView');
   } else if (h.startsWith('learn/')) {
     const n = parseInt(h.slice(6), 10);
     if (!isNaN(n) && n >= 0 && n < state.data.path.length) {
+      clearSplit();
       showLearn(n);
     } else {
       location.hash = '';
     }
   } else if (h && byId(h)) {
-    state.entryId = h;
-    showView('entryView');
-    renderEntry();
+    enterSplit(h);
   } else {
+    clearSplit();
     showView('homeView');
   }
 }
 
 window.addEventListener('hashchange', route);
 
+/* ---------- 分栏（宽屏：目录缩左 + 词条右侧；窄屏：保持全屏切换） ---------- */
+function isWide() {
+  return window.innerWidth >= 900;
+}
+
+function enterSplit(id) {
+  state.entryId = id;
+  if (!isWide()) {
+    // 窄屏：保持原全屏切换
+    showView('entryView');
+    renderEntry();
+    return;
+  }
+  // 宽屏：目录留在左侧，词条进右侧
+  document.querySelector('.container').classList.add('split');
+  $('#homeView').hidden = false;
+  $('#entryView').hidden = false;
+  $('#learnView').hidden = true;
+  $('#pathView').hidden = true;
+  window.scrollTo({ top: 0 });
+  renderEntry();
+}
+
+function clearSplit() {
+  document.querySelector('.container').classList.remove('split');
+  $('#entryView').hidden = true;
+}
+
+/* 窗口宽度变化（桌面↔手机）时重新路由，切换分栏/全屏 */
+window.addEventListener('resize', route);
+
 /* ---------- 回首页（header 常驻 🏠） ---------- */
 function goHome() {
   location.hash = '';
+  clearSplit();
   showView('homeView');
 }
 $('#homeBtn').addEventListener('click', goHome);
+$('#entryClose').addEventListener('click', goHome);
 
 /* ---------- 搜索面板（点 🔍 在当前页展开，不跳转、不改变当前页面） ---------- */
 function openSearch() {
@@ -297,10 +331,7 @@ function openEntry(id) {
   if (!w) return;
   state.entryId = id;
   if (location.hash !== '#' + id) location.hash = id; // 触发 hashchange → route
-  else {
-    showView('entryView');
-    renderEntry();
-  }
+  else enterSplit(id);
 }
 
 function renderEntry() {
