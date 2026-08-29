@@ -190,8 +190,9 @@ main { flex: 1; padding: 16px 16px 30px; }
 .result-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
 /* ---------- 词条详情 ---------- */
+#entryView { display: flex; flex-direction: column; }
 .entry-close {
-  display: inline-block;
+  align-self: flex-end;              /* 右上角 */
   background: none;
   border: 1px solid var(--line);
   color: var(--muted);
@@ -210,12 +211,13 @@ main { flex: 1; padding: 16px 16px 30px; }
   .container.split {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 20px;
     align-items: flex-start;
+    max-width: 1180px;               /* 分栏时加宽，减少左右留白 */
   }
   .container.split #homeView {
-    flex: 0 0 42%;
-    max-width: 42%;
+    flex: 0 0 340px;                 /* 目录固定侧栏宽度 */
+    max-width: 340px;
   }
   .container.split #homeView #homeMain {
     position: sticky;
@@ -225,7 +227,7 @@ main { flex: 1; padding: 16px 16px 30px; }
     padding-right: 4px;
   }
   .container.split #entryView {
-    flex: 1;
+    flex: 1;                         /* 词条占剩余更宽空间 */
     min-width: 0;
   }
 }
