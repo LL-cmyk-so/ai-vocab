@@ -202,7 +202,6 @@ function goHome() {
   showView('homeView');
 }
 $('#homeBtn').addEventListener('click', goHome);
-$('#entryClose').addEventListener('click', goHome);
 
 /* ---------- 搜索面板（点 🔍 在当前页展开，不跳转、不改变当前页面） ---------- */
 function openSearch() {
@@ -339,6 +338,28 @@ function renderEntry() {
   if (!w) return;
   const box = $('#entryContent');
   box.innerHTML = wordContentHtml(w);
+  // ✕ 关闭按钮与标题同一行（标题左、✕ 右、垂直居中）
+  const card = box.querySelector('.entry-card');
+  if (card) {
+    const title = card.querySelector('.entry-title');
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'entry-close';
+    closeBtn.setAttribute('aria-label', '关闭词条');
+    closeBtn.textContent = '✕';
+    closeBtn.addEventListener('click', goHome);
+    if (title) {
+      const row = document.createElement('div');
+      row.className = 'entry-head';
+      card.insertBefore(row, title);
+      row.appendChild(title);
+      const tool = document.createElement('div');
+      tool.className = 'entry-toolbar';
+      tool.appendChild(closeBtn);
+      row.appendChild(tool);
+    } else {
+      card.prepend(closeBtn);
+    }
+  }
   bindEntryClicks(box);
 }
 

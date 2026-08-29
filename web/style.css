@@ -190,20 +190,29 @@ main { flex: 1; padding: 16px 16px 30px; }
 .result-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
 /* ---------- 词条详情 ---------- */
-#entryView { display: flex; flex-direction: column; }
+/* 注意：不要给 #entryView 设置 display，否则会覆盖 hidden 属性导致关闭后仍显示 */
+/* 标题行：标题 + ✕ 同一行，垂直居中 */
+.entry-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.entry-head .entry-title { flex: 1; margin: 0; }
+.entry-toolbar { display: flex; flex-shrink: 0; }
 .entry-close {
-  align-self: flex-end;              /* 右上角 */
   background: none;
   border: 1px solid var(--line);
   color: var(--muted);
-  border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 13px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 1;
   cursor: pointer;
-  margin-bottom: 12px;
-  transition: border-color .15s, color .15s;
+  transition: border-color .15s, color .15s, background .15s;
 }
-.entry-close:hover { border-color: var(--main); color: var(--main); }
+.entry-close:hover { border-color: var(--main); color: var(--main); background: var(--main-soft); }
 .entry-card { padding: 20px 18px; }
 
 /* 分栏状态：目录缩左 + 词条右侧（仅宽屏 ≥900px，手机保持全屏） */
@@ -229,6 +238,7 @@ main { flex: 1; padding: 16px 16px 30px; }
   .container.split #entryView {
     flex: 1;                         /* 词条占剩余更宽空间 */
     min-width: 0;
+    padding-top: 36px;               /* 与目录树顶部对齐，不贴 header */
   }
 }
 .entry-title { font-size: 24px; font-weight: 800; line-height: 1.3; }
