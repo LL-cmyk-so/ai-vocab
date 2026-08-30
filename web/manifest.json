@@ -1,13 +1,13 @@
 {
   "name": "AI 词汇本",
   "short_name": "AI 词汇本",
-  "description": "零基础 AI 术语词典，不用懂编程，小白也能轻松读懂 AI 名词",
+  "description": "零基础 AI 术语词典，小白也能轻松读懂",
   "lang": "zh-CN",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f7fb",
-  "theme_color": "#4f6ef7",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0064FA",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
