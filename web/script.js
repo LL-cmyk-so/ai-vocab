@@ -17,7 +17,6 @@ const state = {
 function boot(data) {
   state.data = data;
   $('#siteTitle').textContent = data.title;
-  $('#siteSubtitle').textContent = data.subtitle;
   renderStatic();
   route();
 }
@@ -37,9 +36,10 @@ function renderStatic() {
 function renderTree() {
   const tree = $('#tree');
   tree.innerHTML = '';
+  /* 层色条统一为品牌主色单色（Notion Blue；避免彩虹感） */
   const LAYER_COLOR = {
-    '总纲': '#7c5cf0', '地基': '#4f6ef7', '模型本体': '#3b82f6',
-    '交互层': '#14b8a6', '应用层': '#f59e0b', '生态与前沿': '#ef4444',
+    '总纲': '#0075de', '地基': '#0075de', '模型本体': '#0075de',
+    '交互层': '#0075de', '应用层': '#0075de', '生态与前沿': '#0075de',
   };
 
   state.data.layers.forEach((layer) => {
@@ -138,6 +138,8 @@ function showView(name) {
   VIEWS.forEach((v) => {
     $('#' + v).hidden = (v !== name);
   });
+  /* 副标题只在首页显示（配合 .site-header CSS 规则） */
+  document.body.classList.toggle('view-home', name === 'homeView');
   window.scrollTo({ top: 0 });
 }
 
@@ -166,8 +168,11 @@ window.addEventListener('hashchange', route);
 
 /* ---------- 分栏（宽屏：目录缩左 + 词条右侧；窄屏：保持全屏切换） ---------- */
 function isWide() {
-  return window.innerWidth >= 900;
+  return window.innerWidth >= 840;   /* M1：断点对齐 M3 expanded（与 CSS @media 840px 一致） */
 }
+
+/* 关闭动画计时器句柄（防止动画进行中重入时提前掐断） */
+let splitCloseTimer = null;
 
 function enterSplit(id) {
   state.entryId = id;
@@ -177,19 +182,59 @@ function enterSplit(id) {
     renderEntry();
     return;
   }
-  // 宽屏：目录留在左侧，词条进右侧
+  // 宽屏：目录留在左侧，词条进右侧（动效：目录左收 + 词条滑入）
+  clearTimeout(splitCloseTimer);
+  splitCloseTimer = null;
+  // 若正在关闭动画中，先复位关闭态
+  const ev = $('#entryView');
+  ev.classList.remove('closing');
   document.querySelector('.container').classList.add('split');
   $('#homeView').hidden = false;
-  $('#entryView').hidden = false;
+  ev.hidden = false;
+  ev.classList.remove('anim-ready');
   $('#learnView').hidden = true;
   $('#pathView').hidden = true;
+  document.body.classList.remove('view-home');   // 详情页收起副标题
   window.scrollTo({ top: 0 });
   renderEntry();
+  // 下一帧加 anim-ready → 触发 220ms 过渡（容器加宽 + 目录收缩 + 词条滑入）
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => ev.classList.add('anim-ready'));
+  });
 }
 
+/* 即时关闭分栏（内部路径：路由跳转 / 🏠 按钮 / 搜索——不播动画，避免与视图切换时序冲突） */
 function clearSplit() {
+  clearTimeout(splitCloseTimer);
+  splitCloseTimer = null;
+  const ev = $('#entryView');
+  ev.classList.remove('anim-ready', 'closing');
   document.querySelector('.container').classList.remove('split');
-  $('#entryView').hidden = true;
+  ev.hidden = true;
+}
+
+/* ✕ 按钮关闭：词条淡出（180ms）与目录展开（220ms）并行，消除等待空隙 */
+function closeEntry() {
+  const ev = $('#entryView');
+  if (ev.hidden || !document.querySelector('.container').classList.contains('split')) {
+    goHome();
+    return;
+  }
+  // 立即触发：词条淡出 + 目录展开同步开始（不串行等待）
+  ev.classList.remove('anim-ready');
+  ev.classList.add('closing');
+  document.querySelector('.container').classList.remove('split');   // 目录开始展开（220ms）
+  clearTimeout(splitCloseTimer);
+  splitCloseTimer = setTimeout(() => {
+    ev.classList.remove('closing');
+    ev.hidden = true;
+    splitCloseTimer = null;
+    document.body.classList.add('view-home');   // 恢复副标题
+    // 用 replaceState 同步路由，不触发 hashchange（避免 route→clearSplit 幂等重入）
+    if (location.hash !== '') {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }, 180);
 }
 
 /* 窗口宽度变化（桌面↔手机）时重新路由，切换分栏/全屏 */
@@ -346,7 +391,7 @@ function renderEntry() {
     closeBtn.className = 'entry-close';
     closeBtn.setAttribute('aria-label', '关闭词条');
     closeBtn.textContent = '✕';
-    closeBtn.addEventListener('click', goHome);
+    closeBtn.addEventListener('click', closeEntry);   // ✕ 走关闭动画（词条淡出→目录展开）
     if (title) {
       const row = document.createElement('div');
       row.className = 'entry-head';
@@ -385,7 +430,7 @@ function showLearn(idx) {
   $('#learnNext').textContent = (idx === total - 1) ? '完成 🎉' : '下一步 →';
 }
 
-$('#startLearnBtn').addEventListener('click', (e) => { e.preventDefault(); startLearn(); });
+$('#learnBtn').addEventListener('click', (e) => { e.preventDefault(); startLearn(); });
 $('#learnExit').addEventListener('click', goHome);
 $('#learnAllLink').addEventListener('click', (e) => { e.preventDefault(); location.hash = 'path'; });
 $('#learnPrev').addEventListener('click', () => {
