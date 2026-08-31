@@ -32,6 +32,11 @@
   /* —— 间距（Semi spacing：0/2/4/8/12/16/20/24/32/40；D1 删 48）—— */
   --space-1: 4px; --space-2: 8px; --space-3: 16px;
   --space-4: 24px; --space-5: 32px;
+
+  /* —— 动效（emil-design-eng 框架：自定义贝塞尔，替代过弱的内置 ease）—— */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);       /* UI 交互出场（快反馈） */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);   /* 屏上移动/变形（自然加减速） */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);    /* 抽屉/面板类 */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -67,9 +72,10 @@ body {
 .header-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   background: none; border: 1px solid transparent; padding: 12px; cursor: pointer;   /* M2: 8→12px 热区 48px */
-  color: var(--muted); border-radius: 4px; transition: background .15s, color .15s, border-color .15s;   /* R1: 6→4 圆角归一 */
+  color: var(--muted); border-radius: 4px; transition: background .15s, color .15s, border-color .15s, transform 120ms var(--ease-out);   /* R1: 6→4 圆角归一；A4: transform 用 ease-out 120ms */
 }
 .header-btn:hover { background: var(--bg); color: var(--text); }
+.header-btn:active { transform: translateY(-50%) scale(0.95); }   /* A3: 按压反馈（注意保留 translateY(-50%) 定位） */
 .header-btn svg { display: block; width: 17px; height: 17px; }
 .header-left { left: 16px; }
 .header-right { right: 16px; }
@@ -103,6 +109,7 @@ body {
   content: ''; position: absolute; inset: -7px;
 }
 .search-close:hover { border-color: var(--main); color: var(--main); }
+.search-close:active { transform: scale(0.95); }   /* A3 */
 .search-results {
   margin-top: 12px; padding: 8px 16px;
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
@@ -134,9 +141,10 @@ main { flex: 1; padding: 16px 16px 32px; }
   border-radius: var(--radius-btn);
   cursor: pointer;
   margin-bottom: 16px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 120ms var(--ease-out);
 }
 .btn-ghost:hover { background: var(--main-soft); }
+.btn-ghost:active { transform: scale(0.97); }   /* A3 */
 
 /* 首页主体：与 header 保持 16px 区块间距（总纲卡片不贴顶） */
 #homeMain { padding-top: 16px; }
@@ -174,9 +182,10 @@ main { flex: 1; padding: 16px 16px 32px; }
 .chip {
   background: #ffffff; border: 1px solid rgba(0,0,0,.12); border-radius: 9999px;
   padding: 4px 12px; font-size: 14px; color: var(--text); cursor: pointer;
-  transition: border-color .15s, color .15s;
+  transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
 .chip:hover { border-color: var(--main); color: var(--main); }
+.chip:active { transform: scale(0.97); }   /* A3 */
 /* 进阶徽标（Notion Pill Badge：浅蓝底 + 蓝字，12px 600 正字距） */
 .chip.adv::after {
   content: "进阶"; font-size: 12px; font-weight: 600; color: var(--main-text-soft);
@@ -202,15 +211,18 @@ main { flex: 1; padding: 16px 16px 32px; }
 .learn-exit {
   background: none; border: 1px solid var(--line); border-radius: var(--radius-btn);
   padding: 8px 16px; font-size: 12px; color: var(--muted); cursor: pointer;   /* M2: 4/12→8/16px 热区 48px */
+  transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
 .learn-exit:hover { border-color: var(--main); color: var(--main); }
+.learn-exit:active { transform: scale(0.97); }   /* A3 */
 .learn-nav { display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; }
 .learn-nav button {
   flex: 1; border: 1px solid var(--line); background: var(--card);
   border-radius: var(--radius-btn); padding: 12px 16px; font-size: 14px; cursor: pointer;
-  transition: border-color .15s, color .15s;
+  transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
 .learn-nav button:hover:not(:disabled) { border-color: var(--main); color: var(--main); }
+.learn-nav button:active:not(:disabled) { transform: scale(0.97); }   /* A3 */
 .learn-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
 .learn-all { text-align: center; margin-top: 12px; }
 .learn-all a { font-size: 12px; color: var(--muted); text-decoration: none; display: inline-block; padding: 6px 10px; }   /* M2: inline→inline-block + padding 热区 48px */
@@ -257,22 +269,23 @@ main { flex: 1; padding: 16px 16px 32px; }
   line-height: 1;
   cursor: pointer;
   position: relative;                 /* M2: 伪元素扩热区（视觉 30px 保留，热区 48px） */
-  transition: border-color .15s, color .15s, background .15s;
+  transition: border-color .15s, color .15s, background .15s, transform 120ms var(--ease-out);
 }
 .entry-close::before {
   content: ''; position: absolute; inset: -9px;
 }
 .entry-close:hover { border-color: var(--main); color: var(--main); background: var(--main-soft); }
+.entry-close:active { transform: scale(0.95); }   /* A3 */
 .entry-card { padding: 24px 16px; }
 
 /* 分栏状态：目录缩左 + 词条右侧（M1：断点对齐 M3 expanded ≥840px；<840 移动端单栏） */
 /* 动效：点词条 → 目录树平滑左收（760→340），词条从右滑入；关闭反向 */
 @media (min-width: 840px) {
   .container {
-    transition: max-width 220ms ease-in-out;              /* 容器加宽为词条腾位 */
+    transition: max-width 220ms var(--ease-in-out);       /* 容器加宽为词条腾位 */
   }
   .container #homeView {
-    transition: flex-basis 220ms ease-in-out, max-width 220ms ease-in-out;  /* 目录左收（方式 A） */
+    transition: flex-basis 220ms var(--ease-in-out), max-width 220ms var(--ease-in-out);  /* 目录左收（方式 A） */
   }
   .container.split {
     display: flex;
@@ -296,7 +309,7 @@ main { flex: 1; padding: 16px 16px 32px; }
     /* 默认态：可渲染但不可见（配合 JS 先移除 hidden 再触发过渡） */
     opacity: 0;
     transform: translateX(24px);
-    transition: opacity 220ms ease-in-out, transform 220ms ease-in-out;
+    transition: opacity 220ms var(--ease-in-out), transform 220ms var(--ease-in-out);
   }
   .container #entryView.anim-ready {
     opacity: 1;
@@ -305,7 +318,7 @@ main { flex: 1; padding: 16px 16px 32px; }
   .container #entryView.closing {
     opacity: 0;
     transform: translateX(24px);
-    transition: opacity 180ms ease-in-out, transform 180ms ease-in-out;  /* 退场快于进场 */
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);  /* 退场用 ease-out（快反馈） */
   }
   .container.split #entryView {
     flex: 1;                         /* 词条占剩余更宽空间 */
@@ -350,9 +363,10 @@ main { flex: 1; padding: 16px 16px 32px; }
   display: inline-block; margin: 0 8px 8px 0;
   background: var(--main-soft); color: var(--main-text-soft);
   border-radius: 9999px; padding: 8px 12px; font-size: 14px; font-weight: 600;
-  cursor: pointer; transition: background .15s, color .15s;
+  cursor: pointer; transition: background .15s, color .15s, transform 120ms var(--ease-out);
 }
 .related-chip:hover { background: var(--main); color: #fff; }
+.related-chip:active { transform: scale(0.97); }   /* A3 */
 
 /* ---------- 页脚 ---------- */
 .site-footer { padding: 16px 0 24px; text-align: center; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }   /* M3: 底部安全区（Home Indicator） */
@@ -398,16 +412,19 @@ main { flex: 1; padding: 16px 16px 32px; }
   font-weight: 600;
   border-radius: var(--radius-btn);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 120ms var(--ease-out);
 }
 .btn-secondary:hover { background: var(--main-soft); }
+.btn-secondary:active { transform: scale(0.97); }   /* A3 */
 .modal-btn-ghost {
   width: 100%; margin-top: 12px;
   background: none; border: 1px solid var(--line);
   color: var(--muted); border-radius: var(--radius-btn);
   padding: 8px 16px; font-size: 14px; cursor: pointer;
+  transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
 .modal-btn-ghost:hover { border-color: var(--main); color: var(--main); }
+.modal-btn-ghost:active { transform: scale(0.97); }   /* A3 */
 
 /* ---------- 手机适配 ---------- */
 @media (max-width: 480px) {
