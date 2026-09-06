@@ -132,7 +132,7 @@ function renderHotLine() {
 }
 
 /* ---------- 视图路由 ---------- */
-const VIEWS = ['homeView', 'learnView', 'pathView', 'entryView'];
+const VIEWS = ['homeView', 'learnView', 'pathView', 'entryView', 'pitsView'];
 
 function showView(name) {
   VIEWS.forEach((v) => {
@@ -158,6 +158,10 @@ function route() {
     }
   } else if (h && byId(h)) {
     enterSplit(h);
+  } else if (h === 'pits') {
+    clearSplit();
+    renderPits();
+    showView('pitsView');
   } else {
     clearSplit();
     showView('homeView');
@@ -346,8 +350,18 @@ function wordContentHtml(w) {
   if (w.mistake) tips += '<div class="tip-item"><span class="tip-label">⚠️ 容易搞错的误区：</span>' + escapeHtml(w.mistake) + '</div>';
   if (w.confuse) tips += '<div class="tip-item"><span class="tip-label">🔀 容易混淆：</span>' + escapeHtml(w.confuse) + '</div>';
   const tipsHtml = tips
-    ? '<details class="entry-tips"><summary>💡 更多小提示</summary><div class="tips-body">' + tips + '</div></details>'
+    ? '<details class="entry-tips" open><summary>💡 更多小提示</summary><div class="tips-body">' + tips + '</div></details>'
     : '';
+
+  // P1：试试看（当场可做的练习）
+  let practiceHtml = '';
+  if (w.practice) {
+    practiceHtml =
+      '<div class="entry-practice">' +
+      '<div class="practice-title">🎯 试试看</div>' +
+      '<div class="practice-body">' + escapeHtml(w.practice) + '</div>' +
+      '</div>';
+  }
 
   return (
     '<div class="card entry-card">' +
@@ -359,6 +373,7 @@ function wordContentHtml(w) {
     analogyHtml +
     relatedHtml +
     tipsHtml +
+    practiceHtml +
     '</div>'
   );
 }
@@ -429,6 +444,23 @@ function showLearn(idx) {
   $('#learnNext').disabled = (idx === total - 1);
   $('#learnNext').textContent = (idx === total - 1) ? '完成 🎉' : '下一步 →';
 }
+
+/* ---------- AI 常见误区（聚合所有词的"容易搞错的误区"） ---------- */
+function renderPits() {
+  const list = $('#pitsList');
+  list.innerHTML = '';
+  const withMistake = state.data.words.filter((w) => w.mistake);
+  withMistake.forEach((w) => {
+    const item = document.createElement('div');
+    item.className = 'pit-item';
+    item.innerHTML =
+      '<div class="pit-title">' + escapeHtml(w.title) + '</div>' +
+      '<div class="pit-body">❌ ' + escapeHtml(w.mistake) + '</div>';
+    item.addEventListener('click', () => { openEntry(w.id); });
+    list.appendChild(item);
+  });
+}
+$('#pitsBtn').addEventListener('click', () => { location.hash = 'pits'; });
 
 $('#learnBtn').addEventListener('click', (e) => { e.preventDefault(); startLearn(); });
 $('#learnExit').addEventListener('click', goHome);

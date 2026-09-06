@@ -17,23 +17,29 @@
 <body>
 
 <header class="site-header">
-  <!-- 常驻回首页（左） -->
-  <button id="homeBtn" class="header-btn header-left" aria-label="回首页">
+  <!-- 品牌（左上角）：图标 + 文字，'AI' 紫色；点击回首页 -->
+  <a class="brand" href="#" title="回到首页" aria-label="AI 词汇本 · 回到首页">
+    <img class="brand-icon" src="brand-icon.png" alt="AI 词汇本">
+    <span class="brand-txt"><span class="ai">AI</span> 词汇本</span>
+  </a>
+  <!-- 回首页 / 标题：保留元素防脚本报错，视觉隐藏 -->
+  <button id="homeBtn" class="header-btn header-left" aria-label="回首页" hidden>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 11.5 12 4l9 7.5"></path>
       <path d="M5.5 10v9.5h13V10"></path>
     </svg>
   </button>
-  <h1 id="siteTitle">AI 词汇本</h1>
-  <!-- 新手教程入口（常驻，搜索按钮左侧） -->
-  <button id="learnBtn" class="header-btn header-learn" aria-label="新手教程">✨ 新手教程</button>
-  <!-- 搜索入口（右） -->
-  <button id="searchToggle" class="header-btn header-right" aria-label="搜索">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <circle cx="11" cy="11" r="7"></circle>
-      <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
-    </svg>
-  </button>
+  <h1 id="siteTitle" hidden>AI 词汇本</h1>
+  <div class="header-actions">
+    <button id="learnBtn" class="hbtn hl" aria-label="新手教程">✨ 新手教程</button>
+    <button id="pitsBtn" class="hbtn" aria-label="常见误区">⚠️ 误区</button>
+    <button id="searchToggle" class="hbtn" aria-label="搜索">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+      </svg>
+    </button>
+  </div>
 </header>
 
 <div class="container">
@@ -47,10 +53,23 @@
     <div id="searchDropResults" class="search-results" hidden></div>
   </div>
 
-  <!-- ========== 首页：折叠目录树 ========== -->
+  <!-- ========== 首页：上手 hero + 折叠目录树 ========== -->
   <section id="homeView">
     <!-- 首页主体 -->
     <div id="homeMain">
+      <!-- 上手 hero：从这 3 个词开始（可折叠） -->
+      <details class="hero" open>
+        <summary>
+          <div class="hero-tag">Start here</div>
+          <div class="hero-h">从这 3 个词开始</div>
+        </summary>
+        <div class="starter">
+          <a class="st" href="#ai"><div class="st-num">01</div><div class="st-name">人工智能</div><div class="st-desc">让机器模拟人类思考与决策的技术</div></a>
+          <a class="st" href="#llm"><div class="st-num">02</div><div class="st-name">大语言模型 (LLM)</div><div class="st-desc">能读懂和生成文字的大型 AI 模型</div></a>
+          <a class="st" href="#prompt"><div class="st-num">03</div><div class="st-name">提示词</div><div class="st-desc">你给 AI 的指令，决定它怎么回答</div></a>
+        </div>
+      </details>
+      <div class="sec-h">六大主题纵览</div>
       <div class="tree" id="tree"></div>
       <div class="hot-line" id="hotLine"></div>
     </div>
@@ -86,6 +105,15 @@
     <div id="entryContent"></div>
   </section>
 
+  <!-- ========== AI 常见误区（聚合页） ========== -->
+  <section id="pitsView" hidden>
+    <div class="card">
+      <div class="card-title">⚠️ AI 常见误区</div>
+      <div class="muted small" style="margin-bottom:12px">把你容易搞错的 AI 认知，一次性讲清楚。点任意一条去看完整解释。</div>
+      <div id="pitsList"></div>
+    </div>
+  </section>
+
 </div>
 
 <footer class="site-footer">
@@ -93,7 +121,7 @@
     <a href="#" id="installLink" class="install-link">📱 添加到桌面，像 App 一样用</a>
     <span class="footer-sep">·</span>
     <a href="#" id="feedbackLink" class="install-link">💬 反馈 & 纠错</a><br>
-    <span class="footer-copy">AI 词汇本 · 通俗科普 · 献给我的小鹦鹉 sophie 🦜</span>
+    <span class="footer-copy">AI 词汇本 · 给好奇者的零基础 AI 术语词典 · 持续收录中 🦜</span>
   </div>
 </footer>
 

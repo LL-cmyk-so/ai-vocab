@@ -4,7 +4,7 @@
    - 离线/断网时用缓存内容（可继续查阅）
    版本号变更时，install 会清理旧缓存。 */
 
-const CACHE = 'ai-vocab-v1';
+const CACHE = 'ai-vocab-v2';
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();

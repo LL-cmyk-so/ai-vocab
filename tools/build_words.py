@@ -95,6 +95,11 @@ ID_MAP = {
     '数字去技能化（Deskilling）': 'deskilling',
     '自动化自满（Automation Complacency）': 'automation-complacency',
     '粉红肉渣新闻（Pink Slime Journalism）': 'pink-slime',
+    # ---- 第十七批新增（4 词）----
+    'AI 普惠': 'ai-inclusion',
+    '一人公司（OPC）': 'one-person-company',
+    'Loop（循环）': 'loop',
+    'Harness（智能体框架）': 'harness',
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
@@ -232,6 +237,11 @@ RELATED = {
     'deskilling': ['ai-assistant', 'copilot'],
     'automation-complacency': ['hallucination', 'alignment', 'ai-assistant'],
     'pink-slime': ['ai-slop', 'generative-ai', 'ai-content-label'],
+    # ---- 第十七批新增（4 词）----
+    'ai-inclusion': ['generative-ai', 'one-person-company', 'llm'],
+    'one-person-company': ['agent', 'ai-assistant', 'ai-inclusion', 'generative-ai'],
+    'loop': ['agent', 'react', 'planning', 'reflection'],
+    'harness': ['agent', 'tool-calling', 'guardrails', 'mcp'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
@@ -246,38 +256,39 @@ ADV = {
     'guardrails', 'moe', 'spec-coding', 'recall', 'rerank', 'few-shot', 'vlm', 'bias',
     'stochastic-parrot', 'sycophancy', 'model-collapse', 'data-poisoning',
     'eliza-effect', 'deskilling', 'automation-complacency',
+    'loop', 'harness',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
 SECTIONS = {
     '地基': [
-        ('📚 学习与方法', ['machine-learning', 'deep-learning', 'neural-network', 'training', 'inference', 'algorithm', 'dataset']),
-        ('⚙️ 模型内部与资源', ['parameter', 'weight', 'compute', 'gpu']),
+        ('学习与方法', ['machine-learning', 'deep-learning', 'neural-network', 'training', 'inference', 'algorithm', 'dataset']),
+        ('模型内部与资源', ['parameter', 'weight', 'compute', 'gpu']),
     ],
     '模型本体': [
-        ('🦾 大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
+        ('大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
 
-        ('🎓 训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data', 'model-collapse']),
-        ('🔬 内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot']),
+        ('训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data', 'model-collapse']),
+        ('内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot']),
     ],
     '交互层': [
-        ('🗣 提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
-        ('🔎 检索与知识', ['embedding', 'vector', 'vector-database', 'semantic-search', 'full-text-search', 'chunking', 'rag', 'knowledge-base', 'recall', 'rerank', 'web-search', 'ai-search']),
-        ('🎯 提示技巧', ['few-shot']),
+        ('提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
+        ('检索与知识', ['embedding', 'vector', 'vector-database', 'semantic-search', 'full-text-search', 'chunking', 'rag', 'knowledge-base', 'recall', 'rerank', 'web-search', 'ai-search']),
+        ('提示技巧', ['few-shot']),
     ],
     '应用层': [
-        ('🤖 Agent 智能体', ['agent', 'tool-calling', 'memory', 'multi-agent', 'workflow', 'react', 'planning', 'reflection', 'skill', 'computer-use']),
-        ('🎨 内容生成', ['text-to-image', 'text-to-video', 'deepfake']),
-        ('🎤 语音与形象', ['speech-recognition', 'speech-synthesis', 'digital-human']),
-        ('💬 助手形态', ['chatbot', 'ai-assistant', 'copilot']),
-        ('🛠 AI 应用开发', ['spec-coding']),
+        ('Agent 智能体', ['agent', 'harness', 'loop', 'tool-calling', 'memory', 'multi-agent', 'workflow', 'react', 'planning', 'reflection', 'skill', 'computer-use', 'one-person-company']),
+        ('内容生成', ['text-to-image', 'text-to-video', 'deepfake']),
+        ('语音与形象', ['speech-recognition', 'speech-synthesis', 'digital-human']),
+        ('助手形态', ['chatbot', 'ai-assistant', 'copilot']),
+        ('AI 应用开发', ['spec-coding']),
     ],
     '生态与前沿': [
-        ('🔌 API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
-        ('📊 评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
-        ('🌐 内容生态现象', ['ai-washing', 'ghost-work', 'dead-internet', 'pink-slime']),
-        ('🔮 未来方向', ['agi', 'asi', 'embodied-ai', 'world-model']),
-        ('♻️ 数据与飞轮', ['data-flywheel']),
+        ('API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
+        ('评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
+        ('内容生态现象', ['ai-washing', 'ghost-work', 'dead-internet', 'pink-slime']),
+        ('未来方向', ['agi', 'asi', 'embodied-ai', 'world-model', 'ai-inclusion']),
+        ('数据与飞轮', ['data-flywheel']),
     ],
 }
 
@@ -326,7 +337,7 @@ PATH_NOTE = [
 # ---- 热门词（首页快捷入口，6 个）----
 HOT = ['agent', 'token', 'rag', 'hallucination', 'agi', 'multimodal']
 
-FIELD_KEYS = {'英文名': 'en', '中文名': 'zh', '别名': 'alias', '层级': 'layer', '白话解释': 'def', '进阶': 'adv_raw', '类比': 'analogy', '场景': 'scene', '误区': 'mistake', '混淆': 'confuse'}
+FIELD_KEYS = {'英文名': 'en', '中文名': 'zh', '别名': 'alias', '层级': 'layer', '白话解释': 'def', '进阶': 'adv_raw', '类比': 'analogy', '场景': 'scene', '误区': 'mistake', '混淆': 'confuse', '练习': 'practice'}
 
 def parse_batch(path):
     items = []
@@ -366,9 +377,9 @@ def main():
                 print('WARN: 未映射 id:', title, file=sys.stderr)
                 continue
             if wid in seen:
-                # 合并更新模式：后批次补充 analogy/scene/mistake/confuse 等字段
+                # 合并更新模式：后批次补充 analogy/scene/mistake/confuse/practice 等字段
                 w = words[wid]
-                for f in ('analogy', 'scene', 'mistake', 'confuse'):
+                for f in ('analogy', 'scene', 'mistake', 'confuse', 'practice'):
                     if it.get(f):
                         w[f] = it[f]
                 continue
@@ -386,6 +397,7 @@ def main():
                 'scene': it.get('scene', ''),
                 'mistake': it.get('mistake', ''),
                 'confuse': it.get('confuse', ''),
+                'practice': it.get('practice', ''),
                 'adv': (adv_raw == '是') or (wid in ADV),
                 'related': RELATED.get(wid, []),
                 'updated': str(date.today()),
