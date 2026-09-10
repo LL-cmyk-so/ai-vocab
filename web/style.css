@@ -39,6 +39,13 @@
 
   /* —— 装饰紫阶（blob/星刺用，低饱和）—— */
   --a1:#5B4CE7; --a2:#7C5CE0; --a3:#9B4DCA; --a4:#C74A9A; --a5:#E05A78; --a6:#E58A4E;
+
+  /* —— 装饰与叠层（颜色全部收在这层：将来若做深色主题，只换这些值即可）—— */
+  --deco-blob: #EDE4D3;             /* 背景柔色 blob */
+  --fill-0: rgba(42,39,34,.05);     /* 最轻的 hover 填充 */
+  --overlay: rgba(42,39,34,.45);    /* 弹窗遮罩 */
+  --on-main: #ffffff;               /* 紫底上的文字 */
+  --main-line: rgba(91,76,231,.28); /* 主色浅描边（类比块） */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,18 +61,18 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;                /* 装饰层超出视口时不要产生横向滚动 */
 }
 
 /* ---------- 背景装饰层（角落柔色 blob + 紫✳星刺；低对比、不抢内容） ---------- */
-.deco { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-.blob { position: absolute; background: #EDE4D3; opacity: .55; filter: blur(2px); border-radius: 48% 52% 55% 45% / 55% 48% 52% 45%; }
+/* absolute（非 fixed）：装饰随页面滚动；裁剪放在装饰层内部，body 不戴"眼罩"（真溢出仍可被发现） */
+.deco { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; background: var(--deco-blob); opacity: .55; filter: blur(2px); border-radius: 48% 52% 55% 45% / 55% 48% 52% 45%; }
 .b1 { width: 280px; height: 240px; left: -70px; bottom: -60px; }
 .b2 { width: 240px; height: 260px; right: -60px; bottom: -70px; border-radius: 52% 48% 45% 55% / 48% 55% 45% 52%; }
 .spark { position: absolute; color: var(--main); opacity: .4; }
 .sp1 { left: 12%; top: 16%; font-size: 26px; }
 .sp2 { right: 9%; bottom: 14%; font-size: 34px; color: var(--a3); }   /* 装饰紫阶 --a3，与主色同族 */
-/* 装饰层是 fixed + z-index:0，静态内容会被它盖住，故内容层上提一层 */
+/* 装饰层 z-index:0（已定位），静态内容会被它盖住，故内容层上提一层 */
 .container, .site-footer { position: relative; z-index: 1; }
 
 .container { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 16px; }
@@ -92,8 +99,8 @@ body {
 .hbtn:hover { background: var(--main-soft); color: var(--main); }
 .hbtn:active { transform: scale(0.95); }
 .hbtn svg { display: block; width: 17px; height: 17px; }
-.hbtn.hl { border: 1px solid var(--main); background: var(--main); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 9999px; }
-.hbtn.hl:hover { background: var(--main-dark); color: #fff; }
+.hbtn.hl { border: 1px solid var(--main); background: var(--main); color: var(--on-main); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 9999px; }
+.hbtn.hl:hover { background: var(--main-dark); color: var(--on-main); }
 /* 回首页 / 标题：保留元素防脚本报错，视觉隐藏 */
 #homeBtn, #siteTitle { display: none; }
 
@@ -186,7 +193,7 @@ main { flex: 1; padding: 16px 16px 32px; }
   padding: 3px 10px; white-space: nowrap;
   transition: background .15s;
 }
-.hero summary:hover::after { background: var(--main); color: #fff; }
+.hero summary:hover::after { background: var(--main); color: var(--on-main); }
 .hero:not([open]) summary::after { content: '展开'; }
 .hero:not([open]) .hero-h { margin-bottom: 0; }
 .starter { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
@@ -212,7 +219,7 @@ main { flex: 1; padding: 16px 16px 32px; }
   display: flex; align-items: center; gap: 8px;
   padding: 8px 16px; cursor: pointer; user-select: none;   /* S1: 12→8 结构性归一 */
 }
-.tree-head:hover { background: rgba(42,39,34,.05); }   /* 暖色 fill：与暖黑文字同族 */
+.tree-head:hover { background: var(--fill-0); }   /* 暖色最轻填充 */
 .tree-name { font-size: 15px; font-weight: 700; flex: 1; }
 .tree-count { font-size: 12px; color: var(--text-3); }  /* 弱化：词数是低价值元信息 */
 .tree-arrow { font-size: 12px; color: var(--text-3); transition: transform .2s; }
@@ -400,7 +407,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* 类比块：奶油底 + 紫描边 + 左紫竖条（品牌层：底色 = 首页 hero 卡同色 #F6F1E9） */
 .analogy {
   background: var(--surface-alt);
-  border: 1px solid rgba(91,76,231,.28);
+  border: 1px solid var(--main-line);
   border-left: 3px solid var(--main);
   border-radius: var(--radius);
   padding: 14px 16px;
@@ -431,7 +438,7 @@ main { flex: 1; padding: 16px 16px 32px; }
   border-radius: 9999px; padding: 8px 12px; font-size: 14px; font-weight: 600;
   cursor: pointer; transition: background .15s, color .15s, transform 120ms var(--ease-out);
 }
-.related-chip:hover { background: var(--main); color: #fff; }
+.related-chip:hover { background: var(--main); color: var(--on-main); }
 .related-chip:active { transform: scale(0.97); }   /* A3 */
 
 /* 词条页底部：上一词 / 下一词（首词无上一词、末词无下一词，缺的一侧不占位） */
@@ -456,7 +463,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* ---------- 添加到桌面弹窗 ---------- */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 999;
-  background: rgba(42, 39, 34, 0.45);
+  background: var(--overlay);
   display: none; /* 默认隐藏；用 .open 控制，避免覆盖 hidden */
   align-items: center; justify-content: center;
   padding: 24px;
@@ -506,8 +513,14 @@ main { flex: 1; padding: 16px 16px 32px; }
 
 /* ---------- 手机适配 ---------- */
 @media (max-width: 480px) {
-  .site-header { padding: 12px 0 8px; }
+  /* 顶栏与页面其他内容一样留 16px 边距；品牌与按钮同步缩一档，保证 320px 宽也不挤爆 */
+  .site-header { padding: 12px 16px 8px; }
   .site-header h1 { font-size: 18px; }
+  .brand-icon { height: 32px; }
+  .brand-txt { font-size: 18px; letter-spacing: -0.3px; }
+  .header-actions { gap: 6px; }
+  .hbtn { padding: 8px; }
+  .hbtn.hl { font-size: 12px; padding: 6px 10px; }
   .entry-title { font-size: 22px; }
   .entry-def { font-size: 14px; }
   .path-step-note { display: none; }
