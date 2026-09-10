@@ -16,6 +16,12 @@
 </head>
 <body>
 
+<!-- 背景装饰层：角落柔色 blob + 紫✳星刺（低对比，pointer-events:none，不参与交互） -->
+<div class="deco" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <span class="spark sp1">✳</span><span class="spark sp2">✳</span>
+</div>
+
 <header class="site-header">
   <!-- 品牌（左上角）：图标 + 文字，'AI' 紫色；点击回首页 -->
   <a class="brand" href="#" title="回到首页" aria-label="AI 词汇本 · 回到首页">
@@ -31,8 +37,8 @@
   </button>
   <h1 id="siteTitle" hidden>AI 词汇本</h1>
   <div class="header-actions">
-    <button id="learnBtn" class="hbtn hl" aria-label="新手教程">✨ 新手教程</button>
-    <button id="pitsBtn" class="hbtn" aria-label="常见误区">⚠️ 误区</button>
+    <button id="learnBtn" class="hbtn hl" aria-label="新手教程">新手教程</button>
+    <button id="pitsBtn" class="hbtn" aria-label="常见误区">误区</button>
     <button id="searchToggle" class="hbtn" aria-label="搜索">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <circle cx="11" cy="11" r="7"></circle>
@@ -94,7 +100,7 @@
   <!-- ========== 18 步列表（辅助页） ========== -->
   <section id="pathView" hidden>
     <div class="card">
-      <div class="card-title">🚀 零基础看懂 AI（18 步）</div>
+      <div class="card-title">零基础看懂 AI（18 步）</div>
       <div class="muted small" style="margin-bottom:10px">按顺序点下去，每一步看完点"下一步"继续。</div>
       <ul id="pathList" class="path-list"></ul>
     </div>
@@ -108,7 +114,7 @@
   <!-- ========== AI 常见误区（聚合页） ========== -->
   <section id="pitsView" hidden>
     <div class="card">
-      <div class="card-title">⚠️ AI 常见误区</div>
+      <div class="card-title">AI 常见误区</div>
       <div class="muted small" style="margin-bottom:12px">把你容易搞错的 AI 认知，一次性讲清楚。点任意一条去看完整解释。</div>
       <div id="pitsList"></div>
     </div>
@@ -118,17 +124,17 @@
 
 <footer class="site-footer">
   <div class="container muted small">
-    <a href="#" id="installLink" class="install-link">📱 添加到桌面，像 App 一样用</a>
+    <a href="#" id="installLink" class="install-link">添加到桌面，像 App 一样用</a>
     <span class="footer-sep">·</span>
-    <a href="#" id="feedbackLink" class="install-link">💬 反馈 & 纠错</a><br>
-    <span class="footer-copy">AI 词汇本 · 给好奇者的零基础 AI 术语词典 · 持续收录中 🦜</span>
+    <a href="#" id="feedbackLink" class="install-link">反馈 & 纠错</a><br>
+    <span class="footer-copy">AI 词汇本 · 给好奇者的零基础 AI 术语词典 · 持续收录中</span>
   </div>
 </footer>
 
 <!-- 添加到桌面说明（弹窗） -->
 <div id="installModal" class="modal-overlay" hidden>
   <div class="modal-box">
-    <div class="modal-title">📱 添加到桌面</div>
+    <div class="modal-title">添加到桌面</div>
     <div class="modal-body" id="installSteps"></div>
     <button id="installClose" class="btn-primary modal-btn">知道了</button>
   </div>
@@ -137,13 +143,13 @@
 <!-- 反馈与纠错（弹窗） -->
 <div id="feedbackModal" class="modal-overlay" hidden>
   <div class="modal-box">
-    <div class="modal-title">💬 反馈 & 纠错</div>
+    <div class="modal-title">反馈 & 纠错</div>
     <div class="modal-body">
-      <p>发现词条错误？想加新词？欢迎告诉我们 👇</p>
+      <p>发现词条错误？想加新词？欢迎告诉我们。</p>
       <p class="modal-note">请注明「哪个词 + 什么问题」，方便快速处理。</p>
       <div class="feedback-btns">
-        <a class="btn-primary modal-btn" href="https://github.com/LL-cmyk-so/ai-vocab/issues/new" target="_blank" rel="noopener">🟢 到 GitHub Issues 提交</a>
-        <a class="btn-secondary modal-btn" href="mailto:moximao@163.com?subject=AI%E8%AF%8D%E6%B1%87%E6%9C%AC%E5%8F%8D%E9%A6%88&body=%E8%AF%8D%E6%9D%A1%EF%BC%9A%0A%E9%97%AE%E9%A2%98%EF%BC%9A">✉️ 直接发邮件</a>
+        <a class="btn-primary modal-btn" href="https://github.com/LL-cmyk-so/ai-vocab/issues/new" target="_blank" rel="noopener">到 GitHub Issues 提交</a>
+        <a class="btn-secondary modal-btn" href="mailto:moximao@163.com?subject=AI%E8%AF%8D%E6%B1%87%E6%9C%AC%E5%8F%8D%E9%A6%88&body=%E8%AF%8D%E6%9D%A1%EF%BC%9A%0A%E9%97%AE%E9%A2%98%EF%BC%9A">直接发邮件</a>
       </div>
     </div>
     <button id="feedbackClose" class="btn-ghost modal-btn-ghost">关闭</button>

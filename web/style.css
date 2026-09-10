@@ -54,7 +54,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;                /* 装饰层超出视口时不要产生横向滚动 */
 }
+
+/* ---------- 背景装饰层（角落柔色 blob + 紫✳星刺；低对比、不抢内容） ---------- */
+.deco { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.blob { position: absolute; background: #EDE4D3; opacity: .55; filter: blur(2px); border-radius: 48% 52% 55% 45% / 55% 48% 52% 45%; }
+.b1 { width: 280px; height: 240px; left: -70px; bottom: -60px; }
+.b2 { width: 240px; height: 260px; right: -60px; bottom: -70px; border-radius: 52% 48% 45% 55% / 48% 55% 45% 52%; }
+.spark { position: absolute; color: var(--main); opacity: .4; }
+.sp1 { left: 12%; top: 16%; font-size: 26px; }
+.sp2 { right: 9%; bottom: 14%; font-size: 34px; color: var(--a3); }   /* 装饰紫阶 --a3，与主色同族 */
+/* 装饰层是 fixed + z-index:0，静态内容会被它盖住，故内容层上提一层 */
+.container, .site-footer { position: relative; z-index: 1; }
 
 .container { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 16px; }
 
@@ -76,7 +88,7 @@ body {
 .brand-txt .ai { color: var(--main); }
 /* 顶部右上角按钮组 */
 .header-actions { display: flex; align-items: center; gap: 8px; }
-.hbtn { background: none; border: 1px solid transparent; padding: 10px; border-radius: 8px; color: var(--muted); cursor: pointer; transition: background .15s, transform 120ms var(--ease-out); }
+.hbtn { background: none; border: 1px solid transparent; padding: 10px; border-radius: var(--radius-btn); color: var(--muted); cursor: pointer; transition: background .15s, transform 120ms var(--ease-out); }
 .hbtn:hover { background: var(--main-soft); color: var(--main); }
 .hbtn:active { transform: scale(0.95); }
 .hbtn svg { display: block; width: 17px; height: 17px; }
@@ -97,8 +109,8 @@ body {
 .search-bar { display: flex; gap: 8px; align-items: center; }
 .search-bar input {
   flex: 1; padding: 8px 16px; font-size: 14px;
-  border: 1px solid rgba(0,0,0,.15); border-radius: 4px;   /* Notion 输入框 */
-  background: #ffffff; color: var(--text); outline: none;
+  border: 1px solid var(--line); border-radius: var(--radius-btn);   /* 输入框圆角归一到按钮档 */
+  background: var(--card); color: var(--text); outline: none;
   transition: border-color .15s;
 }
 .search-bar input::placeholder { color: var(--text-3); }
@@ -179,15 +191,14 @@ main { flex: 1; padding: 16px 16px 32px; }
 .hero:not([open]) .hero-h { margin-bottom: 0; }
 .starter { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
 @media (max-width: 640px) { .starter { grid-template-columns: 1fr; } }
-.st { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; transition: box-shadow .2s var(--ease-out), transform .15s var(--ease-out); text-decoration: none; color: var(--text); }
+.st { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; transition: box-shadow .2s var(--ease-out), transform .15s var(--ease-out); text-decoration: none; color: var(--text); }
 .st:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
 .st-num { font-size: 24px; font-weight: 800; color: var(--main); line-height: 1; margin-bottom: 8px; }
 .st-name { font-size: 15px; font-weight: 700; }
 .st-desc { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.6; }
 .sec-h { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; margin: 6px 0 12px; }
 
-/* 树：去主题彩条、小节标签紫色 */
-.tree-color { display: none; }
+/* 树：主题不设彩条（DOM 已移除）、小节标签紫色 */
 .tree-sub-title { font-size: 13px; color: var(--main); font-weight: 600; margin-bottom: 8px; }
 
 .tree-layer {
@@ -201,9 +212,8 @@ main { flex: 1; padding: 16px 16px 32px; }
   display: flex; align-items: center; gap: 8px;
   padding: 8px 16px; cursor: pointer; user-select: none;   /* S1: 12→8 结构性归一 */
 }
-.tree-head:hover { background: rgba(46,50,56,.05); }   /* semi-color-fill-0（纯白下 hover 反馈） */
-.tree-color { width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0; }  /* R2: 装饰色条特例（4px 宽，2px 圆角视觉可忽略，归一 4 反怪） */
-.tree-name { font-size: 14px; font-weight: 600; flex: 1; }
+.tree-head:hover { background: rgba(42,39,34,.05); }   /* 暖色 fill：与暖黑文字同族 */
+.tree-name { font-size: 15px; font-weight: 700; flex: 1; }
 .tree-count { font-size: 12px; color: var(--text-3); }  /* 弱化：词数是低价值元信息 */
 .tree-arrow { font-size: 12px; color: var(--text-3); transition: transform .2s; }
 .tree-layer.closed .tree-arrow { transform: rotate(-90deg); }
@@ -217,7 +227,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 
 /* 词条胶囊（Notion：白底 pill + whisper 边框，hover 转主色） */
 .chip {
-  background: #ffffff; border: 1px solid rgba(0,0,0,.12); border-radius: 9999px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 9999px;
   padding: 4px 12px; font-size: 14px; color: var(--text); cursor: pointer;
   transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
@@ -370,8 +380,10 @@ main { flex: 1; padding: 16px 16px 32px; }
     transition: none !important;
   }
 }
-.entry-title { font-size: 24px; font-weight: 600; line-height: 1.27; letter-spacing: -0.25px; }
-.meta-line { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.entry-title { font-size: 28px; font-weight: 800; line-height: 1.2; letter-spacing: -0.6px; }
+/* 标题右侧英文（次要信息，与词名同行） */
+.entry-en { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-left: 10px; }
+.meta-line { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
 .meta-line b { color: var(--text); font-weight: 600; }
 .layer-tag {
   display: inline-block; margin-top: 12px;
@@ -381,13 +393,19 @@ main { flex: 1; padding: 16px 16px 32px; }
 .layer-tag.adv::after { content: "· 进阶"; opacity: .8; }
 .entry-updated { display: block; margin-top: 8px; font-size: 12px; color: var(--text-3); }
 .entry-block { margin-top: 16px; }
-.block-title { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+/* 词条内小节标签：紫 13/700 + 短线（与首页小节标签同一语言） */
+.block-title { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--main); margin-bottom: 8px; }
+.block-title::before { content: ''; width: 16px; height: 2px; border-radius: 2px; background: var(--main); flex-shrink: 0; }
 .block-body { font-size: 16px; line-height: 1.6; color: var(--text); }
-/* 类比块：纯白背景下用 fill 底 + border 补层次（Semi：fill-0 = grey-8 5%） */
+/* 类比块：奶油底 + 紫描边 + 左紫竖条（品牌层：底色 = 首页 hero 卡同色 #F6F1E9） */
 .analogy {
-  background: rgba(46,50,56,.05); border-radius: 12px; padding: 12px 12px;   /* semi-color-fill-0；R3: 圆角 12px = 对齐 semi-border-radius-large */
-  border: 1px solid rgba(28,31,35,.08);   /* semi-color-border */
+  background: var(--surface-alt);
+  border: 1px solid rgba(91,76,231,.28);
+  border-left: 3px solid var(--main);
+  border-radius: var(--radius);
+  padding: 14px 16px;
 }
+.analogy .block-body { font-size: 14px; line-height: 1.7; }
 .entry-def { margin-top: 16px; }
 .entry-tips { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 12px; }
 .entry-tips summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--main); outline: none; }
@@ -406,7 +424,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 .practice-body { font-size: 14px; line-height: 1.8; color: var(--text); }
 .tip-label { font-weight: 600; color: var(--text); }
 .related-block { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); }   /* S7: 18/14→16 表外归一 */
-.related-title { font-size: 14px; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+.related-title { font-size: 13px; color: var(--main); margin-bottom: 10px; font-weight: 700; }
 .related-chip {
   display: inline-block; margin: 0 8px 8px 0;
   background: var(--main-soft); color: var(--main-text-soft);
@@ -416,8 +434,20 @@ main { flex: 1; padding: 16px 16px 32px; }
 .related-chip:hover { background: var(--main); color: #fff; }
 .related-chip:active { transform: scale(0.97); }   /* A3 */
 
+/* 词条页底部：上一词 / 下一词（首词无上一词、末词无下一词，缺的一侧不占位） */
+.entry-nav { display: flex; gap: 10px; margin-top: 18px; }
+.np {
+  flex: 1; min-width: 0; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px 14px; cursor: pointer;
+  transition: border-color .15s, transform 120ms var(--ease-out);
+}
+.np:hover { border-color: var(--main); transform: translateY(-1px); }
+.np .k { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 3px; }
+.np .v { display: block; font-size: 14px; font-weight: 600; color: var(--main); }
+
 /* ---------- 页脚 ---------- */
 .site-footer { padding: 16px 0 24px; text-align: center; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }   /* M3: 底部安全区（Home Indicator） */
+.site-footer .small { font-size: 12px; }   /* 字号阶梯：页脚 12 */
 .install-link { color: var(--main); text-decoration: none; font-size: 12px; display: inline-block; padding: 6px 8px; }   /* M2: inline→inline-block + padding 热区 48px */
 .install-link:hover { text-decoration: underline; }
 .footer-sep { color: var(--line); margin: 0 8px; }
@@ -426,7 +456,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* ---------- 添加到桌面弹窗 ---------- */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 999;
-  background: rgba(31, 35, 41, 0.45);
+  background: rgba(42, 39, 34, 0.45);
   display: none; /* 默认隐藏；用 .open 控制，避免覆盖 hidden */
   align-items: center; justify-content: center;
   padding: 24px;
@@ -478,7 +508,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 @media (max-width: 480px) {
   .site-header { padding: 12px 0 8px; }
   .site-header h1 { font-size: 18px; }
-  .entry-title { font-size: 20px; }
+  .entry-title { font-size: 22px; }
   .entry-def { font-size: 14px; }
   .path-step-note { display: none; }
   .card { padding: 12px; }

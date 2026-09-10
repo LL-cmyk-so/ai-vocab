@@ -36,12 +36,6 @@ function renderStatic() {
 function renderTree() {
   const tree = $('#tree');
   tree.innerHTML = '';
-  /* 层色条统一为品牌主色单色（Notion Blue；避免彩虹感） */
-  const LAYER_COLOR = {
-    '总纲': '#0075de', '地基': '#0075de', '模型本体': '#0075de',
-    '交互层': '#0075de', '应用层': '#0075de', '生态与前沿': '#0075de',
-  };
-
   state.data.layers.forEach((layer) => {
     const words = state.data.words.filter((w) => w.layer === layer.id);
     if (!words.length) return;
@@ -53,7 +47,6 @@ function renderTree() {
     const head = document.createElement('div');
     head.className = 'tree-head';
     head.innerHTML =
-      '<span class="tree-color" style="background:' + LAYER_COLOR[layer.id] + '"></span>' +
       '<span class="tree-name">' + escapeHtml(layer.id) + '</span>' +
       '<span class="tree-count">' + words.length + ' 词</span>' +
       '<span class="tree-arrow">▼</span>';
@@ -118,7 +111,7 @@ function renderPathList() {
 /* 热门一行 */
 function renderHotLine() {
   const line = $('#hotLine');
-  line.innerHTML = '🔥 热门：';
+  line.innerHTML = '热门：';
   state.data.hot.forEach((id, i) => {
     const w = byId(id);
     if (!w) return;
@@ -365,7 +358,9 @@ function wordContentHtml(w) {
 
   return (
     '<div class="card entry-card">' +
-    '<div class="entry-title">' + escapeHtml(w.title) + '</div>' +
+    '<div class="entry-title">' + escapeHtml(w.title) +
+      (w.en ? '<span class="entry-en">' + escapeHtml(w.en) + '</span>' : '') +
+      '</div>' +
     (meta.length ? '<div class="meta-line">' + meta.join('　') + '</div>' : '') +
     '<span class="layer-tag' + (w.adv ? ' adv' : '') + '">' + escapeHtml(w.layer) + '</span>' +
     (w.updated ? '<span class="entry-updated">更新于 ' + escapeHtml(w.updated) + '</span>' : '') +
@@ -378,8 +373,18 @@ function wordContentHtml(w) {
   );
 }
 
+/* 词条页底部导航项（上一词 / 下一词） */
+function makeNavItem(label, w) {
+  const el = document.createElement('div');
+  el.className = 'np';
+  el.dataset.id = w.id;
+  el.innerHTML = '<span class="k">' + label + '</span>' +
+    '<span class="v">' + escapeHtml(w.title) + '</span>';
+  return el;
+}
+
 function bindEntryClicks(container) {
-  container.querySelectorAll('.related-chip').forEach((el) => {
+  container.querySelectorAll('.related-chip, .np').forEach((el) => {
     el.addEventListener('click', () => openEntry(el.dataset.id));
   });
 }
@@ -420,6 +425,19 @@ function renderEntry() {
       card.prepend(closeBtn);
     }
   }
+  // 底部：上一词 / 下一词（按 words.json 顺序；首词无上一词、末词无下一词）
+  const words = state.data.words;
+  const wi = words.findIndex((x) => x.id === w.id);
+  const prev = wi > 0 ? words[wi - 1] : null;
+  const next = (wi > -1 && wi < words.length - 1) ? words[wi + 1] : null;
+  if (prev || next) {
+    const nav = document.createElement('nav');
+    nav.className = 'entry-nav';
+    if (prev) nav.appendChild(makeNavItem('← 上一词', prev));
+    if (next) nav.appendChild(makeNavItem('下一词 →', next));
+    box.appendChild(nav);
+  }
+
   bindEntryClicks(box);
 }
 
@@ -434,7 +452,7 @@ function showLearn(idx) {
 
   const step = state.data.path[idx];
   const total = state.data.path.length;
-  $('#learnProgress').textContent = '🚀 第 ' + (idx + 1) + ' / ' + total + ' 步 · ' + step.note;
+  $('#learnProgress').textContent = '第 ' + (idx + 1) + ' / ' + total + ' 步 · ' + step.note;
 
   const body = $('#learnBody');
   body.innerHTML = wordContentHtml(byId(step.ids[0]));
@@ -442,7 +460,7 @@ function showLearn(idx) {
 
   $('#learnPrev').disabled = (idx === 0);
   $('#learnNext').disabled = (idx === total - 1);
-  $('#learnNext').textContent = (idx === total - 1) ? '完成 🎉' : '下一步 →';
+  $('#learnNext').textContent = (idx === total - 1) ? '完成' : '下一步 →';
 }
 
 /* ---------- AI 常见误区（聚合所有词的"容易搞错的误区"） ---------- */
@@ -455,7 +473,7 @@ function renderPits() {
     item.className = 'pit-item';
     item.innerHTML =
       '<div class="pit-title">' + escapeHtml(w.title) + '</div>' +
-      '<div class="pit-body">❌ ' + escapeHtml(w.mistake) + '</div>';
+      '<div class="pit-body">' + escapeHtml(w.mistake) + '</div>';
     item.addEventListener('click', () => { openEntry(w.id); });
     list.appendChild(item);
   });
