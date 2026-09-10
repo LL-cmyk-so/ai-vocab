@@ -102,4 +102,22 @@
 
 **仍未做**：`REDESIGN-HANDOVER.md` 的词数与「已落地」状态回写（权威笔记 `../.dsh-notes/design-audit-progress.md` 已更新）；三批改动**尚未 git commit**。
 
+---
+
+## J. 执行记录（2026-09-11：手机端验证 + 顶栏修复 + 视觉契约）
+
+**验证方法纠错（重要教训）**：headless Chrome 的 `--window-size` **最小 500px**——设 `375` 会按 500px 布局渲染再裁到 375，造成"文字被切"的**假 bug**。窄屏必须用 **iframe 承载**（外层窗口 ≥500、iframe 设 375/320）来测量与截图。脚手架：`backups/tmp-harness/{_probe2,_shot}.html`（用时复制回 `web/`）。
+
+**实测结果**（iframe 探针，非目测）：375 / 320 下 `docScrollWidth == clientWidth`（**零页面溢出**）；首页 / 词条页 / 误区（47 条）/ 学习模式四页渲染正常；`entry-nav` 两列在 320 也单行不折；顶栏三按钮单行。
+
+**修复旧 bug**（`c612b20` 起就有、**线上同样存在**）：`@media(max-width:480px)` 里 `.site-header { padding: 12px 0 8px }` 把左右内边距清成 0 → 品牌贴左边缘、搜索贴右边缘，与下方 16px 边距的卡片明显不齐。修法：加回 16px 内边距 + 移动端品牌缩一档（图标 32px / 字 18px）+ 按钮间距 6px、CTA 12px（否则 320px 会挤爆）。复测：`brandLeft = 16`、搜索右缘距边 16px、仍零溢出。
+
+**装饰层裁决落地**：`.deco` 由 `fixed` 改 **`absolute`**（随页面滚动）；同时撤掉 `body{overflow-x:hidden}`，改为 `.deco{overflow:hidden}` —— 不给真实溢出戴眼罩。
+
+**颜色全部收进 `:root`**：新增 `--deco-blob / --fill-0 / --overlay / --on-main / --main-line`，7 处裸色值改走 token；复扫 `style.css` 已无裸色值（仅剩注释说明）。深色主题若做，只换这一层。
+
+**视觉契约补齐**：新增 `DESIGN.md`（`design/19` 模板的 8 小节，含**来源分层**：品牌 override vs Semi 档位）与 `PRODUCT.md`；`README.md` 词数同步为 111 / 23 / 33。
+
+**提交**：`6c7dc57`（代码）＋ `8b31b40`（文档），累计 4 笔。**仍未 push**；Cloudflare 那份是手动 zip，push 后需另行更新。
+
 
