@@ -131,3 +131,4 @@
 1. **删掉小节标签前的装饰横杠**：之前给 `.block-title` 加的 `::before`（16×2px 紫短线）在「💡 通俗类比」这种"emoji + 文字"的组合前显得多余（横杠—灯泡—文字 三件套）。已移除 `::before`，保留紫色 13/700 标签本身。
 2. **移除背景左右 blob，只保留品牌 ✳ 星刺**：两个被视口边缘切一半的奶油 blob（`#EDE4D3`, opacity .55）在真实观感里像"污渍"而非装饰；且 `.deco{height:100vh}` 在不同渲染模式下位置会漂移——**整页截图时 `100vh` 变成整页高度**，blob 会被甩到页面很下面、星刺落在文档 16%/86% 处，看起来随机。现在只留两枚 ✳（`--main`/`--a3`, opacity .4），首屏干净、位置固定在第一屏。
    - 连带清理：`.blob/.b1/.b2` CSS、`--deco-blob` token、`index.html` 里的两个 blob 节点（token 层保持无死值）。
+   - **最终裁决（同日）**：用户选「装饰层全删」→ `index.html` 的 `.deco` 节点、`style.css` 的 `.deco/.spark/.sp1/.sp2`、`--a1–--a6` 装饰紫阶 token、以及为压住装饰层而加的 `.container/.site-footer{z-index:1}` **全部移除**。现在背景就是纯奶油底，装饰性归零。复测：375 下 `docScrollWidth == clientWidth` 且**越界元素列表为空**（此前至少有一个被裁的 blob）。
