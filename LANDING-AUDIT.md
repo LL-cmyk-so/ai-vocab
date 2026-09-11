@@ -19,7 +19,7 @@
 
 ## B. 缺失（handover/demo 有，真源码完全没有）
 
-- **B1 背景装饰层** ✅ 已补（2026-09-10）：demo 有 `.blob`(#EDE4D3) + `.spark`(✳)（`ai-vocab-brand-v2-demo.html:22,84-85`）；真源码**无对应元素**，只留了没用的 `--a1..--a6` 紫阶（`style.css:40`）。
+- **B1 背景装饰层** ✅ 已补（2026-09-10）→ ⚠️ **后于 §K 被用户裁决整体移除（2026-09-11）**：demo 有 `.blob`(#EDE4D3) + `.spark`(✳)（`ai-vocab-brand-v2-demo.html:22,84-85`）；真源码**无对应元素**，只留了没用的 `--a1..--a6` 紫阶（`style.css:40`）。
 - **B2 词条页「上一词/下一词」** ✅ 已补（2026-09-10）：demo 有 `.np` 两块导航（`ai-vocab-entry-demo.html:74-77,124-125`）；`script.js` 无渲染、`style.css` 无 `.np`。
 
 ## C. 偏离（两边都有，规格不一致）
