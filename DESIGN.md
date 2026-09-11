@@ -36,8 +36,7 @@ version: 2026-09-11（品牌改版 + 收尾四批落地后）
 | `--fill-0` | `rgba(42,39,34,.05)` | 最轻 hover 填充 | 品牌 override |
 | `--overlay` | `rgba(42,39,34,.45)` | 弹窗遮罩 | 品牌 override |
 | `--on-main` | `#ffffff` | 紫底上的文字 | 品牌 override |
-| `--deco-blob` | `#EDE4D3` | 背景装饰 blob | 品牌 override |
-| `--a1`–`--a6` | `#5B4CE7 #7C5CE0 #9B4DCA #C74A9A #E05A78 #E58A4E` | 装饰紫阶（星刺等点缀） | 品牌 override |
+| `--a1`–`--a6` | `#5B4CE7 #7C5CE0 #9B4DCA #C74A9A #E05A78 #E58A4E` | 装饰紫阶（背景 ✳ 星刺等点缀） | 品牌 override |
 
 > 规则：新增颜色一律先加 token 再引用；深色主题若做，只替换本表值（结构已按此分层）。
 

@@ -4,47 +4,39 @@
    token 映射见 design/11-semi切换-ai-vocab映射与改动清单.md */
 
 :root {
-  /* —— 品牌 override（定稿设计：奶油底 + 深紫，成体系可溯源）—— */
-  --main: #5B4CE7;          /* 深紫（品牌主色） */
-  --main-dark: #4A3BD0;     /* hover 加深 */
-  --main-soft: #ECE8FB;     /* 紫色浅底 */
-  --main-text-soft: #5B4CE7;/* 浅底文字 = 主色 */
+  /* —— 品牌主色（唯一饱和色）—— */
+  --main: #0064FA;          /* T1: semi-color-primary（blue-5） */
+  --main-dark: #0062D6;     /* T2(D2): semi-color-primary-hover（blue-6） */
+  --main-soft: #EAF5FF;     /* semi-color-primary-light-default（blue-0 浅底） */
+  --main-text-soft: #0064FA;/* 浅底上文字 = semi-color-primary */
 
-  /* —— 表面与背景（奶油系）—— */
-  --bg: #F6F1E9;            /* 奶油底 */
-  --card: #FCFBF8;          /* 暖白卡片 */
-  --surface-alt: #F6F1E9;
+  /* —— 表面与背景（Semi Light：bg-0~4 全纯白，层级靠阴影/边框）—— */
+  --bg: #ffffff;            /* T2: semi-color-bg-0 */
+  --card: #ffffff;          /* semi-color-bg-1 */
+  --surface-alt: #ffffff;   /* semi-color-bg-0（分区交替；层级靠 fill/border 补） */
 
-  /* —— 中性色阶（暖黑）—— */
-  --text: #2A2722;          /* 正文本 暖黑 */
-  --muted: rgba(42,39,34,.62);
-  --text-3: rgba(42,39,34,.38);
-  --line: rgba(42,39,34,.10);
+  /* —— 中性色阶（Semi 文本色阶，grey-9 各级透明度）—— */
+  --text: #1C1F23;          /* T3: semi-color-text-0（grey-9 100%） */
+  --muted: rgba(28,31,35,.62);  /* T4: semi-color-text-2（grey-9 62%） */
+  --text-3: rgba(28,31,35,.35); /* T5: semi-color-text-3（grey-9 35%） */
+  --line: rgba(28,31,35,.08);   /* T6: semi-color-border（grey-9 8%） */
 
   /* —— 深度与形状 —— */
-  --radius: 12px;
-  --radius-lg: 12px;
-  --radius-btn: 3px;
-  --shadow: 0 0 1px rgba(42,39,34,.22), 0 8px 24px rgba(42,39,34,.08);
-  --shadow-modal: 0 0 1px rgba(42,39,34,.22), 0 8px 24px rgba(42,39,34,.12);
+  --radius: 12px;           /* 卡片 12px = 对齐 semi-border-radius-large（官方 large 用于 modal） */
+  --radius-lg: 12px;        /* T8: semi-border-radius-large（Semi 无 16，弹窗用 12） */
+  --radius-btn: 3px;        /* T8: semi-border-radius-small（按钮 3px） */
+  /* T7: semi-shadow-elevated（Semi 统一 2 层阴影） */
+  --shadow: 0 0 1px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.1);
+  --shadow-modal: 0 0 1px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.1);
 
-  /* —— 间距 —— */
+  /* —— 间距（Semi spacing：0/2/4/8/12/16/20/24/32/40；D1 删 48）—— */
   --space-1: 4px; --space-2: 8px; --space-3: 16px;
   --space-4: 24px; --space-5: 32px;
 
-  /* —— 动效 —— */
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-
-  /* —— 装饰紫阶（背景 ✳ 星刺用，低饱和）—— */
-  --a1:#5B4CE7; --a2:#7C5CE0; --a3:#9B4DCA; --a4:#C74A9A; --a5:#E05A78; --a6:#E58A4E;
-
-  /* —— 装饰与叠层（颜色全部收在这层：将来若做深色主题，只换这些值即可）—— */
-  --fill-0: rgba(42,39,34,.05);     /* 最轻的 hover 填充 */
-  --overlay: rgba(42,39,34,.45);    /* 弹窗遮罩 */
-  --on-main: #ffffff;               /* 紫底上的文字 */
-  --main-line: rgba(91,76,231,.28); /* 主色浅描边（类比块） */
+  /* —— 动效（emil-design-eng 框架：自定义贝塞尔，替代过弱的内置 ease）—— */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);       /* UI 交互出场（快反馈） */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);   /* 屏上移动/变形（自然加减速） */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);    /* 抽屉/面板类 */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -62,43 +54,44 @@ body {
   flex-direction: column;
 }
 
-/* ---------- 背景装饰层（只留品牌 ✳ 星刺；低对比、不抢内容） ---------- */
-/* absolute（非 fixed）：装饰随页面滚动；裁剪放在装饰层内部，body 不戴"眼罩"（真溢出仍可被发现） */
-.deco { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; }
-.spark { position: absolute; color: var(--main); opacity: .4; }
-.sp1 { left: 12%; top: 16%; font-size: 26px; }
-.sp2 { right: 9%; bottom: 14%; font-size: 34px; color: var(--a3); }   /* 装饰紫阶 --a3，与主色同族 */
-/* 装饰层 z-index:0（已定位），静态内容会被它盖住，故内容层上提一层 */
-.container, .site-footer { position: relative; z-index: 1; }
-
 .container { width: 100%; max-width: 760px; margin: 0 auto; padding: 0 16px; }
 
 /* ---------- 头部（吸顶，🏠/🔍 常驻；Notion：白底 + 细下边框 + 深色文字） ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: var(--card);
+  background: #ffffff;
   color: var(--text);
-  padding: 8px 16px;
-  padding-top: calc(8px + env(safe-area-inset-top));
-  border-bottom: 1px solid var(--line);
+  padding: 8px 0 8px;
+  padding-top: calc(8px + env(safe-area-inset-top));   /* M3: 顶部安全区（iPhone 刘海/灵动岛） */
+  border-bottom: 1px solid var(--line);   /* whisper border 替代阴影 */
   box-shadow: none;
-  display: flex; align-items: center; justify-content: space-between;
 }
-/* 品牌（左上角） */
-.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--text); cursor: pointer; }
-.brand-icon { height: 39px; width: auto; display: block; }
-.brand-txt { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; display: flex; align-items: center; }
-.brand-txt .ai { color: var(--main); }
-/* 顶部右上角按钮组 */
-.header-actions { display: flex; align-items: center; gap: 8px; }
-.hbtn { background: none; border: 1px solid transparent; padding: 10px; border-radius: var(--radius-btn); color: var(--muted); cursor: pointer; transition: background .15s, transform 120ms var(--ease-out); }
-.hbtn:hover { background: var(--main-soft); color: var(--main); }
-.hbtn:active { transform: scale(0.95); }
-.hbtn svg { display: block; width: 17px; height: 17px; }
-.hbtn.hl { border: 1px solid var(--main); background: var(--main); color: var(--on-main); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 9999px; }
-.hbtn.hl:hover { background: var(--main-dark); color: var(--on-main); }
-/* 回首页 / 标题：保留元素防脚本报错，视觉隐藏 */
-#homeBtn, #siteTitle { display: none; }
+.site-header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.25px; text-align: center; }
+
+/* header 左右图标按钮（扁平，深色描边） */
+.header-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: none; border: 1px solid transparent; padding: 12px; cursor: pointer;   /* M2: 8→12px 热区 48px */
+  color: var(--muted); border-radius: 4px; transition: background .15s, color .15s, border-color .15s, transform 120ms var(--ease-out);   /* R1: 6→4 圆角归一；A4: transform 用 ease-out 120ms */
+}
+.header-btn:hover { background: var(--bg); color: var(--text); }
+.header-btn:active { transform: translateY(-50%) scale(0.95); }   /* A3: 按压反馈（注意保留 translateY(-50%) 定位） */
+.header-btn svg { display: block; width: 17px; height: 17px; }
+.header-left { left: 16px; }
+.header-right { right: 16px; }
+/* 新手教程常驻按钮（搜索按钮左侧；right 需给搜索按钮留足空间——M2 padding 10px 后按钮变宽） */
+.header-learn {
+  position: absolute; right: 72px;
+  border: 1px solid var(--line); border-radius: 9999px;
+  padding: 10px 12px; font-size: 12px; font-weight: 600; color: var(--main);   /* M2: 5→10px 热区 48px */
+}
+.header-learn:hover { border-color: var(--main); background: var(--main-soft); }
+.header-pits {
+  position: absolute; right: 150px;
+  border: 1px solid var(--line); border-radius: 9999px;
+  padding: 10px 12px; font-size: 12px; font-weight: 600; color: var(--text);
+}
+.header-pits:hover { border-color: var(--main); background: var(--main-soft); color: var(--main); }
 
 /* AI 常见误区列表 */
 .pit-item { padding: 12px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
@@ -112,8 +105,8 @@ body {
 .search-bar { display: flex; gap: 8px; align-items: center; }
 .search-bar input {
   flex: 1; padding: 8px 16px; font-size: 14px;
-  border: 1px solid var(--line); border-radius: var(--radius-btn);   /* 输入框圆角归一到按钮档 */
-  background: var(--card); color: var(--text); outline: none;
+  border: 1px solid rgba(0,0,0,.15); border-radius: 4px;   /* Notion 输入框 */
+  background: #ffffff; color: var(--text); outline: none;
   transition: border-color .15s;
 }
 .search-bar input::placeholder { color: var(--text-3); }
@@ -172,38 +165,6 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* ---------- 折叠目录树 ---------- */
 .tree { display: flex; flex-direction: column; gap: 8px; }
 
-
-/* 上手 hero：从这 3 个词开始 */
-.hero { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
-.hero-tag { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--main); text-transform: uppercase; margin-bottom: 4px; }
-.hero-h { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 14px; }
-/* 折叠切换：去掉 details 默认 marker，右侧放一个 pill 按钮（收起/展开） */
-.hero summary { list-style: none; cursor: pointer; position: relative; padding-right: 56px; }
-.hero summary::-webkit-details-marker { display: none; }
-.hero summary::marker { content: ''; }
-.hero summary::after {
-  content: '收起';
-  position: absolute; right: 0; top: 0;
-  font-size: 12px; font-weight: 600; color: var(--main);
-  background: var(--main-soft); border-radius: var(--radius-btn);
-  padding: 3px 10px; white-space: nowrap;
-  transition: background .15s;
-}
-.hero summary:hover::after { background: var(--main); color: var(--on-main); }
-.hero:not([open]) summary::after { content: '展开'; }
-.hero:not([open]) .hero-h { margin-bottom: 0; }
-.starter { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-@media (max-width: 640px) { .starter { grid-template-columns: 1fr; } }
-.st { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; transition: box-shadow .2s var(--ease-out), transform .15s var(--ease-out); text-decoration: none; color: var(--text); }
-.st:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-.st-num { font-size: 24px; font-weight: 800; color: var(--main); line-height: 1; margin-bottom: 8px; }
-.st-name { font-size: 15px; font-weight: 700; }
-.st-desc { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.6; }
-.sec-h { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; margin: 6px 0 12px; }
-
-/* 树：主题不设彩条（DOM 已移除）、小节标签紫色 */
-.tree-sub-title { font-size: 13px; color: var(--main); font-weight: 600; margin-bottom: 8px; }
-
 .tree-layer {
   background: var(--card);
   border: 1px solid var(--line);
@@ -215,8 +176,9 @@ main { flex: 1; padding: 16px 16px 32px; }
   display: flex; align-items: center; gap: 8px;
   padding: 8px 16px; cursor: pointer; user-select: none;   /* S1: 12→8 结构性归一 */
 }
-.tree-head:hover { background: var(--fill-0); }   /* 暖色最轻填充 */
-.tree-name { font-size: 15px; font-weight: 700; flex: 1; }
+.tree-head:hover { background: rgba(46,50,56,.05); }   /* semi-color-fill-0（纯白下 hover 反馈） */
+.tree-color { width: 4px; height: 18px; border-radius: 2px; flex-shrink: 0; }  /* R2: 装饰色条特例（4px 宽，2px 圆角视觉可忽略，归一 4 反怪） */
+.tree-name { font-size: 14px; font-weight: 600; flex: 1; }
 .tree-count { font-size: 12px; color: var(--text-3); }  /* 弱化：词数是低价值元信息 */
 .tree-arrow { font-size: 12px; color: var(--text-3); transition: transform .2s; }
 .tree-layer.closed .tree-arrow { transform: rotate(-90deg); }
@@ -226,20 +188,21 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* 层内小节 */
 .tree-sub { padding-top: 12px; }
 .tree-sub + .tree-sub { border-top: 1px dashed var(--line); margin-top: 12px; }
+.tree-sub-title { font-size: 12px; color: var(--text-3); font-weight: 600; margin-bottom: 8px; }
 .tree-sub .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* 词条胶囊（Notion：白底 pill + whisper 边框，hover 转主色） */
 .chip {
-  background: var(--card); border: 1px solid var(--line); border-radius: 9999px;
+  background: #ffffff; border: 1px solid rgba(0,0,0,.12); border-radius: 9999px;
   padding: 4px 12px; font-size: 14px; color: var(--text); cursor: pointer;
   transition: border-color .15s, color .15s, transform 120ms var(--ease-out);
 }
 .chip:hover { border-color: var(--main); color: var(--main); }
 .chip:active { transform: scale(0.97); }   /* A3 */
-/* 进阶徽标（弱化：浅灰小字，与「N 词」计数同色，低调不抢词条本体） */
+/* 进阶徽标（Notion Pill Badge：浅蓝底 + 蓝字，12px 600 正字距） */
 .chip.adv::after {
-  content: "进阶"; font-size: 11px; font-weight: 400; color: var(--text-3);
-  background: transparent; border-radius: 9999px; padding: 1px 6px;
+  content: "进阶"; font-size: 12px; font-weight: 600; color: var(--main-text-soft);
+  background: var(--main-soft); border-radius: 9999px; padding: 4px 8px;
   margin-left: 4px; letter-spacing: .125px;
 }
 
@@ -383,10 +346,8 @@ main { flex: 1; padding: 16px 16px 32px; }
     transition: none !important;
   }
 }
-.entry-title { font-size: 28px; font-weight: 800; line-height: 1.2; letter-spacing: -0.6px; }
-/* 标题右侧英文（次要信息，与词名同行） */
-.entry-en { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-left: 10px; }
-.meta-line { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.entry-title { font-size: 24px; font-weight: 600; line-height: 1.27; letter-spacing: -0.25px; }
+.meta-line { margin-top: 8px; font-size: 14px; color: var(--muted); }
 .meta-line b { color: var(--text); font-weight: 600; }
 .layer-tag {
   display: inline-block; margin-top: 12px;
@@ -396,60 +357,42 @@ main { flex: 1; padding: 16px 16px 32px; }
 .layer-tag.adv::after { content: "· 进阶"; opacity: .8; }
 .entry-updated { display: block; margin-top: 8px; font-size: 12px; color: var(--text-3); }
 .entry-block { margin-top: 16px; }
-/* 词条内小节标签：紫 13/700（与首页小节标签同一语言；不加装饰横杠） */
-.block-title { font-size: 13px; font-weight: 700; color: var(--main); margin-bottom: 8px; }
+.block-title { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
 .block-body { font-size: 16px; line-height: 1.6; color: var(--text); }
-/* 类比块：奶油底 + 紫描边 + 左紫竖条（品牌层：底色 = 首页 hero 卡同色 #F6F1E9） */
+/* 类比块：纯白背景下用 fill 底 + border 补层次（Semi：fill-0 = grey-8 5%） */
 .analogy {
-  background: var(--surface-alt);
-  border: 1px solid var(--main-line);
-  border-left: 3px solid var(--main);
-  border-radius: var(--radius);
-  padding: 14px 16px;
+  background: rgba(46,50,56,.05); border-radius: 12px; padding: 12px 12px;   /* semi-color-fill-0；R3: 圆角 12px = 对齐 semi-border-radius-large */
+  border: 1px solid rgba(28,31,35,.08);   /* semi-color-border */
 }
-.analogy .block-body { font-size: 14px; line-height: 1.7; }
 .entry-def { margin-top: 16px; }
 .entry-tips { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 12px; }
 .entry-tips summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--main); outline: none; }
 .tips-body { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
 .tip-item { font-size: 14px; color: var(--text); line-height: 1.6; }
-/* P1：试试看（现场可做的练习）：去掉大块底色，细边框 + 左侧竖条，收敛成安静的 callout */
+/* P1：试试看（当场可做的练习，主色浅底） */
 .entry-practice {
-  margin-top: 18px;
-  background: none;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--main);
+  margin-top: 16px;
+  background: var(--main-soft);
   border-radius: var(--radius);
   padding: 14px 16px;
+  border: 1px solid rgba(0, 100, 250, .14);
 }
-.practice-title { font-size: 13px; font-weight: 700; color: var(--main); margin-bottom: 6px; }
+.practice-title { font-size: 13px; font-weight: 700; color: var(--main-text-soft); margin-bottom: 6px; }
 .practice-body { font-size: 14px; line-height: 1.8; color: var(--text); }
 .tip-label { font-weight: 600; color: var(--text); }
 .related-block { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); }   /* S7: 18/14→16 表外归一 */
-.related-title { font-size: 13px; color: var(--main); margin-bottom: 10px; font-weight: 700; }
+.related-title { font-size: 14px; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
 .related-chip {
   display: inline-block; margin: 0 8px 8px 0;
   background: var(--main-soft); color: var(--main-text-soft);
   border-radius: 9999px; padding: 8px 12px; font-size: 14px; font-weight: 600;
   cursor: pointer; transition: background .15s, color .15s, transform 120ms var(--ease-out);
 }
-.related-chip:hover { background: var(--main); color: var(--on-main); }
+.related-chip:hover { background: var(--main); color: #fff; }
 .related-chip:active { transform: scale(0.97); }   /* A3 */
-
-/* 词条页底部：上一词 / 下一词（首词无上一词、末词无下一词，缺的一侧不占位） */
-.entry-nav { display: flex; gap: 10px; margin-top: 18px; }
-.np {
-  flex: 1; min-width: 0; background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 12px 14px; cursor: pointer;
-  transition: border-color .15s, transform 120ms var(--ease-out);
-}
-.np:hover { border-color: var(--main); transform: translateY(-1px); }
-.np .k { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 3px; }
-.np .v { display: block; font-size: 14px; font-weight: 600; color: var(--main); }
 
 /* ---------- 页脚 ---------- */
 .site-footer { padding: 16px 0 24px; text-align: center; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }   /* M3: 底部安全区（Home Indicator） */
-.site-footer .small { font-size: 12px; }   /* 字号阶梯：页脚 12 */
 .install-link { color: var(--main); text-decoration: none; font-size: 12px; display: inline-block; padding: 6px 8px; }   /* M2: inline→inline-block + padding 热区 48px */
 .install-link:hover { text-decoration: underline; }
 .footer-sep { color: var(--line); margin: 0 8px; }
@@ -458,7 +401,7 @@ main { flex: 1; padding: 16px 16px 32px; }
 /* ---------- 添加到桌面弹窗 ---------- */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 999;
-  background: var(--overlay);
+  background: rgba(31, 35, 41, 0.45);
   display: none; /* 默认隐藏；用 .open 控制，避免覆盖 hidden */
   align-items: center; justify-content: center;
   padding: 24px;
@@ -508,15 +451,9 @@ main { flex: 1; padding: 16px 16px 32px; }
 
 /* ---------- 手机适配 ---------- */
 @media (max-width: 480px) {
-  /* 顶栏与页面其他内容一样留 16px 边距；品牌与按钮同步缩一档，保证 320px 宽也不挤爆 */
-  .site-header { padding: 12px 16px 8px; }
+  .site-header { padding: 12px 0 8px; }
   .site-header h1 { font-size: 18px; }
-  .brand-icon { height: 32px; }
-  .brand-txt { font-size: 18px; letter-spacing: -0.3px; }
-  .header-actions { gap: 6px; }
-  .hbtn { padding: 8px; }
-  .hbtn.hl { font-size: 12px; padding: 6px 10px; }
-  .entry-title { font-size: 22px; }
+  .entry-title { font-size: 20px; }
   .entry-def { font-size: 14px; }
   .path-step-note { display: none; }
   .card { padding: 12px; }
