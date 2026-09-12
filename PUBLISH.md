@@ -40,6 +40,17 @@
    - GitHub：`git push`
 3. 朋友刷新页面即看到最新内容（可能有几分钟缓存延迟）
 
+## 打包 Cloudflare 用的 zip（直接拖上传）
+
+Cloudflare Pages 的「上传资产」收的是 zip，内容 = `web/` 目录**平铺在根层**（含 `icons/`、`manifest.json`、`sw.js`、`brand-icon.png`，共 13 个文件），
+但**必须排除**工作区垃圾（`.DS_Store`、`*.bak-0906`），否则会被一起发布上去：
+
+```bash
+cd web && zip -r -X "../web-Cloudflare版-$(date +%Y%m%d).zip" . -x ".DS_Store" "*.bak-0906"
+```
+
+打包后核对：`unzip -l ../web-Cloudflare版-*.zip` 应恰好 13 项、无 `.DS_Store`；`unzip -p ../web-Cloudflare版-*.zip style.css | md5` 应与 `web/style.css` 一致。
+
 ## 小提醒
 
 - 链接是公开的：拿到链接的人都能访问（只能看，不能改）
