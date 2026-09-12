@@ -8,3 +8,6 @@ previews/
 web-发布包/
 .skill/
 backups/
+
+# 发布包（每次发版新生成，不入库）
+web-*.zip
