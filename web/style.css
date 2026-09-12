@@ -498,6 +498,9 @@ main { flex: 1; padding: 16px 16px 32px; }
 @media (max-width: 480px) {
   /* 顶栏与页面其他内容一样留 16px 边距；品牌与按钮同步缩一档，保证 320px 宽也不挤爆 */
   .site-header { padding: 12px 16px 8px; }
+  /* 顶部安全区必须在此补回：上面的简写会覆盖第 70 行的 calc(...env(safe-area-inset-top))，
+     导致 iOS「添加到主屏幕」独立窗口 / 内嵌 webview 里顶栏被状态栏压住（2026-09-12 实测 375px 下 padding-top 被算成 12px）。 */
+  .site-header { padding-top: calc(12px + env(safe-area-inset-top)); }
   .site-header h1 { font-size: 18px; }
   .brand-icon { height: 32px; }
   .brand-txt { font-size: 18px; letter-spacing: -0.3px; }

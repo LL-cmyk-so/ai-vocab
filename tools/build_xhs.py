@@ -9,6 +9,10 @@
    `renderPits()`、`pitsBtn` 监听、路由里的 `pits` 分支、`VIEWS` 里的 `pitsView`。
 3. **图标缩到 78px**（显示尺寸 39px 的 2x）：原图 722×733 / 487KB，缩后约几 KB；
    文件名保持 `brand-icon.png`，因此 `index.html` 无需改 src。
+4. **顶部原生遮挡补白**：小红书内嵌网页顶部压着两层原生浮层——iOS 状态栏 + 小红书自己的
+   悬浮工具条（‹ 分享 ⋯）。工具条高度网页侧读不到，按 44px 预算；`env(safe-area-inset-top)`
+   在部分 webview 返回 0，故给它 44px 下限。追加在 `style.css` 末尾（源码次序靠后 → 覆盖
+   基础规则与手机媒体查询），主站不受影响。
 
 用法：
     python3 tools/build_xhs.py                 # 输出 web-小红书-品牌版-YYYYMMDD.zip
@@ -29,9 +33,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
-PLAIN_FILES = ["style.css", "words.json"]
+PLAIN_FILES = ["words.json"]
 ICON = "brand-icon.png"
 ICON_DISPLAY_PX = 78
+
+# 小红书原生浮层高度预算：工具条 44px；状态栏取下限 44px（env() 在部分 webview 报 0）
+XHS_CHROME_CSS = """
+/* ---------- 小红书内嵌网页专用：顶部原生遮挡补白 ----------
+   iOS 状态栏与小红书悬浮工具条（‹ 分享 ⋯）都是原生浮层，网页侧拿不到高度，
+   故按「状态栏 ≥44px + 工具条 44px」预留。规则必须在文件最末：
+   同选择器下源码次序靠后者胜，才能覆盖基础规则与 max-width:480px 媒体查询。 */
+.site-header { padding-top: calc(12px + max(env(safe-area-inset-top), 44px) + 44px); }
+"""
 
 
 def patch_html(src: str) -> str:
@@ -86,6 +99,12 @@ def patch_js(src: str) -> str:
     return out
 
 
+def patch_css(src: str) -> str:
+    assert ".site-header {" in src, "style.css: 未找到 .site-header 规则（源文件可能已改）"
+    assert "XHS_CHROME" not in src, "style.css: 已含小红书包补丁"
+    return src.rstrip("\n") + "\n" + XHS_CHROME_CSS
+
+
 def shrink_icon(src: Path, dst: Path) -> str:
     """优先用 macOS 的 sips，其次 PIL，都不可用则原样复制（并提示）。"""
     if shutil.which("sips"):
@@ -124,6 +143,7 @@ def main() -> int:
 
     (build / "index.html").write_text(patch_html((WEB / "index.html").read_text(encoding="utf-8")), encoding="utf-8")
     (build / "script.js").write_text(patch_js((WEB / "script.js").read_text(encoding="utf-8")), encoding="utf-8")
+    (build / "style.css").write_text(patch_css((WEB / "style.css").read_text(encoding="utf-8")), encoding="utf-8")
     for name in PLAIN_FILES:
         shutil.copy2(WEB / name, build / name)
     how = shrink_icon(WEB / ICON, build / ICON)
@@ -136,6 +156,7 @@ def main() -> int:
     print(f"✅ {out_zip.name}  ({out_zip.stat().st_size / 1024:.0f} KB)")
     print(f"   文件：{', '.join(sorted(p.name for p in build.iterdir()))}")
     print(f"   图标：{ICON} 缩放到 {ICON_DISPLAY_PX}px（{how}，{(build / ICON).stat().st_size / 1024:.1f} KB）")
+    print("   顶栏：已注入小红书原生浮层补白 calc(12px + max(env(safe-area-inset-top),44px) + 44px)")
     if args.keep_dir:
         print(f"   解包目录保留在：{build}")
     else:
