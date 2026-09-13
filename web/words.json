@@ -47,7 +47,8 @@
      "parameter",
      "weight",
      "compute",
-     "gpu"
+     "gpu",
+     "ramageddon"
     ]
    ]
   ],
@@ -87,7 +88,8 @@
      "temperature",
      "moe",
      "vlm",
-     "stochastic-parrot"
+     "stochastic-parrot",
+     "opaque-recurrence"
     ]
    ]
   ],
@@ -143,7 +145,8 @@
      "reflection",
      "skill",
      "computer-use",
-     "one-person-company"
+     "one-person-company",
+     "coding-agent"
     ]
    ],
    [
@@ -151,7 +154,8 @@
     [
      "text-to-image",
      "text-to-video",
-     "deepfake"
+     "deepfake",
+     "diffusion-model"
     ]
    ],
    [
@@ -227,13 +231,16 @@
      "asi",
      "embodied-ai",
      "world-model",
-     "ai-inclusion"
+     "ai-inclusion",
+     "intelligent-economy"
     ]
    ],
    [
     "数据与飞轮",
     [
-     "data-flywheel"
+     "data-flywheel",
+     "data-element",
+     "data-governance"
     ]
    ]
   ]
@@ -380,7 +387,7 @@
     "llm",
     "agi"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "turing-test",
@@ -400,7 +407,7 @@
     "ai",
     "agi"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "machine-learning",
@@ -422,7 +429,7 @@
     "training",
     "dataset"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "deep-learning",
@@ -443,7 +450,7 @@
     "neural-network",
     "parameter"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "neural-network",
@@ -464,7 +471,7 @@
     "parameter",
     "weight"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "training",
@@ -485,7 +492,7 @@
     "dataset",
     "pretraining"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "inference",
@@ -505,7 +512,7 @@
     "training",
     "api"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "parameter",
@@ -526,7 +533,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "weight",
@@ -546,7 +553,7 @@
     "parameter",
     "neural-network"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "dataset",
@@ -567,7 +574,7 @@
     "pretraining",
     "fine-tuning"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "algorithm",
@@ -587,18 +594,18 @@
     "machine-learning",
     "compute"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "compute",
    "title": "算力",
    "en": "Compute / Computing Power",
    "zh": "算力",
-   "alias": "计算能力",
+   "alias": "计算能力、自主算力、国产算力",
    "layer": "地基",
-   "def": "计算的\"马力\"。AI 训练本质是海量数学运算，算力就是干这些运算的速度和能力。好比做饭：菜谱（算法）再好，锅（算力）太小也做不成满汉全席。这也是为什么 AI 公司疯狂抢购显卡——抢的就是算力。",
+   "def": "计算的\"马力\"。AI 训练本质是海量数学运算，算力就是干这些运算的速度和能力。好比做饭：菜谱（算法）再好，锅（算力）太小也做不成满汉全席。这也是为什么 AI 公司疯狂抢购显卡——抢的就是算力。近两年新闻里常说的\"自主算力\"，问的不是算得多快，而是这份算力能不能自己造、会不会被卡脖子。",
    "analogy": "像做饭的\"火力和锅\"——菜谱（算法）再好，锅太小也做不成满汉全席。",
-   "scene": "新闻\"AI 公司疯狂抢购显卡、抢算力\"，抢的就是它。",
+   "scene": "新闻\"AI 公司疯狂抢购显卡、抢算力\"，抢的就是它；国产替代叙事里的\"自主算力\"，说的是这份算力能不能自己造、会不会被卡脖子。",
    "mistake": "算力不是\"存储空间\"，是\"计算速度和能力\"。",
    "confuse": "和\"GPU\"——GPU 是提供算力的硬件。",
    "practice": "",
@@ -606,9 +613,10 @@
    "related": [
     "gpu",
     "training",
-    "local-deployment"
+    "local-deployment",
+    "ramageddon"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "gpu",
@@ -627,9 +635,10 @@
    "related": [
     "compute",
     "training",
-    "local-deployment"
+    "local-deployment",
+    "ramageddon"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "llm",
@@ -651,7 +660,7 @@
     "context-window",
     "generative-ai"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "generative-ai",
@@ -673,7 +682,7 @@
     "text-to-video",
     "multimodal"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "nlp",
@@ -693,7 +702,7 @@
     "llm",
     "transformer"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "transformer",
@@ -713,7 +722,7 @@
     "attention",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "attention",
@@ -732,7 +741,7 @@
    "related": [
     "transformer"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "token",
@@ -753,7 +762,7 @@
     "context-window",
     "api"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "context-window",
@@ -774,7 +783,7 @@
     "memory",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "pretraining",
@@ -795,7 +804,7 @@
     "training",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "fine-tuning",
@@ -816,7 +825,7 @@
     "dataset",
     "alignment"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "rlhf",
@@ -837,7 +846,7 @@
     "alignment",
     "fine-tuning"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "multimodal",
@@ -859,7 +868,7 @@
     "text-to-video",
     "digital-human"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "prompt",
@@ -880,7 +889,7 @@
     "llm",
     "jailbreak"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "prompt-engineering",
@@ -900,7 +909,7 @@
     "prompt",
     "agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "embedding",
@@ -921,7 +930,7 @@
     "semantic-search",
     "rag"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "vector",
@@ -942,7 +951,7 @@
     "vector-database",
     "semantic-search"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "vector-database",
@@ -963,7 +972,7 @@
     "rag",
     "memory"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "semantic-search",
@@ -983,7 +992,7 @@
     "vector",
     "vector-database"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "rag",
@@ -1005,7 +1014,7 @@
     "hallucination",
     "embedding"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "knowledge-base",
@@ -1025,7 +1034,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "hallucination",
@@ -1046,7 +1055,7 @@
     "alignment",
     "prompt"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "chatbot",
@@ -1067,7 +1076,7 @@
     "ai-assistant",
     "nlp"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-assistant",
@@ -1088,7 +1097,7 @@
     "agent",
     "tool-calling"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "copilot",
@@ -1106,9 +1115,10 @@
    "adv": false,
    "related": [
     "ai-assistant",
-    "llm"
+    "llm",
+    "coding-agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "text-to-image",
@@ -1126,9 +1136,10 @@
    "adv": false,
    "related": [
     "generative-ai",
-    "text-to-video"
+    "text-to-video",
+    "diffusion-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "text-to-video",
@@ -1146,9 +1157,10 @@
    "adv": false,
    "related": [
     "text-to-image",
-    "world-model"
+    "world-model",
+    "diffusion-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "speech-recognition",
@@ -1168,7 +1180,7 @@
     "speech-synthesis",
     "digital-human"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "speech-synthesis",
@@ -1188,7 +1200,7 @@
     "speech-recognition",
     "digital-human"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "digital-human",
@@ -1209,7 +1221,7 @@
     "speech-recognition",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "agent",
@@ -1229,9 +1241,10 @@
     "tool-calling",
     "memory",
     "multi-agent",
-    "ai-assistant"
+    "ai-assistant",
+    "coding-agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "workflow",
@@ -1252,7 +1265,7 @@
     "tool-calling",
     "prompt-engineering"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "tool-calling",
@@ -1272,7 +1285,7 @@
     "agent",
     "api"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "memory",
@@ -1293,7 +1306,7 @@
     "context-window",
     "agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "multi-agent",
@@ -1313,7 +1326,7 @@
     "agent",
     "workflow"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "api",
@@ -1334,7 +1347,7 @@
     "token",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "open-source-model",
@@ -1355,7 +1368,7 @@
     "api",
     "model-evaluation"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "local-deployment",
@@ -1376,7 +1389,7 @@
     "gpu",
     "compute"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "model-evaluation",
@@ -1396,7 +1409,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "alignment",
@@ -1417,7 +1430,7 @@
     "hallucination",
     "agi"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "explainability",
@@ -1435,9 +1448,10 @@
    "adv": false,
    "related": [
     "alignment",
-    "agi"
+    "agi",
+    "opaque-recurrence"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "agi",
@@ -1459,7 +1473,7 @@
     "alignment",
     "embodied-ai"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "embodied-ai",
@@ -1480,7 +1494,7 @@
     "agi",
     "multimodal"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "world-model",
@@ -1501,7 +1515,7 @@
     "embodied-ai",
     "text-to-video"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "jailbreak",
@@ -1521,7 +1535,7 @@
     "prompt",
     "alignment"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "reasoning-model",
@@ -1540,9 +1554,10 @@
    "related": [
     "llm",
     "chain-of-thought",
-    "rlhf"
+    "rlhf",
+    "opaque-recurrence"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "web-search",
@@ -1563,7 +1578,7 @@
     "rag",
     "ai-search"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-search",
@@ -1584,7 +1599,7 @@
     "web-search",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "rate-limit",
@@ -1605,7 +1620,7 @@
     "token",
     "prompt-caching"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "computer-use",
@@ -1626,7 +1641,7 @@
     "tool-calling",
     "multimodal"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-content-label",
@@ -1644,9 +1659,10 @@
    "adv": false,
    "related": [
     "alignment",
-    "model-evaluation"
+    "model-evaluation",
+    "data-governance"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "mcp",
@@ -1667,7 +1683,7 @@
     "tool-calling",
     "api"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "chain-of-thought",
@@ -1686,9 +1702,10 @@
    "related": [
     "reasoning-model",
     "prompt",
-    "transformer"
+    "transformer",
+    "opaque-recurrence"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "react",
@@ -1709,7 +1726,7 @@
     "tool-calling",
     "planning"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "planning",
@@ -1730,7 +1747,7 @@
     "react",
     "multi-agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "reflection",
@@ -1751,7 +1768,7 @@
     "react",
     "alignment"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "skill",
@@ -1772,7 +1789,7 @@
     "tool-calling",
     "mcp"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "structured-output",
@@ -1793,7 +1810,7 @@
     "api",
     "prompt"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "streaming",
@@ -1814,7 +1831,7 @@
     "api",
     "token"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "temperature",
@@ -1835,7 +1852,7 @@
     "inference",
     "reasoning-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "system-prompt",
@@ -1856,7 +1873,7 @@
     "prompt-engineering",
     "alignment"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "chunking",
@@ -1877,7 +1894,7 @@
     "vector-database",
     "full-text-search"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "full-text-search",
@@ -1898,7 +1915,7 @@
     "rag",
     "vector-database"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "prompt-caching",
@@ -1919,7 +1936,7 @@
     "api",
     "context-window"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "quantization",
@@ -1940,7 +1957,7 @@
     "gpu",
     "open-source-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "mmlu",
@@ -1961,7 +1978,7 @@
     "llm",
     "open-source-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "aigc",
@@ -1983,7 +2000,7 @@
     "multimodal",
     "ai-content-label"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "deepfake",
@@ -2005,7 +2022,7 @@
     "speech-synthesis",
     "ai-content-label"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-copyright",
@@ -2026,7 +2043,7 @@
     "generative-ai",
     "alignment"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "cv",
@@ -2047,7 +2064,7 @@
     "multimodal",
     "text-to-image"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "slm",
@@ -2068,7 +2085,7 @@
     "local-deployment",
     "quantization"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "asi",
@@ -2089,7 +2106,7 @@
     "alignment",
     "world-model"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-slop",
@@ -2110,7 +2127,7 @@
     "ai-content-label",
     "hallucination"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "distillation",
@@ -2132,7 +2149,7 @@
     "quantization",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "synthetic-data",
@@ -2153,7 +2170,7 @@
     "dataset",
     "fine-tuning"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "hand-rolling",
@@ -2174,7 +2191,7 @@
     "ai-slop",
     "prompt"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "guardrails",
@@ -2195,7 +2212,7 @@
     "alignment",
     "ai-content-label"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "moe",
@@ -2216,7 +2233,7 @@
     "parameter",
     "distillation"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "data-flywheel",
@@ -2235,9 +2252,10 @@
    "related": [
     "llm",
     "synthetic-data",
-    "dataset"
+    "dataset",
+    "data-element"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "spec-coding",
@@ -2256,9 +2274,10 @@
    "related": [
     "prompt-engineering",
     "structured-output",
-    "tool-calling"
+    "tool-calling",
+    "coding-agent"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "recall",
@@ -2280,7 +2299,7 @@
     "semantic-search",
     "model-evaluation"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "rerank",
@@ -2302,7 +2321,7 @@
     "vector-database",
     "semantic-search"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "few-shot",
@@ -2323,7 +2342,7 @@
     "llm",
     "fine-tuning"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "vlm",
@@ -2344,7 +2363,7 @@
     "cv",
     "llm"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "bias",
@@ -2366,7 +2385,7 @@
     "dataset",
     "model-evaluation"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "stochastic-parrot",
@@ -2387,7 +2406,7 @@
     "hallucination",
     "agi"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "sycophancy",
@@ -2408,7 +2427,7 @@
     "alignment",
     "hallucination"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "model-collapse",
@@ -2429,7 +2448,7 @@
     "data-flywheel",
     "training"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "data-poisoning",
@@ -2449,9 +2468,10 @@
     "jailbreak",
     "dataset",
     "guardrails",
-    "alignment"
+    "alignment",
+    "data-governance"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-washing",
@@ -2471,7 +2491,7 @@
     "generative-ai",
     "ai-slop"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ghost-work",
@@ -2492,7 +2512,7 @@
     "ai-slop",
     "training"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "eliza-effect",
@@ -2513,7 +2533,7 @@
     "agi",
     "hallucination"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "dead-internet",
@@ -2534,7 +2554,7 @@
     "generative-ai",
     "ai-content-label"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "deskilling",
@@ -2554,7 +2574,7 @@
     "ai-assistant",
     "copilot"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "automation-complacency",
@@ -2575,7 +2595,7 @@
     "alignment",
     "ai-assistant"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "pink-slime",
@@ -2596,7 +2616,7 @@
     "generative-ai",
     "ai-content-label"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "ai-inclusion",
@@ -2615,9 +2635,10 @@
    "related": [
     "generative-ai",
     "one-person-company",
-    "llm"
+    "llm",
+    "intelligent-economy"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "one-person-company",
@@ -2637,9 +2658,10 @@
     "agent",
     "ai-assistant",
     "ai-inclusion",
-    "generative-ai"
+    "generative-ai",
+    "intelligent-economy"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "loop",
@@ -2661,7 +2683,7 @@
     "planning",
     "reflection"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
   },
   {
    "id": "harness",
@@ -2683,7 +2705,159 @@
     "guardrails",
     "mcp"
    ],
-   "updated": "2026-09-06"
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "intelligent-economy",
+   "title": "智能经济",
+   "en": "Intelligent Economy",
+   "zh": "智能经济",
+   "alias": "AI 经济、智能化经济",
+   "layer": "生态与前沿",
+   "def": "以 AI 为核心驱动力、把数据当成关键生产要素的新经济形态。以前说\"数字经济\"，重点是\"把业务搬到网上\"；智能经济是再往前一步——让 AI 直接参与生产、决策和干活。2026 年政府工作报告首次提出\"打造智能经济新形态\"。人民网\"2026 数智热词\"。",
+   "analogy": "像从\"家家通电\"到\"家家有电器\"——数字化只是通了电，智能化才是电器真的开始干活。",
+   "scene": "新闻里\"智能经济规模\"\"AI 对 GDP 的贡献\"这类说法；地方政府的 AI 产业规划。",
+   "mistake": "不等于\"AI 行业的经济\"——它说的是 AI 渗透进各行各业之后，整个经济形态的变化，不只是卖 AI 的那批公司。",
+   "confuse": "和\"数字经济\"——数字经济是把信息变成比特，智能经济是让机器自己处理这些比特并做决定。",
+   "practice": "",
+   "adv": false,
+   "related": [
+    "one-person-company",
+    "ai-inclusion",
+    "data-flywheel",
+    "agent"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "data-element",
+   "title": "数据要素",
+   "en": "Data Element（Data as a Factor of Production）",
+   "zh": "数据要素",
+   "alias": "数据资源、数据作为生产要素",
+   "layer": "生态与前沿",
+   "def": "把\"数据\"和土地、劳动力、资本、技术并列，当成一种能参与生产、能定价、能交易的生产要素。这个说法的意义在于：数据不再只是\"用剩的副产品\"，而是能被确权、能进交易所买卖、能算进资产的东西。国家数据局把 2026 年定为\"数据要素价值释放年\"。人民网\"2026 数智热词\"。",
+   "analogy": "以前数据像\"工厂排出的废水\"，现在被当成\"矿\"——同样一堆东西，换个看法就值钱了。",
+   "scene": "数据交易所挂牌、企业把数据资产入表、政府谈\"数据要素市场化\"。",
+   "mistake": "不是\"数据越多越值钱\"——没有清洗、确权、能找到买家的数据，堆再多也是硬盘占用。",
+   "confuse": "和\"数据集\"——数据集是训练用的那一份具体材料，数据要素是站在经济学角度说\"数据本身是资源\"。",
+   "practice": "",
+   "adv": false,
+   "related": [
+    "data-flywheel",
+    "data-governance",
+    "dataset",
+    "ai-copyright"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "data-governance",
+   "title": "数据治理",
+   "en": "Data Governance",
+   "zh": "数据治理",
+   "alias": "数据管理、数据合规",
+   "layer": "生态与前沿",
+   "def": "给数据定规矩——谁的、能不能用、能用到什么程度、出了问题谁负责。AI 时代它变得格外重要：训练数据从哪来、有没有授权、会不会泄露个人信息、被投毒了怎么办，全都归它管。2026 年 3 月，世界数据组织在北京成立，就是要把这件事推到国际层面。人民网\"2026 数智热词\"。",
+   "analogy": "像小区的物业管理——不是不让你住，而是规定车停哪、垃圾怎么扔、出事找谁。",
+   "scene": "AI 公司被问\"你的训练数据哪来的\"；App 隐私政策；跨境数据传输的合规审查。",
+   "mistake": "不等于\"把数据锁起来\"——治理是让数据能合规地用起来，锁死反而失去了价值。",
+   "confuse": "和\"数据安全\"——安全是防泄露（技术手段），治理是定规则（制度 + 技术 + 责任）。",
+   "practice": "",
+   "adv": false,
+   "related": [
+    "data-element",
+    "ai-content-label",
+    "data-poisoning",
+    "ai-copyright"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "opaque-recurrence",
+   "title": "不透明递归",
+   "en": "Opaque Recurrence（Recurrent Depth）",
+   "zh": "不透明递归",
+   "alias": "递归深度、神经语（Neuralese）、隐式推理",
+   "layer": "模型本体",
+   "def": "2026 年 9 月最热的新词，由 OpenAI 的 GPT-6 Astra 带火。以前的推理模型是\"把思考过程写出来给你看\"（就是思维链）；不透明递归反过来——模型不再用人话一步步写，而是把同一个问题\"反复送进内部的层里过好几遍\"，答案就出来了。好处是更省算力、小模型也能跑出高水平；坏处是\"它怎么想的，人看不见了\"。业内也叫它\"递归深度\"；模型内部那套人读不懂的表征，被称为\"神经语\"。",
+   "analogy": "以前是学生把解题步骤写在草稿纸上给你检查；现在是他盯着题默想几分钟直接报答案——答对了你也不知道他怎么算的。",
+   "scene": "GPT-6 Astra 这类新模型的\"深度思考\"；AI 安全研究者讨论\"看不见的推理怎么监管\"。",
+   "mistake": "不等于\"模型不会推理了\"——它照样在推理，只是不再用人类语言把过程输出出来。",
+   "confuse": "和\"思维链\"——思维链是把推理写成人话给你看，不透明递归是把推理藏进内部层不给你看，两者恰好相反。",
+   "practice": "",
+   "adv": true,
+   "related": [
+    "chain-of-thought",
+    "explainability",
+    "reasoning-model",
+    "alignment"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "ramageddon",
+   "title": "内存荒",
+   "en": "RAMageddon",
+   "zh": "内存荒",
+   "alias": "内存危机、AI 抢内存",
+   "layer": "地基",
+   "def": "RAM 和\"末日（Armageddon）\"拼出来的新词，指 AI 数据中心疯狂采购内存，把全球内存产能吃掉，导致内存涨价、缺货——最后传导到普通人身上：买电脑、买手机、装机都变贵了。它是\"算力需求外溢到硬件市场\"的直接后果。",
+   "analogy": "像全城突然都在抢同一种建材，装修队把你的料都买走了，你自己盖房子只能加价等货。",
+   "scene": "2026 年装机/买笔记本时发现内存条价格翻倍；新闻里\"AI 挤占消费级内存产能\"。",
+   "mistake": "不等于\"你的电脑内存不够用\"——那是单台设备跑不动，内存荒是全行业抢货导致的价格与供应问题。",
+   "confuse": "和\"显存不足\"——显存不足是本地跑模型跑不起来，内存荒是市场层面买不到、买不起。",
+   "practice": "",
+   "adv": false,
+   "related": [
+    "gpu",
+    "compute",
+    "local-deployment"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "diffusion-model",
+   "title": "扩散模型",
+   "en": "Diffusion Model",
+   "zh": "扩散模型",
+   "alias": "扩散生成模型、GAN（生成对抗网络）",
+   "layer": "应用层",
+   "def": "现在文生图、文生视频背后的主流技术。原理很像\"反向擦除\"：先往一张图上不断加噪点，直到变成一团纯噪声；再训练模型学会\"从纯噪声一步步把图擦回来\"。生成时给它一团随机噪声和一句提示词，它就能擦出一张新图。它的前辈是 GAN（生成对抗网络）——让\"生成器\"造假、\"判别器\"鉴假，两者互相较劲越练越强；GAN 出图快但容易画崩、训练也不稳，扩散模型出图慢一些但质量高得多，所以后来居上。",
+   "analogy": "GAN 像\"造假币的和验钞的互相斗法\"；扩散模型像\"把照片揉成纸浆，再练出一手从纸浆复原照片的绝活\"。",
+   "scene": "所有文生图/文生视频工具（Midjourney、即梦、可灵等）的底层；\"AI 画的图为什么有六根手指\"也常和它有关。",
+   "mistake": "",
+   "confuse": "和\"文生图\"——文生图是你要的那个功能，扩散模型是这个功能底下的实现方法（同样的功能也能用 GAN 或别的方法做）。",
+   "practice": "",
+   "adv": true,
+   "related": [
+    "text-to-image",
+    "text-to-video",
+    "generative-ai"
+   ],
+   "updated": "2026-09-13"
+  },
+  {
+   "id": "coding-agent",
+   "title": "编程智能体",
+   "en": "Coding Agent",
+   "zh": "编程智能体",
+   "alias": "代码智能体、AI 编程助手",
+   "layer": "应用层",
+   "def": "能自己写代码、跑测试、看报错、再改代码的 AI 智能体——不是只给你补全下一行，而是你丢给它一个任务（\"把这个 bug 修了\"\"加个登录功能\"），它自己翻文件、改文件、跑起来验证，来回迭代到能跑通。它是 Agent 里目前最有存在感的品类，但\"改完的代码仍然需要人来审\"。代表产品：Claude Code、Cursor、Codex 这类。",
+   "analogy": "Copilot 像坐在旁边的实习生，你打字它递词；编程智能体像接了活的包工头——你说要什么，它自己上门量尺寸、买料、施工，最后你验收。",
+   "scene": "让它修 bug、写单元测试、重构一个模块；「氛围编程」就是在说这种用法。",
+   "mistake": "不是\"可以不管了\"——它能跑通测试不代表逻辑对，看不懂的代码合进去，出问题还是你负责。",
+   "confuse": "和\"Copilot\"——Copilot 是你写它帮（给建议、做补全），编程智能体是把任务交给它、它自己动手改。",
+   "practice": "",
+   "adv": true,
+   "related": [
+    "agent",
+    "copilot",
+    "spec-coding",
+    "tool-calling"
+   ],
+   "updated": "2026-09-13"
   }
  ]
 }

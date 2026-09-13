@@ -103,6 +103,14 @@ ID_MAP = {
     # ---- 第九批新增（2 词）----
     '模型蒸馏（Distillation）': 'distillation',
     '合成数据（Synthetic Data）': 'synthetic-data',
+    # ---- 第十八批新增（7 词）----
+    '智能经济': 'intelligent-economy',
+    '数据要素': 'data-element',
+    '数据治理': 'data-governance',
+    '不透明递归': 'opaque-recurrence',
+    '内存荒': 'ramageddon',
+    '扩散模型': 'diffusion-model',
+    '编程智能体': 'coding-agent',
 }
 
 # ---- 层级归一化与展示 ----
@@ -137,8 +145,8 @@ RELATED = {
     'weight': ['parameter', 'neural-network'],
     'dataset': ['training', 'pretraining', 'fine-tuning'],
     'algorithm': ['machine-learning', 'compute'],
-    'compute': ['gpu', 'training', 'local-deployment'],
-    'gpu': ['compute', 'training', 'local-deployment'],
+    'compute': ['gpu', 'training', 'local-deployment', 'ramageddon'],
+    'gpu': ['compute', 'training', 'local-deployment', 'ramageddon'],
     'llm': ['token', 'transformer', 'context-window', 'generative-ai'],
     'generative-ai': ['llm', 'text-to-image', 'text-to-video', 'multimodal'],
     'nlp': ['llm', 'transformer'],
@@ -161,13 +169,13 @@ RELATED = {
     'hallucination': ['rag', 'alignment', 'prompt'],
     'chatbot': ['llm', 'ai-assistant', 'nlp'],
     'ai-assistant': ['chatbot', 'agent', 'tool-calling'],
-    'copilot': ['ai-assistant', 'llm'],
-    'text-to-image': ['generative-ai', 'text-to-video'],
-    'text-to-video': ['text-to-image', 'world-model'],
+    'copilot': ['ai-assistant', 'llm', 'coding-agent'],
+    'text-to-image': ['generative-ai', 'text-to-video', 'diffusion-model'],
+    'text-to-video': ['text-to-image', 'world-model', 'diffusion-model'],
     'speech-recognition': ['speech-synthesis', 'digital-human'],
     'speech-synthesis': ['speech-recognition', 'digital-human'],
     'digital-human': ['speech-synthesis', 'speech-recognition', 'llm'],
-    'agent': ['tool-calling', 'memory', 'multi-agent', 'ai-assistant'],
+    'agent': ['tool-calling', 'memory', 'multi-agent', 'ai-assistant', 'coding-agent'],
     'workflow': ['agent', 'tool-calling', 'prompt-engineering'],
     'tool-calling': ['agent', 'api'],
     'memory': ['vector-database', 'context-window', 'agent'],
@@ -177,20 +185,20 @@ RELATED = {
     'local-deployment': ['open-source-model', 'gpu', 'compute'],
     'model-evaluation': ['llm', 'open-source-model'],
     'alignment': ['rlhf', 'hallucination', 'agi'],
-    'explainability': ['alignment', 'agi'],
+    'explainability': ['alignment', 'agi', 'opaque-recurrence'],
     'agi': ['ai', 'world-model', 'alignment', 'embodied-ai'],
     'embodied-ai': ['world-model', 'agi', 'multimodal'],
     'world-model': ['agi', 'embodied-ai', 'text-to-video'],
     'jailbreak': ['prompt', 'alignment'],
     # ---- 第六批新增（21 词）----
-    'reasoning-model': ['llm', 'chain-of-thought', 'rlhf'],
+    'reasoning-model': ['llm', 'chain-of-thought', 'rlhf', 'opaque-recurrence'],
     'web-search': ['llm', 'rag', 'ai-search'],
     'ai-search': ['semantic-search', 'web-search', 'llm'],
     'rate-limit': ['api', 'token', 'prompt-caching'],
     'computer-use': ['agent', 'tool-calling', 'multimodal'],
-    'ai-content-label': ['alignment', 'model-evaluation'],
+    'ai-content-label': ['alignment', 'model-evaluation', 'data-governance'],
     'mcp': ['agent', 'tool-calling', 'api'],
-    'chain-of-thought': ['reasoning-model', 'prompt', 'transformer'],
+    'chain-of-thought': ['reasoning-model', 'prompt', 'transformer', 'opaque-recurrence'],
     'react': ['agent', 'tool-calling', 'planning'],
     'planning': ['agent', 'react', 'multi-agent'],
     'reflection': ['agent', 'react', 'alignment'],
@@ -217,8 +225,8 @@ RELATED = {
     'guardrails': ['jailbreak', 'alignment', 'ai-content-label'],
     # ---- 第十二批新增（3 词）----
     'moe': ['llm', 'parameter', 'distillation'],
-    'data-flywheel': ['llm', 'synthetic-data', 'dataset'],
-    'spec-coding': ['prompt-engineering', 'structured-output', 'tool-calling'],
+    'data-flywheel': ['llm', 'synthetic-data', 'dataset', 'data-element'],
+    'spec-coding': ['prompt-engineering', 'structured-output', 'tool-calling', 'coding-agent'],
     # ---- 第十三批新增（5 词）----
     'recall': ['rag', 'rerank', 'semantic-search', 'model-evaluation'],
     'rerank': ['rag', 'recall', 'vector-database', 'semantic-search'],
@@ -229,7 +237,7 @@ RELATED = {
     'stochastic-parrot': ['llm', 'hallucination', 'agi'],
     'sycophancy': ['rlhf', 'alignment', 'hallucination'],
     'model-collapse': ['synthetic-data', 'data-flywheel', 'training'],
-    'data-poisoning': ['jailbreak', 'dataset', 'guardrails', 'alignment'],
+    'data-poisoning': ['jailbreak', 'dataset', 'guardrails', 'alignment', 'data-governance'],
     'ai-washing': ['generative-ai', 'ai-slop'],
     'ghost-work': ['dataset', 'ai-slop', 'training'],
     'eliza-effect': ['chatbot', 'agi', 'hallucination'],
@@ -238,13 +246,21 @@ RELATED = {
     'automation-complacency': ['hallucination', 'alignment', 'ai-assistant'],
     'pink-slime': ['ai-slop', 'generative-ai', 'ai-content-label'],
     # ---- 第十七批新增（4 词）----
-    'ai-inclusion': ['generative-ai', 'one-person-company', 'llm'],
-    'one-person-company': ['agent', 'ai-assistant', 'ai-inclusion', 'generative-ai'],
+    'ai-inclusion': ['generative-ai', 'one-person-company', 'llm', 'intelligent-economy'],
+    'one-person-company': ['agent', 'ai-assistant', 'ai-inclusion', 'generative-ai', 'intelligent-economy'],
     'loop': ['agent', 'react', 'planning', 'reflection'],
     'harness': ['agent', 'tool-calling', 'guardrails', 'mcp'],
     # ---- 第九批新增（2 词）----
     'distillation': ['fine-tuning', 'slm', 'quantization', 'llm'],
     'synthetic-data': ['training', 'dataset', 'fine-tuning'],
+    # ---- 第十八批新增（7 词）----
+    'intelligent-economy': ['one-person-company', 'ai-inclusion', 'data-flywheel', 'agent'],
+    'data-element': ['data-flywheel', 'data-governance', 'dataset', 'ai-copyright'],
+    'data-governance': ['data-element', 'ai-content-label', 'data-poisoning', 'ai-copyright'],
+    'opaque-recurrence': ['chain-of-thought', 'explainability', 'reasoning-model', 'alignment'],
+    'ramageddon': ['gpu', 'compute', 'local-deployment'],
+    'diffusion-model': ['text-to-image', 'text-to-video', 'generative-ai'],
+    'coding-agent': ['agent', 'copilot', 'spec-coding', 'tool-calling'],
 }
 
 # ---- 进阶标注（面向开发者，页面显示"进阶"徽标；与用户确认的原型一致）----
@@ -257,19 +273,21 @@ ADV = {
     'stochastic-parrot', 'sycophancy', 'model-collapse', 'data-poisoning',
     'eliza-effect', 'deskilling', 'automation-complacency',
     'loop', 'harness',
+    # ---- 第十八批（3 个进阶词）----
+    'opaque-recurrence', 'diffusion-model', 'coding-agent',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
 SECTIONS = {
     '地基': [
         ('学习与方法', ['machine-learning', 'deep-learning', 'neural-network', 'training', 'inference', 'algorithm', 'dataset']),
-        ('模型内部与资源', ['parameter', 'weight', 'compute', 'gpu']),
+        ('模型内部与资源', ['parameter', 'weight', 'compute', 'gpu', 'ramageddon']),
     ],
     '模型本体': [
         ('大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
 
         ('训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data', 'model-collapse']),
-        ('内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot']),
+        ('内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot', 'opaque-recurrence']),
     ],
     '交互层': [
         ('提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
@@ -277,8 +295,8 @@ SECTIONS = {
         ('提示技巧', ['few-shot']),
     ],
     '应用层': [
-        ('Agent 智能体', ['agent', 'harness', 'loop', 'tool-calling', 'memory', 'multi-agent', 'workflow', 'react', 'planning', 'reflection', 'skill', 'computer-use', 'one-person-company']),
-        ('内容生成', ['text-to-image', 'text-to-video', 'deepfake']),
+        ('Agent 智能体', ['agent', 'harness', 'loop', 'tool-calling', 'memory', 'multi-agent', 'workflow', 'react', 'planning', 'reflection', 'skill', 'computer-use', 'one-person-company', 'coding-agent']),
+        ('内容生成', ['text-to-image', 'text-to-video', 'deepfake', 'diffusion-model']),
         ('语音与形象', ['speech-recognition', 'speech-synthesis', 'digital-human']),
         ('助手形态', ['chatbot', 'ai-assistant', 'copilot']),
         ('AI 应用开发', ['spec-coding']),
@@ -287,8 +305,8 @@ SECTIONS = {
         ('API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
         ('评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
         ('内容生态现象', ['ai-washing', 'ghost-work', 'dead-internet', 'pink-slime']),
-        ('未来方向', ['agi', 'asi', 'embodied-ai', 'world-model', 'ai-inclusion']),
-        ('数据与飞轮', ['data-flywheel']),
+        ('未来方向', ['agi', 'asi', 'embodied-ai', 'world-model', 'ai-inclusion', 'intelligent-economy']),
+        ('数据与飞轮', ['data-flywheel', 'data-element', 'data-governance']),
     ],
 }
 
