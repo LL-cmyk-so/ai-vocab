@@ -78,7 +78,8 @@ def patch_js(src: str) -> str:
         out = new
 
     # 1) VIEWS 数组里的 pitsView
-    new, n = re.subn(r"'entryView', 'pitsView'\]", "'entryView']", out)
+    #    用 ", 'pitsView'" 匹配，不写死它后面还有没有别的视图（VIEWS 会长）
+    new, n = re.subn(r", 'pitsView'", "", out, count=1)
     assert n == 1, "script.js: 未命中 VIEWS 里的 pitsView"
     out = new
     # 2) 路由的 pits 分支
@@ -89,10 +90,12 @@ def patch_js(src: str) -> str:
         "renderPits 与 pitsBtn 监听",
         flags=re.S,
     )
-    # 4) serviceWorker 注册（小红书包无 sw.js）
+    # 4) serviceWorker 注册整段（小红书包无 sw.js）
+    #    这段现在先算 isLocalPreview 再分支，所以从注释头一直吃到文件末尾那个顶格的 }
     cut(
-        r"if \('serviceWorker' in navigator\) \{\n(?:.*\n)*?\}\n",
-        "serviceWorker 注册",
+        r"/\* -+ PWA：注册 Service Worker.*?\n\}\n",
+        "serviceWorker 注册（含本地预览判断）",
+        flags=re.S,
     )
     assert "pits" not in out.lower(), "script.js: 仍残留 pits 相关代码"
     assert "serviceWorker" not in out, "script.js: 仍残留 serviceWorker"
