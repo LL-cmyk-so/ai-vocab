@@ -352,10 +352,36 @@ PATH_NOTE = [
     '终点站：AI 要去哪',
 ]
 
-# ---- 热门词（首页快捷入口，6 个）----
-HOT = ['agent', 'token', 'rag', 'hallucination', 'agi', 'multimodal']
+# ---- 收录历程（手写常量：[批次标题, 该批首次收录的词 id]）----
+# 数据来源 = drafts/batch-*.md 里各词条的首次出现（2026-09-23 一次性抽取后固化）。
+# 故意不写日期：updated 只有两个日期（历史日期曾被旧构建逻辑刷掉），
+# 批次顺序本身就是时间线，编造日期不如不写。
+HISTORY = [
+    ('第一批：第 0 词 + 地基层（13 条）', ['ai', 'turing-test', 'machine-learning', 'deep-learning', 'neural-network', 'training', 'inference', 'parameter', 'weight', 'dataset', 'algorithm', 'compute', 'gpu']),
+    ('第二批：模型本体层（11 条）', ['llm', 'generative-ai', 'nlp', 'transformer', 'attention', 'token', 'context-window', 'pretraining', 'fine-tuning', 'rlhf', 'multimodal']),
+    ('第三批：交互层（9 条）', ['prompt', 'prompt-engineering', 'embedding', 'vector', 'vector-database', 'semantic-search', 'rag', 'knowledge-base', 'hallucination']),
+    ('第四批：应用层（13 条）', ['chatbot', 'ai-assistant', 'copilot', 'text-to-image', 'text-to-video', 'speech-recognition', 'speech-synthesis', 'digital-human', 'agent', 'workflow', 'tool-calling', 'memory', 'multi-agent']),
+    ('第五批：生态与前沿（10 条）', ['api', 'open-source-model', 'local-deployment', 'model-evaluation', 'alignment', 'explainability', 'agi', 'embodied-ai', 'world-model', 'jailbreak']),
+    ('第六批：新增词汇（21 词）', ['reasoning-model', 'web-search', 'ai-search', 'rate-limit', 'computer-use', 'ai-content-label', 'mcp', 'chain-of-thought', 'react', 'planning', 'reflection', 'skill', 'structured-output', 'streaming', 'temperature', 'system-prompt', 'chunking', 'full-text-search', 'prompt-caching', 'quantization', 'mmlu']),
+    ('第七批：V1.1 首批 24 词（类比 + 场景 + 误区 + 混淆）', []),
+    ('第八批：新增 7 词（AIGC / Deepfake / AI 版权 / CV / SLM / ASI / AI-Slop）', ['aigc', 'deepfake', 'ai-copyright', 'cv', 'slm', 'asi', 'ai-slop']),
+    ('第九批：新增 2 词（模型蒸馏 / 合成数据）', ['distillation', 'synthetic-data']),
+    ('第十批：V1.1 补全 A 档（6 词 · 4 字段）', []),
+    ('第十一批：新增 2 词（手搓感 / guardrails 护栏）', ['hand-rolling', 'guardrails']),
+    ('第十二批：新增 3 词（MoE / 数据飞轮 / Spec Coding）', ['moe', 'data-flywheel', 'spec-coding']),
+    ('第十三批：新增 5 词（召回 / 重排序 / 小样本零样本 / VLM / AI 偏见）', ['recall', 'rerank', 'few-shot', 'vlm', 'bias']),
+    ('第十四批：新增 11 词（随机鹦鹉 / AI谄媚 / 模型崩溃 / 数据投毒 / AI洗白 / 幽灵工作 / ELIZA效应 / 死亡互联网 / 去技能化 / 自动化自满 / 粉红肉渣）', ['stochastic-parrot', 'sycophancy', 'model-collapse', 'data-poisoning', 'ai-washing', 'ghost-work', 'eliza-effect', 'dead-internet', 'deskilling', 'automation-complacency', 'pink-slime']),
+    ('第十五批：P1「练习」样例（3 词）', []),
+    ('第十六批：P1「练习」高频词补全（17 词）', []),
+    ('第十七批：新增 4 词（AI 普惠 / 一人公司 / Loop / Harness）', ['ai-inclusion', 'one-person-company', 'loop', 'harness']),
+    ('第十八批：新增 7 词（智能经济 / 数据要素 / 数据治理 / 不透明递归 / 内存荒 / 扩散模型 / 编程智能体）', ['intelligent-economy', 'data-element', 'data-governance', 'opaque-recurrence', 'ramageddon', 'diffusion-model', 'coding-agent']),
+    ('第二十批：高频 20 词结构升级（标准定义 + 辨析 + 问答）', []),
+]
 
-FIELD_KEYS = {'英文名': 'en', '中文名': 'zh', '别名': 'alias', '层级': 'layer', '白话解释': 'def', '进阶': 'adv_raw', '类比': 'analogy', '场景': 'scene', '误区': 'mistake', '混淆': 'confuse', '练习': 'practice'}
+FIELD_KEYS = {'英文名': 'en', '中文名': 'zh', '别名': 'alias', '层级': 'layer', '白话解释': 'def', '进阶': 'adv_raw', '类比': 'analogy', '场景': 'scene', '误区': 'mistake', '混淆': 'confuse', '练习': 'practice', '标准定义': 'formal'}
+
+# 对照型字段：同名可重复出现，每行用全角 ｜ 切成两半 → 辨析: vs[{name,text}] / 问答: faq[{q,a}]
+PAIR_FIELDS = {'辨析': 'vs', '问答': 'faq'}
 
 def parse_batch(path):
     items = []
@@ -373,6 +399,14 @@ def parse_batch(path):
         fm = re.match(r'^-\s*\*\*(.+?)\*\*：\s*(.*)$', line)
         if fm:
             key, val = fm.group(1).strip(), fm.group(2).strip()
+            pk = PAIR_FIELDS.get(key)
+            if pk:
+                k1, k2 = ('name', 'text') if pk == 'vs' else ('q', 'a')
+                left, _, right = val.partition('｜')
+                if not right:
+                    print(f'WARN: {key} 缺 ｜ 分隔:', val[:30], file=sys.stderr)
+                cur.setdefault(pk, []).append({k1: left.strip(), k2: right.strip()})
+                continue
             fk = FIELD_KEYS.get(key)
             if fk:
                 cur[fk] = val
@@ -383,8 +417,22 @@ def parse_batch(path):
 def clean_alias(s):
     return '' if s in ('无', '') else s
 
+def load_prev():
+    """读上一次构建的 words.json，用来判断"内容没变就别刷 updated 日期"。
+    旧实现是无条件 str(date.today())：每次构建都把全部词条刷成今天，
+    既让"更新于"失去意义，也让按日期做更新日志变得不可能。"""
+    if not os.path.exists(OUT):
+        return {}
+    try:
+        with open(OUT, encoding='utf-8') as f:
+            return {w['id']: w for w in json.load(f).get('words', [])}
+    except Exception:
+        return {}
+
+
 def main():
     words, seen = {}, set()
+    prev = load_prev()
     for fname in sorted(os.listdir(DRAFTS)):
         if not fname.startswith('batch-') or not fname.endswith('.md'):
             continue
@@ -397,13 +445,13 @@ def main():
             if wid in seen:
                 # 合并更新模式：后批次补充 analogy/scene/mistake/confuse/practice 等字段
                 w = words[wid]
-                for f in ('analogy', 'scene', 'mistake', 'confuse', 'practice'):
+                for f in ('analogy', 'scene', 'mistake', 'confuse', 'practice', 'formal', 'vs', 'faq'):
                     if it.get(f):
                         w[f] = it[f]
                 continue
             seen.add(wid)
             adv_raw = it.get('adv_raw', '否')
-            words[wid] = {
+            entry = {
                 'id': wid,
                 'title': title,
                 'en': it.get('en', ''),
@@ -418,13 +466,45 @@ def main():
                 'practice': it.get('practice', ''),
                 'adv': (adv_raw == '是') or (wid in ADV),
                 'related': RELATED.get(wid, []),
-                'updated': str(date.today()),
+                'updated': None,
             }
+            # 可选字段：只有词条里写了才输出，未写的词 JSON 里不出现这些键
+            for f in ('formal', 'vs', 'faq'):
+                if it.get(f):
+                    entry[f] = it[f]
+            # updated 统一在**所有批次处理完之后**再定（见下面 words_list 之后）：
+            # 同一词条可能在多个批次里被合并覆盖，创建时取到的只是中间态
+            words[wid] = entry
     words_list = list(words.values())
+
+    # updated：内容真的变了才刷新（除 updated 外逐字段完全相等 = 没变，保留原日期）。
+    # 必须放在全部批次合并完成之后——词条可能在多个批次里被覆盖，
+    # 拿创建时的中间态去比会把"没变"误判成"变了"（2026-09-23 修）。
+    for w in words_list:
+        old = prev.get(w['id'])
+        prev_base = {k: v for k, v in old.items() if k != 'updated'} if old else None
+        cur_base = {k: v for k, v in w.items() if k != 'updated'}
+        w['updated'] = old['updated'] if (prev_base is not None and prev_base == cur_base) else str(date.today())
 
     missing = set(ID_MAP) - {w['title'] for w in words_list}
     for t in missing:
         print('WARN: 词条缺失:', t, file=sys.stderr)
+
+    # 辨析条目的名称反查词条 id：匹配得上就带 ref（页面可点击跳转），匹配不上保持纯文本
+    name_to_id = {}
+    for w in words_list:
+        cands = [w['title'], w['zh'], w['en']]
+        cands += [re.sub(r'（.*?）|\(.*?\)', '', c).strip() for c in list(cands)]
+        if w['alias']:
+            cands += [a.strip() for a in re.split(r'[、,，]', w['alias'])]
+        for c in cands:
+            if c:
+                name_to_id.setdefault(c, w['id'])
+    for w in words_list:
+        for v in w.get('vs', []):
+            ref = name_to_id.get(v['name']) or name_to_id.get(re.sub(r'（.*?）|\(.*?\)', '', v['name']).strip())
+            if ref and ref != w['id']:
+                v['ref'] = ref
 
     data = {
         'title': 'AI 词汇本',
@@ -438,7 +518,7 @@ def main():
             {'ids': step, 'note': note}
             for step, note in zip(PATH, PATH_NOTE)
         ],
-        'hot': HOT,
+        'history': [{'title': t, 'ids': ids} for t, ids in HISTORY],
         'words': words_list,
     }
 

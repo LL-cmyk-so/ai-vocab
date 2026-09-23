@@ -44,13 +44,15 @@
 
 <div class="container">
 
-  <!-- 搜索面板（点 🔍 在当前页展开，不跳转） -->
-  <div class="search-drop" id="searchDrop" hidden>
-    <div class="search-bar">
-      <input id="searchInput" placeholder="搜索词条…" autocomplete="off">
-      <button id="searchClose" class="search-close" aria-label="关闭搜索">✕</button>
+  <!-- 搜索（全屏覆盖层：点 🔍 铺开，✕ / Esc / 点背景关闭；不离开当前页） -->
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-panel">
+      <div class="search-bar">
+        <input id="searchInput" placeholder="搜词条、别名、英文名…" autocomplete="off">
+        <button id="searchClose" class="search-close" aria-label="关闭搜索">✕</button>
+      </div>
+      <div id="searchDropResults" class="search-results" hidden></div>
     </div>
-    <div id="searchDropResults" class="search-results" hidden></div>
   </div>
 
   <!-- ========== 首页：上手 hero + 折叠目录树 ========== -->
@@ -71,8 +73,9 @@
       </details>
       <div class="sec-h">六大主题纵览</div>
       <div class="tree" id="tree"></div>
-      <div class="hot-line" id="hotLine"></div>
     </div>
+    <!-- 分栏时左栏内容超出一屏：底部渐变 + 下滑三角（显隐由 updateScrollHint 控制） -->
+    <div class="scroll-hint" id="scrollHint" aria-hidden="true"></div>
   </section>
 
   <!-- ========== 学习模式（18 步，独立流程） ========== -->
@@ -100,6 +103,15 @@
     </div>
   </section>
 
+  <!-- ========== 收录历程（按批次的时间线） ========== -->
+  <section id="historyView" hidden>
+    <div class="card">
+      <div class="card-title">收录历程</div>
+      <div class="muted small" id="historySummary"></div>
+      <div id="historyList"></div>
+    </div>
+  </section>
+
   <!-- ========== 词条详情（纯词条页） ========== -->
   <section id="entryView" hidden>
     <div id="entryContent"></div>
@@ -119,6 +131,8 @@
 <footer class="site-footer">
   <div class="container muted small">
     <a href="#" id="installLink" class="install-link">添加到桌面，像 App 一样用</a>
+    <span class="footer-sep">·</span>
+    <a href="#history" class="install-link">收录历程</a>
     <span class="footer-sep">·</span>
     <a href="#" id="feedbackLink" class="install-link">反馈 & 纠错</a><br>
     <span class="footer-copy">AI 词汇本 · 给好奇者的零基础 AI 术语词典 · 持续收录中</span>

@@ -29,7 +29,6 @@ function byId(id) {
 function renderStatic() {
   renderTree();
   renderPathList();
-  renderHotLine();
 }
 
 /* 折叠目录树 */
@@ -108,28 +107,14 @@ function renderPathList() {
   });
 }
 
-/* 热门一行 */
-function renderHotLine() {
-  const line = $('#hotLine');
-  line.innerHTML = '热门：';
-  state.data.hot.forEach((id, i) => {
-    const w = byId(id);
-    if (!w) return;
-    const a = document.createElement('a');
-    a.href = '#';
-    a.textContent = w.title;
-    a.addEventListener('click', (e) => { e.preventDefault(); openEntry(w.id); });
-    line.appendChild(a);
-    if (i < state.data.hot.length - 1) line.appendChild(document.createTextNode(' · '));
-  });
-}
-
 /* ---------- 视图路由 ---------- */
-const VIEWS = ['homeView', 'learnView', 'pathView', 'entryView', 'pitsView'];
+const VIEWS = ['homeView', 'learnView', 'pathView', 'entryView', 'pitsView', 'historyView'];
 
 function showView(name) {
   VIEWS.forEach((v) => {
-    $('#' + v).hidden = (v !== name);
+    const el = $('#' + v);
+    /* 保护：HTML 与 script.js 版本不一致时（缓存里的旧页面 + 新脚本）不能整页崩，缺的视图跳过 */
+    if (el) el.hidden = (v !== name);
   });
   /* 副标题只在首页显示（配合 .site-header CSS 规则） */
   document.body.classList.toggle('view-home', name === 'homeView');
@@ -151,6 +136,10 @@ function route() {
     }
   } else if (h && byId(h)) {
     enterSplit(h);
+  } else if (h === 'history') {
+    clearSplit();
+    renderHistory();
+    showView('historyView');
   } else if (h === 'pits') {
     clearSplit();
     renderPits();
@@ -198,6 +187,7 @@ function enterSplit(id) {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => ev.classList.add('anim-ready'));
   });
+  setTimeout(updateScrollHint, 260);   // 分栏过渡结束后重算左栏下滑提示
 }
 
 /* 即时关闭分栏（内部路径：路由跳转 / 🏠 按钮 / 搜索——不播动画，避免与视图切换时序冲突） */
@@ -208,6 +198,7 @@ function clearSplit() {
   ev.classList.remove('anim-ready', 'closing');
   document.querySelector('.container').classList.remove('split');
   ev.hidden = true;
+  setTimeout(updateScrollHint, 260);   // 退出分栏后左栏变宽，重算提示
 }
 
 /* ✕ 按钮关闭：词条淡出（180ms）与目录展开（220ms）并行，消除等待空隙 */
@@ -237,6 +228,24 @@ function closeEntry() {
 /* 窗口宽度变化（桌面↔手机）时重新路由，切换分栏/全屏 */
 window.addEventListener('resize', route);
 
+/* ---------- 分栏时左栏的下滑提示（内容超出一屏、且还没滚到底时才显示） ---------- */
+function updateScrollHint() {
+  const box = $('#homeMain');
+  const hint = $('#scrollHint');
+  if (!box || !hint) return;
+  const split = document.querySelector('.container').classList.contains('split');
+  const more = box.scrollHeight - box.scrollTop - box.clientHeight > 24;   // 还剩 24px 以上没滚到
+  hint.classList.toggle('show', split && more);
+}
+if ($('#homeMain')) {
+  $('#homeMain').addEventListener('scroll', updateScrollHint);
+  window.addEventListener('resize', updateScrollHint);
+  /* 目录展开/折叠会改变内容高度，这里也要跟着重算 */
+  if (window.ResizeObserver && $('#tree')) {
+    new ResizeObserver(updateScrollHint).observe($('#tree'));
+  }
+}
+
 /* ---------- 回首页（header 常驻 🏠） ---------- */
 function goHome() {
   location.hash = '';
@@ -245,25 +254,40 @@ function goHome() {
 }
 $('#homeBtn').addEventListener('click', goHome);
 
-/* ---------- 搜索面板（点 🔍 在当前页展开，不跳转、不改变当前页面） ---------- */
+/* ---------- 搜索：全屏覆盖层（点 🔍 铺开；✕ / Esc / 点背景关闭；不离开当前页） ---------- */
+function searchOverlay() {
+  return $('#searchOverlay') || $('#searchView');   // 兼容缓存里的旧页面
+}
+
 function openSearch() {
-  $('#searchDrop').hidden = false;
-  $('#searchInput').value = state.query;
-  $('#searchInput').focus();
+  const ov = searchOverlay();
+  /* 旧页面（缓存里的 HTML）+ 新脚本时覆盖层不存在：提示刷新，而不是静默失败 */
+  if (!ov) {
+    $('#homeView').innerHTML = '<div class="card">页面已更新，请刷新一次再用搜索（Mac：⌘⇧R）。</div>';
+    return;
+  }
+  ov.hidden = false;
+  ov.classList.add('open');
+  const si = $('#searchInput');
+  if (si) { si.value = state.query; si.focus(); }
   runSearch();
 }
 
 function closeSearch() {
-  $('#searchDrop').hidden = true;
-  state.query = '';
-  $('#searchInput').value = '';
+  const ov = searchOverlay();
+  if (ov) ov.classList.remove('open');
 }
 
 $('#searchToggle').addEventListener('click', () => {
-  if ($('#searchDrop').hidden) openSearch();
-  else closeSearch();
+  const ov = searchOverlay();
+  if (ov && ov.classList.contains('open')) closeSearch();
+  else openSearch();
 });
 $('#searchClose').addEventListener('click', closeSearch);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
+if (searchOverlay()) {
+  searchOverlay().addEventListener('click', (e) => { if (e.target === searchOverlay()) closeSearch(); });
+}
 
 $('#searchInput').addEventListener('input', (e) => {
   state.query = e.target.value.trim().toLowerCase();
@@ -272,6 +296,7 @@ $('#searchInput').addEventListener('input', (e) => {
 
 function runSearch() {
   const results = $('#searchDropResults');
+  if (!results) return;
   if (!state.query) {
     results.hidden = true;
     results.innerHTML = '';
@@ -280,7 +305,7 @@ function runSearch() {
   results.hidden = false;
 
   const hits = state.data.words.filter((w) =>
-    [w.title, w.en, w.zh, w.alias, w.def]
+    [w.title, w.en, w.zh, w.alias, w.def, w.formal]
       .filter(Boolean)
       .some((t) => t.toLowerCase().includes(state.query))
   );
@@ -319,16 +344,18 @@ function wordContentHtml(w) {
   if (w.analogy) {
     analogyHtml =
       '<div class="entry-block analogy">' +
-      '<div class="block-title">💡 通俗类比</div>' +
+      '<div class="block-title">通俗类比</div>' +
       '<div class="block-body">' + escapeHtml(w.analogy) + '</div>' +
       '</div>';
   }
 
-  // 相关词（折叠区外，随时可点）
+  // 相关词（折叠区外，随时可点）——已在「和相近词的区别」里讲过的词不再重复出现
   let relatedHtml = '';
-  if (w.related && w.related.length) {
+  const vsIds = new Set((w.vs || []).map((v) => v.ref).filter(Boolean));
+  const restRelated = (w.related || []).filter((rid) => !vsIds.has(rid));
+  if (restRelated.length) {
     relatedHtml = '<div class="related-block"><div class="related-title">讲到这个词，你可能还想看：</div>';
-    w.related.forEach((rid) => {
+    restRelated.forEach((rid) => {
       const rw = byId(rid);
       if (rw) {
         relatedHtml += '<span class="related-chip" data-id="' + rw.id + '">' + escapeHtml(rw.title) + '</span>';
@@ -339,19 +366,39 @@ function wordContentHtml(w) {
 
   // 折叠区：场景 / 误区 / 混淆
   let tips = '';
-  if (w.scene) tips += '<div class="tip-item"><span class="tip-label">📍 现实哪里会见到：</span>' + escapeHtml(w.scene) + '</div>';
-  if (w.mistake) tips += '<div class="tip-item"><span class="tip-label">⚠️ 容易搞错的误区：</span>' + escapeHtml(w.mistake) + '</div>';
-  if (w.confuse) tips += '<div class="tip-item"><span class="tip-label">🔀 容易混淆：</span>' + escapeHtml(w.confuse) + '</div>';
+  if (w.scene) tips += '<div class="tip-item"><span class="tip-label">现实哪里会见到：</span>' + escapeHtml(w.scene) + '</div>';
+  if (w.mistake) tips += '<div class="tip-item"><span class="tip-label">容易搞错的误区：</span>' + escapeHtml(w.mistake) + '</div>';
+  // 有结构化「辨析」时用它替换单行「容易混淆」（避免两处说同一件事）；名称能匹配到词条的做成可点击
+  if (w.vs && w.vs.length) {
+    tips += '<div class="tip-item"><span class="tip-label">和相近词的区别：</span>' +
+      w.vs.map((v) => '<div class="vs-row">' +
+        (v.ref
+          ? '<span class="vs-link" data-id="' + escapeHtml(v.ref) + '">' + escapeHtml(v.name) + '</span>'
+          : '<b>' + escapeHtml(v.name) + '</b>') +
+        '　' + escapeHtml(v.text) + '</div>').join('') +
+      '</div>';
+  } else if (w.confuse) {
+    tips += '<div class="tip-item"><span class="tip-label">容易混淆：</span>' + escapeHtml(w.confuse) + '</div>';
+  }
   const tipsHtml = tips
-    ? '<details class="entry-tips" open><summary>💡 更多小提示</summary><div class="tips-body">' + tips + '</div></details>'
+    ? '<details class="entry-tips" open><summary>更多小提示</summary><div class="tips-body">' + tips + '</div></details>'
     : '';
+
+  // 试样：常见问答（小白最常问的 2 问；排在「试试看」之前，行动收尾仍在最后）
+  let faqHtml = '';
+  if (w.faq && w.faq.length) {
+    faqHtml =
+      '<details class="entry-faq"><summary>你可能还想知道</summary><div class="faq-body">' +
+      w.faq.map((f) => '<div class="faq-item"><div class="faq-q">' + escapeHtml(f.q) + '</div><div class="faq-a">' + escapeHtml(f.a) + '</div></div>').join('') +
+      '</div></details>';
+  }
 
   // P1：试试看（当场可做的练习）
   let practiceHtml = '';
   if (w.practice) {
     practiceHtml =
       '<div class="entry-practice">' +
-      '<div class="practice-title">🎯 试试看</div>' +
+      '<div class="practice-title">试试看</div>' +
       '<div class="practice-body">' + escapeHtml(w.practice) + '</div>' +
       '</div>';
   }
@@ -364,10 +411,13 @@ function wordContentHtml(w) {
     (meta.length ? '<div class="meta-line">' + meta.join('　') + '</div>' : '') +
     '<span class="layer-tag' + (w.adv ? ' adv' : '') + '">' + escapeHtml(w.layer) + '</span>' +
     (w.updated ? '<span class="entry-updated">更新于 ' + escapeHtml(w.updated) + '</span>' : '') +
-    '<div class="entry-def"><span class="block-title">📖 是什么</span><div class="block-body">' + escapeHtml(w.def) + '</div></div>' +
+    '<div class="entry-def"><span class="block-title">是什么</span>' +
+      (w.formal ? '<div class="def-formal">' + escapeHtml(w.formal) + '</div>' : '') +
+      '<div class="block-body">' + escapeHtml(w.def) + '</div></div>' +
     analogyHtml +
     relatedHtml +
     tipsHtml +
+    faqHtml +
     practiceHtml +
     '</div>'
   );
@@ -384,7 +434,7 @@ function makeNavItem(label, w) {
 }
 
 function bindEntryClicks(container) {
-  container.querySelectorAll('.related-chip, .np').forEach((el) => {
+  container.querySelectorAll('.related-chip, .np, .vs-link, .hist-word').forEach((el) => {
     el.addEventListener('click', () => openEntry(el.dataset.id));
   });
 }
@@ -464,6 +514,55 @@ function showLearn(idx) {
 }
 
 /* ---------- AI 常见误区（聚合所有词的"容易搞错的误区"） ---------- */
+/* ---------- 收录历程（按批次的时间线；数据 = words.json 的 history） ---------- */
+function renderHistory() {
+  const list = $('#historyList');
+  if (!list) return;
+  const hist = state.data.history || [];
+  const summary = $('#historySummary');
+  if (summary) {
+    summary.textContent = hist.length + ' 批收录 · ' + state.data.words.length + ' 个词条 · 从第一个概念一路长过来';
+  }
+  list.innerHTML = '';
+  /* 倒序：最新的批次在最上面 */
+  hist.slice().reverse().forEach((h) => {
+    const row = document.createElement('div');
+    row.className = 'hist-row';
+    const title = document.createElement('div');
+    title.className = 'hist-title';
+    title.textContent = h.title;
+    row.appendChild(title);
+    if (h.ids && h.ids.length) {
+      /* 纯文字排列：不用色块胶囊，118 个色块会花得看不清 */
+      const line = document.createElement('div');
+      line.className = 'hist-words';
+      h.ids.forEach((id, i) => {
+        const w = byId(id);
+        if (!w) return;
+        if (i) {
+          const sep = document.createElement('span');
+          sep.className = 'hist-sep';
+          sep.textContent = '·';
+          line.appendChild(sep);
+        }
+        const a = document.createElement('span');
+        a.className = 'hist-word';
+        a.dataset.id = w.id;
+        a.textContent = w.title;
+        line.appendChild(a);
+      });
+      row.appendChild(line);
+    } else {
+      const none = document.createElement('div');
+      none.className = 'hist-none';
+      none.textContent = '内容升级：给已有词条补字段、补练习或重构结构（本批无新增词）';
+      row.appendChild(none);
+    }
+    list.appendChild(row);
+  });
+  bindEntryClicks(list);
+}
+
 function renderPits() {
   const list = $('#pitsList');
   list.innerHTML = '';
@@ -510,7 +609,7 @@ function installStepsHtml(platform) {
   // 支持原生安装的浏览器：提供一键安装按钮
   let btnHtml = '';
   if (deferredPrompt) {
-    btnHtml = '<button id="pwaInstallBtn" class="btn-primary modal-btn">📲 立即安装</button>';
+    btnHtml = '<button id="pwaInstallBtn" class="btn-primary modal-btn">立即安装</button>';
   }
 
   let steps = '';
@@ -583,17 +682,38 @@ if (inlineData) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
-    .then(boot)
+    .then((data) => {
+      /* 渲染错误单独兜住：否则会被下面的 catch 伪装成"加载失败"，排查时误导 */
+      try {
+        boot(data);
+      } catch (e) {
+        console.error(e);
+        $('#homeView').innerHTML =
+          '<div class="card">渲染失败：' + escapeHtml(String(e)) +
+          '<br>这是页面脚本的问题，不是网络问题（words.json 已经取到了）。</div>';
+      }
+    })
     .catch((err) => {
+      const hint = location.protocol === 'file:'
+        ? '<br>这个页面需要用 http 打开：直接双击文件打开时，浏览器不允许读取同目录的 words.json。'
+        : '<br>请确认 words.json 与页面在同一目录。';
       $('#homeView').innerHTML =
-        '<div class="card">加载失败：' + escapeHtml(String(err)) +
-        '<br>请确认 words.json 与页面在同一目录。</div>';
+        '<div class="card">加载失败：' + escapeHtml(String(err)) + hint + '</div>';
     });
 }
 
-/* ---------- PWA：注册 Service Worker（支持添加到桌面 / 离线） ---------- */
+/* ---------- PWA：注册 Service Worker（支持添加到桌面 / 离线） ----------
+   本地预览（127.0.0.1 / localhost）不注册，并把以前注册过的注销掉——
+   否则改完文件要靠硬刷新才看得到，排查问题时极易误判成代码坏了。 */
+const isLocalPreview = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  });
+  if (isLocalPreview) {
+    navigator.serviceWorker.getRegistrations()
+      .then((rs) => rs.forEach((r) => r.unregister()))
+      .catch(() => {});
+  } else {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
 }

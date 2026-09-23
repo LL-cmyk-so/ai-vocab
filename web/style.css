@@ -95,9 +95,28 @@ body {
 .pit-title { font-weight: 700; font-size: 15px; }
 .pit-body { font-size: 14px; color: var(--text); line-height: 1.6; margin-top: 4px; }
 
-/* 搜索面板（点 🔍 在当前页展开；上下留足间距，内容自然下移） */
-.search-drop { max-width: 760px; margin: 12px auto 16px; padding: 0 16px; }
-.search-bar { display: flex; gap: 8px; align-items: center; }
+/* 搜索覆盖层（全屏铺开、背景变暗；面板贴顶，✕ / Esc / 点背景关闭） */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 998;   /* 比弹窗(999)低一档：两者不会同时出现 */
+  background: var(--overlay);
+  display: none;
+}
+.search-overlay.open { display: block; }
+.search-panel {
+  /* 半透明磨砂：下拉框浮在页面之上，底下透出半透明阴影里的内容（不是整块色填充） */
+  background: rgba(252, 251, 248, .88);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  backdrop-filter: blur(14px) saturate(1.05);
+  padding: calc(10px + max(env(safe-area-inset-top), 0px)) 16px calc(16px + env(safe-area-inset-bottom));
+  max-height: 100%;
+  overflow-y: auto;
+  animation: search-slide .2s var(--ease-out);
+}
+@keyframes search-slide {
+  from { transform: translateY(-12px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.search-bar { display: flex; gap: 8px; align-items: center; max-width: 760px; margin: 0 auto; }
 .search-bar input {
   flex: 1; padding: 8px 16px; font-size: 14px;
   border: 1px solid var(--line); border-radius: var(--radius-btn);   /* 输入框圆角归一到按钮档 */
@@ -119,10 +138,9 @@ body {
 .search-close:hover { border-color: var(--main); color: var(--main); }
 .search-close:active { transform: scale(0.95); }   /* A3 */
 .search-results {
-  margin-top: 12px; padding: 8px 16px;
+  margin: 12px auto 0; max-width: 760px; padding: 8px 16px;
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: var(--shadow);
-  max-height: 55vh; overflow-y: auto;
 }
 
 /* ---------- 主体 ---------- */
@@ -156,6 +174,8 @@ main { flex: 1; padding: 16px 16px 32px; }
 
 /* 首页主体：与 header 保持 16px 区块间距（总纲卡片不贴顶） */
 #homeMain { padding-top: 16px; }
+/* 左栏下滑提示：默认不存在，只在分栏且有内容未滚到时出现（具体样式见 @media 840px） */
+.scroll-hint { display: none; }
 
 /* ---------- 折叠目录树 ---------- */
 .tree { display: flex; flex-direction: column; gap: 8px; }
@@ -232,9 +252,15 @@ main { flex: 1; padding: 16px 16px 32px; }
 }
 
 /* 热门一行（弱化） */
-.hot-line { text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-3); }
-.hot-line a { color: var(--muted); text-decoration: none; margin: 0 4px; line-height: 2.0; display: inline-block; padding: 4px 8px; }   /* M2: 行高 2.0 + padding 热区 48px */
-.hot-line a:hover { color: var(--main); }
+/* 收录历程（批次时间线；词名用纯文字排列，不用色块胶囊） */
+.hist-row { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.hist-row:first-child { margin-top: 10px; padding-top: 0; border-top: none; }
+.hist-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.hist-words { font-size: 13px; line-height: 2.0; color: var(--muted); }
+.hist-word { color: var(--main); cursor: pointer; }
+.hist-word:hover { border-bottom: 1px solid var(--main); }
+.hist-sep { color: var(--text-3); margin: 0 6px; }
+.hist-none { font-size: 13px; color: var(--muted); }
 
 /* 学习模式（新手教程）：与 header 保持 16px 间距（与首页 #homeMain 一致） */
 #learnView, #pathView { padding-top: 16px; }
@@ -335,6 +361,7 @@ main { flex: 1; padding: 16px 16px 32px; }
   .container.split #homeView {
     flex: 0 0 340px;                 /* 目录固定侧栏宽度 */
     max-width: 340px;
+    position: relative;              /* 下滑提示相对左栏定位 */
   }
   .container.split #homeView #homeMain {
     position: sticky;
@@ -342,6 +369,22 @@ main { flex: 1; padding: 16px 16px 32px; }
     max-height: calc(100vh - 92px);
     overflow-y: auto;
     padding-right: 4px;
+  }
+  /* 下滑提示：贴在左栏底部，底部渐变盖住半截内容，提示"下面还有"
+     pointer-events:none → 不挡目录的点击与滚动条拖动 */
+  .container.split .scroll-hint {
+    position: absolute; left: 0; right: 4px; bottom: 0; height: 56px;
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;
+    background: linear-gradient(to bottom, rgba(246, 241, 233, 0), var(--bg) 72%);
+    pointer-events: none; opacity: 0;
+    transition: opacity .18s var(--ease-out);   /* 到底时淡出，不硬切 */
+  }
+  .container.split .scroll-hint.show { opacity: 1; }
+  .container.split .scroll-hint::after {
+    content: ''; width: 0; height: 0;             /* 纯 CSS 三角，不依赖字体 */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--main);
   }
   .container #entryView {
     /* 默认态：可渲染但不可见（配合 JS 先移除 hidden 再触发过渡） */
@@ -397,10 +440,37 @@ main { flex: 1; padding: 16px 16px 32px; }
 }
 .analogy .block-body { font-size: 14px; line-height: 1.7; }
 .entry-def { margin-top: 16px; }
+/* 试样：标准定义（正式一句话，走在通俗解释之前；细紫左条区分两层） */
+.def-formal {
+  font-size: 14px; line-height: 1.7; color: var(--muted);
+  border-left: 2px solid var(--main-line);
+  padding-left: 10px; margin-bottom: 10px;
+}
+/* 辨析（多条对照，替代单行「容易混淆」）
+   词名**不用紫色**——紫色在本站是"小标题"的专用色（是什么/通俗类比/试试看…），
+   词名同色同重就会跟「和相近词的区别：」这个标签糊成一片。
+   可点击的词名用细下划线暗示可点，不可点的（词库里没有）只有深色粗体。 */
+.vs-row { margin-top: 6px; padding-left: 8px; }   /* 第三级：缩进一点，与第二级标签分开 */
+.tip-label + .vs-row { margin-top: 10px; }   /* 标签与第一条拉开一点 */
+.vs-row b { color: var(--text); font-weight: 600; }
+.vs-link {
+  color: var(--text); font-weight: 600; cursor: pointer;
+  border-bottom: 1px solid var(--main-line);
+  transition: color .15s, border-color .15s;
+}
+.vs-link:hover { color: var(--main); border-bottom-color: var(--main); }
+.vs-link:active { opacity: .65; }
+/* 试样：常见问答（与 .entry-tips 同一套语言，保持节奏一致） */
+.entry-faq { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 12px; }
+.entry-faq summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--main); outline: none; }
+.faq-body { margin-top: 10px; display: flex; flex-direction: column; gap: 12px; }
+.faq-q { font-size: 14px; font-weight: 600; color: var(--text); }
+.faq-a { font-size: 14px; line-height: 1.7; color: var(--muted); margin-top: 4px; }
 .entry-tips { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 12px; }
 .entry-tips summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--main); outline: none; }
 .tips-body { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
-.tip-item { font-size: 14px; color: var(--text); line-height: 1.6; }
+/* 去掉 emoji 后，靠紫短竖条 + 紫色标签把三条提示分开（灰度下也分得清） */
+.tip-item { font-size: 14px; color: var(--text); line-height: 1.6; padding-left: 10px; border-left: 2px solid var(--main-line); }
 /* P1：试试看（现场可做的练习）：去掉大块底色，细边框 + 左侧竖条，收敛成安静的 callout */
 .entry-practice {
   margin-top: 18px;
@@ -412,16 +482,18 @@ main { flex: 1; padding: 16px 16px 32px; }
 }
 .practice-title { font-size: 13px; font-weight: 700; color: var(--main); margin-bottom: 6px; }
 .practice-body { font-size: 14px; line-height: 1.8; color: var(--text); }
+/* 第二级（小标题下面的标签）：只加粗，不用紫——紫是留给第一级小标题的 */
 .tip-label { font-weight: 600; color: var(--text); }
 .related-block { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); }   /* S7: 18/14→16 表外归一 */
 .related-title { font-size: 13px; color: var(--main); margin-bottom: 10px; font-weight: 700; }
 .related-chip {
   display: inline-block; margin: 0 8px 8px 0;
-  background: var(--main-soft); color: var(--main-text-soft);
+  background: none; color: var(--main-text-soft);
+  border: 1px solid var(--main-line);
   border-radius: 9999px; padding: 8px 12px; font-size: 14px; font-weight: 600;
-  cursor: pointer; transition: background .15s, color .15s, transform 120ms var(--ease-out);
+  cursor: pointer; transition: background .15s, border-color .15s, transform 120ms var(--ease-out);
 }
-.related-chip:hover { background: var(--main); color: var(--on-main); }
+.related-chip:hover { background: var(--main-soft); border-color: var(--main); }
 .related-chip:active { transform: scale(0.97); }   /* A3 */
 
 /* 词条页底部：上一词 / 下一词（首词无上一词、末词无下一词，缺的一侧不占位） */
