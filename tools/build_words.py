@@ -39,7 +39,7 @@ ID_MAP = {
     '模型评测': 'model-evaluation', '对齐（Alignment）': 'alignment',
     '可解释性': 'explainability', 'AGI（通用人工智能）': 'agi',
     '具身智能': 'embodied-ai', '世界模型': 'world-model',
-    '越狱 / 提示词注入': 'jailbreak',
+    '越狱': 'jailbreak',
     # ---- 第六批新增（21 词）----
     '推理模型 / 深度思考': 'reasoning-model',
     '联网搜索': 'web-search',
@@ -111,6 +111,11 @@ ID_MAP = {
     '内存荒': 'ramageddon',
     '扩散模型': 'diffusion-model',
     '编程智能体': 'coding-agent',
+    # ---- 第二十一批（4 词）----
+    '上下文工程（Context Engineering）': 'context-engineering',
+    '提示词注入（Prompt Injection）': 'prompt-injection',
+    '上下文压缩（Compaction）': 'compaction',
+    'token 工厂（Token Factory）': 'token-factory',
 }
 
 # ---- 层级归一化与展示 ----
@@ -152,14 +157,14 @@ RELATED = {
     'nlp': ['llm', 'transformer'],
     'transformer': ['attention', 'llm'],
     'attention': ['transformer'],
-    'token': ['llm', 'context-window', 'api'],
-    'context-window': ['token', 'memory', 'llm'],
+    'token': ['llm', 'context-window', 'api', 'token-factory'],
+    'context-window': ['token', 'memory', 'llm', 'compaction', 'context-engineering'],
     'pretraining': ['fine-tuning', 'training', 'llm'],
     'fine-tuning': ['pretraining', 'dataset', 'alignment'],
     'rlhf': ['training', 'alignment', 'fine-tuning'],
     'multimodal': ['generative-ai', 'text-to-image', 'text-to-video', 'digital-human'],
-    'prompt': ['prompt-engineering', 'llm', 'jailbreak'],
-    'prompt-engineering': ['prompt', 'agent'],
+    'prompt': ['prompt-engineering', 'llm', 'jailbreak', 'prompt-injection'],
+    'prompt-engineering': ['prompt', 'agent', 'context-engineering'],
     'embedding': ['vector', 'semantic-search', 'rag'],
     'vector': ['embedding', 'vector-database', 'semantic-search'],
     'vector-database': ['vector', 'rag', 'memory'],
@@ -178,9 +183,9 @@ RELATED = {
     'agent': ['tool-calling', 'memory', 'multi-agent', 'ai-assistant', 'coding-agent'],
     'workflow': ['agent', 'tool-calling', 'prompt-engineering'],
     'tool-calling': ['agent', 'api'],
-    'memory': ['vector-database', 'context-window', 'agent'],
+    'memory': ['vector-database', 'context-window', 'agent', 'compaction'],
     'multi-agent': ['agent', 'workflow'],
-    'api': ['tool-calling', 'token', 'llm'],
+    'api': ['tool-calling', 'token', 'llm', 'token-factory'],
     'open-source-model': ['local-deployment', 'api', 'model-evaluation'],
     'local-deployment': ['open-source-model', 'gpu', 'compute'],
     'model-evaluation': ['llm', 'open-source-model'],
@@ -189,7 +194,7 @@ RELATED = {
     'agi': ['ai', 'world-model', 'alignment', 'embodied-ai'],
     'embodied-ai': ['world-model', 'agi', 'multimodal'],
     'world-model': ['agi', 'embodied-ai', 'text-to-video'],
-    'jailbreak': ['prompt', 'alignment'],
+    'jailbreak': ['prompt', 'alignment', 'prompt-injection'],
     # ---- 第六批新增（21 词）----
     'reasoning-model': ['llm', 'chain-of-thought', 'rlhf', 'opaque-recurrence'],
     'web-search': ['llm', 'rag', 'ai-search'],
@@ -222,7 +227,7 @@ RELATED = {
     'ai-slop': ['generative-ai', 'ai-content-label', 'hallucination'],
     # ---- 第十一批新增（2 词）----
     'hand-rolling': ['generative-ai', 'ai-slop', 'prompt'],
-    'guardrails': ['jailbreak', 'alignment', 'ai-content-label'],
+    'guardrails': ['jailbreak', 'alignment', 'ai-content-label', 'prompt-injection'],
     # ---- 第十二批新增（3 词）----
     'moe': ['llm', 'parameter', 'distillation'],
     'data-flywheel': ['llm', 'synthetic-data', 'dataset', 'data-element'],
@@ -261,6 +266,11 @@ RELATED = {
     'ramageddon': ['gpu', 'compute', 'local-deployment'],
     'diffusion-model': ['text-to-image', 'text-to-video', 'generative-ai'],
     'coding-agent': ['agent', 'copilot', 'spec-coding', 'tool-calling'],
+    # ---- 第二十一批新增（4 词）----
+    'context-engineering': ['prompt-engineering', 'context-window', 'compaction', 'prompt'],
+    'prompt-injection': ['jailbreak', 'guardrails', 'prompt', 'alignment'],
+    'compaction': ['context-window', 'memory', 'context-engineering'],
+    'token-factory': ['token', 'api', 'compute', 'intelligent-economy'],
 }
 
 # ---- 进阶标注（面向开发者，页面显示"进阶"徽标；与用户确认的原型一致）----
@@ -275,6 +285,8 @@ ADV = {
     'loop', 'harness',
     # ---- 第十八批（3 个进阶词）----
     'opaque-recurrence', 'diffusion-model', 'coding-agent',
+    # ---- 第二十一批（1 个进阶词）----
+    'compaction',
 }
 
 # ---- 层内小节（77 词版折叠树：layer -> [(小节名, [词id])]）----
@@ -287,10 +299,10 @@ SECTIONS = {
         ('大模型家族', ['llm', 'generative-ai', 'aigc', 'reasoning-model', 'slm', 'multimodal', 'nlp', 'cv']),
 
         ('训练方法', ['pretraining', 'fine-tuning', 'rlhf', 'distillation', 'synthetic-data', 'model-collapse']),
-        ('内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot', 'opaque-recurrence']),
+        ('内部机制', ['transformer', 'attention', 'token', 'context-window', 'chain-of-thought', 'temperature', 'moe', 'vlm', 'stochastic-parrot', 'opaque-recurrence', 'compaction']),
     ],
     '交互层': [
-        ('提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination']),
+        ('提示与生成', ['prompt', 'prompt-engineering', 'system-prompt', 'structured-output', 'streaming', 'hallucination', 'context-engineering']),
         ('检索与知识', ['embedding', 'vector', 'vector-database', 'semantic-search', 'full-text-search', 'chunking', 'rag', 'knowledge-base', 'recall', 'rerank', 'web-search', 'ai-search']),
         ('提示技巧', ['few-shot']),
     ],
@@ -303,9 +315,9 @@ SECTIONS = {
     ],
     '生态与前沿': [
         ('API 工程', ['api', 'rate-limit', 'prompt-caching', 'mcp', 'local-deployment', 'open-source-model', 'quantization']),
-        ('评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling']),
+        ('评测与安全', ['model-evaluation', 'mmlu', 'alignment', 'explainability', 'jailbreak', 'guardrails', 'bias', 'sycophancy', 'data-poisoning', 'eliza-effect', 'deskilling', 'automation-complacency', 'ai-content-label', 'ai-copyright', 'ai-slop', 'hand-rolling', 'prompt-injection']),
         ('内容生态现象', ['ai-washing', 'ghost-work', 'dead-internet', 'pink-slime']),
-        ('未来方向', ['agi', 'asi', 'embodied-ai', 'world-model', 'ai-inclusion', 'intelligent-economy']),
+        ('未来方向', ['agi', 'asi', 'embodied-ai', 'world-model', 'ai-inclusion', 'intelligent-economy', 'token-factory']),
         ('数据与飞轮', ['data-flywheel', 'data-element', 'data-governance']),
     ],
 }
@@ -376,6 +388,7 @@ HISTORY = [
     ('第十七批：新增 4 词（AI 普惠 / 一人公司 / Loop / Harness）', ['ai-inclusion', 'one-person-company', 'loop', 'harness']),
     ('第十八批：新增 7 词（智能经济 / 数据要素 / 数据治理 / 不透明递归 / 内存荒 / 扩散模型 / 编程智能体）', ['intelligent-economy', 'data-element', 'data-governance', 'opaque-recurrence', 'ramageddon', 'diffusion-model', 'coding-agent']),
     ('第二十批：高频 20 词结构升级（标准定义 + 辨析 + 问答）', []),
+    ('第二十一批：新增 4 词（上下文工程 / 提示词注入 / 上下文压缩 / token 工厂）', ['context-engineering', 'prompt-injection', 'compaction', 'token-factory']),
 ]
 
 FIELD_KEYS = {'英文名': 'en', '中文名': 'zh', '别名': 'alias', '层级': 'layer', '白话解释': 'def', '进阶': 'adv_raw', '类比': 'analogy', '场景': 'scene', '误区': 'mistake', '混淆': 'confuse', '练习': 'practice', '标准定义': 'formal'}
@@ -477,20 +490,10 @@ def main():
             words[wid] = entry
     words_list = list(words.values())
 
-    # updated：内容真的变了才刷新（除 updated 外逐字段完全相等 = 没变，保留原日期）。
-    # 必须放在全部批次合并完成之后——词条可能在多个批次里被覆盖，
-    # 拿创建时的中间态去比会把"没变"误判成"变了"（2026-09-23 修）。
-    for w in words_list:
-        old = prev.get(w['id'])
-        prev_base = {k: v for k, v in old.items() if k != 'updated'} if old else None
-        cur_base = {k: v for k, v in w.items() if k != 'updated'}
-        w['updated'] = old['updated'] if (prev_base is not None and prev_base == cur_base) else str(date.today())
-
-    missing = set(ID_MAP) - {w['title'] for w in words_list}
-    for t in missing:
-        print('WARN: 词条缺失:', t, file=sys.stderr)
-
-    # 辨析条目的名称反查词条 id：匹配得上就带 ref（页面可点击跳转），匹配不上保持纯文本
+    # 辨析条目的名称反查词条 id：匹配得上就带 ref（页面可点击跳转），匹配不上保持纯文本。
+    # ⚠️ 必须排在下面的 updated 比较**之前**：ref 是构建期补的字段，
+    # 若排在后面，比较时新词条的 vs 里还没有 ref、而上次构建的旧词条已经有，
+    # 于是被判成"内容变了"，把整批词的日期刷成当天（2026-10-11 修）。
     name_to_id = {}
     for w in words_list:
         cands = [w['title'], w['zh'], w['en']]
@@ -505,6 +508,19 @@ def main():
             ref = name_to_id.get(v['name']) or name_to_id.get(re.sub(r'（.*?）|\(.*?\)', '', v['name']).strip())
             if ref and ref != w['id']:
                 v['ref'] = ref
+
+    # updated：内容真的变了才刷新（除 updated 外逐字段完全相等 = 没变，保留原日期）。
+    # 必须放在全部批次合并完成之后——词条可能在多个批次里被覆盖，
+    # 拿创建时的中间态去比会把"没变"误判成"变了"（2026-09-23 修）。
+    for w in words_list:
+        old = prev.get(w['id'])
+        prev_base = {k: v for k, v in old.items() if k != 'updated'} if old else None
+        cur_base = {k: v for k, v in w.items() if k != 'updated'}
+        w['updated'] = old['updated'] if (prev_base is not None and prev_base == cur_base) else str(date.today())
+
+    missing = set(ID_MAP) - {w['title'] for w in words_list}
+    for t in missing:
+        print('WARN: 词条缺失:', t, file=sys.stderr)
 
     data = {
         'title': 'AI 词汇本',
