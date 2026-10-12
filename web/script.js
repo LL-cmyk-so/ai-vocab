@@ -178,8 +178,13 @@ function enterSplit(id) {
   $('#homeView').hidden = false;
   ev.hidden = false;
   ev.classList.remove('anim-ready');
-  $('#learnView').hidden = true;
-  $('#pathView').hidden = true;
+  /* 除「首页目录」和「词条」外，其余视图一律收起。
+     否则从「收录历程 / 坑」点词时，那个视图会留在分栏里跟词条抢位置，
+     被 flex-wrap 挤到第二行 → 看起来像"点了没反应"。 */
+  VIEWS.forEach((v) => {
+    const el = $('#' + v);
+    if (el) el.hidden = (v !== 'homeView' && v !== 'entryView');
+  });
   document.body.classList.remove('view-home');   // 详情页收起副标题
   window.scrollTo({ top: 0 });
   renderEntry();
